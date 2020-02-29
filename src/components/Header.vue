@@ -1,5 +1,9 @@
 <template>
-  <h1>Header</h1>
+  <v-container fluid>
+    <div>
+      <v-img src="../assets/images/FreshPlatezLogo.jpg" />
+    </div>
+  </v-container>
 </template>
 
 <script>
@@ -8,3 +12,6 @@ export default {
   data: () => {}
 };
 </script>
+
+<style scoped>
+</style>
