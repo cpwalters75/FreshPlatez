@@ -11,7 +11,7 @@
 import Header from "./components/Header";
 // import Home from "./views/Home";
 import router from "./router";
-// import CheckoutTest from "./components/CheckoutTest";
+
 
 export default {
   name: "App",
@@ -19,8 +19,7 @@ export default {
 
   components: {
     Header
-    // Home,
-    // CheckoutTest
+    
   },
 
   data: () => ({
