@@ -1,15 +1,18 @@
 <template>
-  <v-card max-width="420"
-  outlined
-    raised
-    color="grey lighten-5"
-    >
-    <v-card-title>
+  <v-card max-width="420" outlined raised color="grey lighten-5">
+    <v-card-title>Please Complete the Below
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
-          v-model="name"
-          :rules="nameRules"
-          label="Name"
+          v-model="firstName"
+          :rules="FNameRules"
+          label="First Name"
+          required
+        ></v-text-field>
+
+        <v-text-field
+          v-model="lastName"
+          :rules="LNameRules"
+          label="Last Name"
           required
         ></v-text-field>
 
@@ -20,21 +23,26 @@
           required
         ></v-text-field>
 
-        
         <v-checkbox
           v-model="checkbox"
-          :rules="[v => !!v || 'You must agree to continue!']"
+          :rules="[
+            v => !!v || 'You must acknowledge pickup location to continue!'
+          ]"
           label="Pick up is at CrossFit Bona Fide, Greenland, NH"
           required
+          class="mb-4"
         ></v-checkbox>
 
+        <v-btn color="primary" class="mr-4 mb-2">
+          Log In
+        </v-btn>
         <v-btn
           :disabled="!valid"
           color="success"
           class="mr-4"
           @click="validate"
         >
-          Submit
+          Place Order
         </v-btn>
       </v-form>
     </v-card-title>
@@ -45,11 +53,15 @@
 export default {
   data: () => ({
     valid: true,
-    name: "",
-    nameRules: [
-      v => !!v || "Name is required",
-      v => (v && v.length <= 10) || "Name must be less than 10 characters"
+    firstName: "",
+    FNameRules: [
+      v => !!v || "First name is required",
     ],
+    lastName: "",
+    LNameRules: [
+      v => !!v || "Last name is required",
+    ],
+    
     email: "",
     emailRules: [
       v => !!v || "E-mail is required",
@@ -61,7 +73,7 @@ export default {
     validate() {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
-        console.log(this.name, this.email);
+        console.log(this.firstName, this.lastName, this.email);
       }
     },
     reset() {
