@@ -14,7 +14,7 @@ export default {
 
 <style scoped>
 div {
-  height: 60%;
+  height: 40%;
   text-align: center;
   background-color: gray;
   /* background-image: url(`~@assets\images\FreshPlatezLogo.jpg`); */
