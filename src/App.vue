@@ -2,7 +2,7 @@
   <v-app>
     <Header />
     <v-content>
-      <router-view />
+      <router-view v-bind:meal="meal" />
     </v-content>
   </v-app>
 </template>
@@ -12,18 +12,12 @@ import Header from "./components/Header";
 // import Home from "./views/Home";
 import router from "./router";
 
-
 export default {
   name: "App",
   router,
-
   components: {
     Header
-    
   },
-
-  data: () => ({
-    //
-  })
+  data: () => ({})
 };
 </script>

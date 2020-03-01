@@ -40,15 +40,9 @@
 
 <script>
 export default {
+  name: "MealCard",
+  props: ["meal"],
   data: () => ({
-    meal: {
-      prices: ["Small.....$7.50", "Large.....$12.00"],
-      qty: ["1", "2", "3", "4"],
-      title: "Beef Burger Over Spinach",
-      shortDescription:
-        "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-      imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-    },
     show: false,
     absolute: true,
     overlay: false
