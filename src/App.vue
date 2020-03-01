@@ -3,8 +3,8 @@
     <v-content>
       <Header />
       <Home />
-      <router-view/>
-      <CheckoutTest/>
+      <router-view />
+      <CheckoutTest />
     </v-content>
   </v-app>
 </template>
@@ -23,7 +23,6 @@ export default {
     Header,
     Home,
     CheckoutTest
-  
   },
 
   data: () => ({
