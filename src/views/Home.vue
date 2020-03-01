@@ -9,7 +9,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import MealCard from "../components/MealCard.vue";
 export default {
   name: "Home",
