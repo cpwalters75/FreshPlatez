@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-btn color="success" class="mr-4" @click="checkout">
+  <div >
+    <v-btn color="success" class="mr-4" to="/checkout" >
       checkoutTest
     </v-btn>
   </div>
@@ -11,7 +11,7 @@ export default {
   name: "CheckoutTest",
   components: {},
   methods: {
-    checkout() {}
+    
   }
 };
 </script>
