@@ -1,6 +1,7 @@
 <template>
   <v-card max-width="420" outlined raised color="grey lighten-5">
-    <v-card-title>Please Complete the Below
+    <v-card-title
+      >Please Complete the Below
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
           v-model="firstName"
@@ -50,8 +51,12 @@
 </template>
 
 <script>
+
+import axios from 'axios';
+
 export default {
   data: () => ({
+    show: true,
     valid: true,
     firstName: "",
     FNameRules: [
@@ -61,7 +66,7 @@ export default {
     LNameRules: [
       v => !!v || "Last name is required",
     ],
-    
+
     email: "",
     emailRules: [
       v => !!v || "E-mail is required",
@@ -69,13 +74,33 @@ export default {
     ]
   }),
 
+
   methods: {
     validate() {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         console.log(this.firstName, this.lastName, this.email);
-      }
+        const Fname = this.firstName;
+        const Lname = this.lastName;
+        const email = this.email;
+        const emailParams = {
+          email, Fname, Lname
+        };
+
+      axios.post('/api/email', emailParams)
+      .then(function (response) {
+          console.log(response);
+      })
+      .catch(function (error) {
+          console.log(error)
+          
+      });
+  }},
+
+    show() {
+      this.data.show = true
     },
+
     reset() {
       this.$refs.form.reset();
     },

@@ -135,6 +135,8 @@
     },
 
     methods: {
+     
+
       initialize () {
         this.desserts = [
           {

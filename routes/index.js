@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const mailRoutes = require('./mail-routes')
+const apiRoutes = require('./api-routes')
 
-router.use('/api/mail', mailRoutes)
+router.use('/api', apiRoutes)
 
 module.exports = router;
