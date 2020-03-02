@@ -2,14 +2,13 @@
   <v-app>
     <Header />
     <v-content>
-      <router-view v-bind:meal="meal" />
+      <router-view />
     </v-content>
   </v-app>
 </template>
 
 <script>
 import Header from "./components/Header";
-// import Home from "./views/Home";
 import router from "./router";
 
 export default {
