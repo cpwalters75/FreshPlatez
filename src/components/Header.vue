@@ -1,7 +1,7 @@
 <template>
   <div
     fluid
-    :style="'background:url('+logo+'); background-size: contain; background-repeat: no-repeat; background-position: center;'"
+    :style="'background:url('+logo+'); background-size: contain; background-repeat: no-repeat; background-position: center'"
   >
     <v-btn class="primary" to="/">Home</v-btn>
     <v-btn class="success" to="/checkout">Checkout</v-btn>
@@ -24,8 +24,12 @@ export default {
 
 <style scoped>
 div {
-  height: 80%;
+  min-height: 50%;
   text-align: right;
-  background-color: gray;
+}
+@media (max-width: 600px) {
+  div {
+    min-height: 20%;
+  }
 }
 </style>
