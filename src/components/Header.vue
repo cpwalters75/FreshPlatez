@@ -1,26 +1,31 @@
 <template>
-  <div fluid class="fill-height">
+  <div
+    fluid
+    :style="'background:url('+logo+'); background-size: contain; background-repeat: no-repeat; background-position: center;'"
+  >
     <v-btn class="primary" to="/">Home</v-btn>
     <v-btn class="success" to="/checkout">Checkout</v-btn>
   </div>
 </template>
 
 <script>
+import logo from "../assets/images/FreshPlatezLogo.jpg";
+
 export default {
   name: "Header",
-
+  props: {},
   data: () => {
-    return {};
+    return {
+      logo: logo
+    };
   }
 };
 </script>
 
 <style scoped>
 div {
-  height: 60%;
-  text-align: center;
+  height: 80%;
+  text-align: right;
   background-color: gray;
-  /* background-image: url(`~@assets\images\FreshPlatezLogo.jpg`); */
-  background-size: cover;
 }
 </style>
