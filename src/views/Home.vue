@@ -1,10 +1,8 @@
 <template>
   <v-container>
     <v-row>
-      <v-col col="12">
-        <div v-bind:key="meal.id" v-for="meal in meals">
-          <MealCard v-bind:meal="meal" />
-        </div>
+      <v-col col="4" v-bind:key="meal.id" v-for="meal in meals">
+        <MealCard v-bind:meal="meal" />
       </v-col>
     </v-row>
   </v-container>

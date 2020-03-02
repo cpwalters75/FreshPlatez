@@ -16,7 +16,7 @@ const routes = [
         {
           prices: ["Small.....$7.50", "Large.....$12.00"],
           qty: ["1", "2", "3", "4"],
-          title: "Beef Burger Over Spinach",
+          title: "1 Beef Burger Over Spinach",
           shortDescription:
             "A beef burger over spinach with pickled zucchini and sweet potatato fries",
           imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
@@ -24,7 +24,7 @@ const routes = [
         {
           prices: ["Small.....$7.50", "Large.....$12.00"],
           qty: ["1", "2", "3", "4"],
-          title: "Beef Burger Over Spinach",
+          title: "2 Beef Burger Over Spinach",
           shortDescription:
             "A beef burger over spinach with pickled zucchini and sweet potatato fries",
           imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
@@ -32,7 +32,7 @@ const routes = [
         {
           prices: ["Small.....$7.50", "Large.....$12.00"],
           qty: ["1", "2", "3", "4"],
-          title: "Beef Burger Over Spinach",
+          title: "3 Beef Burger Over Spinach",
           shortDescription:
             "A beef burger over spinach with pickled zucchini and sweet potatato fries",
           imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
