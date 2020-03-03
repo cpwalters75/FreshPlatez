@@ -17,7 +17,6 @@
         required
         clearable="true"
         auto-grow="true"
-        autofocus="true"
       >
         <template v-slot:label>
           <div>Short Description</div>

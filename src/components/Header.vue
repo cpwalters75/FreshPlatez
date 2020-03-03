@@ -1,7 +1,7 @@
 <template>
   <div
     fluid
-    :style="'background:url('+logo+'); background-size: contain; background-repeat: no-repeat; background-position: center'"
+    :style="'background:url('+logo+') background-size: contain; background-repeat: no-repeat; background-position: center;'"
   >
     <v-btn class="primary" to="/">Home</v-btn>
     <v-btn class="success" to="/checkout">Checkout</v-btn>
@@ -14,7 +14,6 @@ import logo from "../assets/images/FreshPlatezLogo.jpg";
 
 export default {
   name: "Header",
-  props: {},
   data: () => {
     return {
       logo: logo
