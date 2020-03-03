@@ -1,7 +1,7 @@
 <template>
   <div
     fluid
-    :style="'background:url('+logo+'); background-size: contain; background-repeat: no-repeat; background-position: center'"
+    :style="'background:url('+logo+'); background-size: contain; background-repeat: no-repeat; background-position: center;'"
   >
     
   </div>
@@ -12,7 +12,6 @@ import logo from "../assets/images/FreshPlatezLogo.jpg";
 
 export default {
   name: "Header",
-  props: {},
   data: () => {
     return {
       logo: logo
