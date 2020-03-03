@@ -10,13 +10,19 @@
     </v-card-title>
 
     <v-card-subtitle>
-      <v-text-field
-        v-model="shortDescription"
+      <v-textarea
+        :value="this.$props.meal.shortDescription"
         :rules="shortDescriptionRules"
         label="Short Description"
         required
         clearable="true"
-      ></v-text-field>
+        auto-grow="true"
+        autofocus="true"
+      >
+        <template v-slot:label>
+          <div>Short Description</div>
+        </template>
+      </v-textarea>
     </v-card-subtitle>
     <v-expand-transition>
       <div v-show="show">
@@ -55,7 +61,7 @@ export default {
     overlay: false,
     valid: false,
     name: ``,
-    shortDescription: ``,
+    shortDescription: `if soething starts in the short description does it transalte to the page`,
     nameRules: [v => !!v || "Name is required"],
     shortDescriptionRules: [v => !!v || "Short Description is required"]
   })
