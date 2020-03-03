@@ -26,15 +26,18 @@
             <v-select :items="meal.prices" label="Size/Price(ea)" dense solo></v-select>
             <v-select :items="meal.qty" label="Quantity" dense solo></v-select>
             <div icon @click="overlay = !overlay">
-              <v-btn color="success">Save</v-btn>
+              <v-btn class="large" depressed color="success">Save</v-btn>
             </div>
+            <v-btn class="small red darken-2">
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
           </v-col>
         </v-card-actions>
       </div>
     </v-expand-transition>
     <v-overlay :absolute="absolute" :value="overlay">
       <v-btn color="success" @click="overlay= !overlay; show= !show">
-        Order Updated!
+        Meal Updated!
         <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
       </v-btn>
     </v-overlay>
