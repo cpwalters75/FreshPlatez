@@ -3,14 +3,20 @@
     <v-img :src="meal.imageSrc" height="200px"></v-img>
 
     <v-card-title>
-      {{meal.title}}
+      <v-text-field v-model="name" :rules="nameRules" label="Name" required></v-text-field>
       <v-btn @click="show = !show" fab dark small color="primary " bottom right absolute>
         <v-icon>{{ show ? "mdi-minus" : "mdi-plus" }}</v-icon>
       </v-btn>
     </v-card-title>
 
-    <v-card-subtitle>{{meal.shortDescription}}</v-card-subtitle>
-
+    <v-card-subtitle>
+      <v-text-field
+        v-model="shortDescription"
+        :rules="shortDescriptionRules"
+        label="Short Description"
+        required
+      ></v-text-field>
+    </v-card-subtitle>
     <v-expand-transition>
       <div v-show="show">
         <v-divider></v-divider>
@@ -20,10 +26,7 @@
             <v-select :items="meal.prices" label="Size/Price(ea)" dense solo></v-select>
             <v-select :items="meal.qty" label="Quantity" dense solo></v-select>
             <div icon @click="overlay = !overlay">
-              <v-btn outlined color="success">
-                Add to Order
-                <v-icon class="ml-2">mdi-cart</v-icon>
-              </v-btn>
+              <v-btn color="success">Save</v-btn>
             </div>
           </v-col>
         </v-card-actions>
@@ -43,9 +46,14 @@ export default {
   name: "AdminMealCard",
   props: ["meal"],
   data: () => ({
-    show: false,
+    show: true,
     absolute: true,
-    overlay: false
+    overlay: false,
+    valid: false,
+    name: ``,
+    shortDescription: ``,
+    nameRules: [v => !!v || "Name is required"],
+    shortDescriptionRules: [v => !!v || "Short Description is required"]
   })
 };
 </script>
