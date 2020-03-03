@@ -3,7 +3,7 @@
     <v-img :src="meal.imageSrc" height="200px"></v-img>
 
     <v-card-title>
-      <v-text-field v-model="name" :rules="nameRules" label="Name" required></v-text-field>
+      <v-text-field v-model="name" :rules="nameRules" label="Name" required clearable="true"></v-text-field>
       <v-btn @click="show = !show" fab dark small color="primary " bottom right absolute>
         <v-icon>{{ show ? "mdi-minus" : "mdi-plus" }}</v-icon>
       </v-btn>
@@ -15,6 +15,7 @@
         :rules="shortDescriptionRules"
         label="Short Description"
         required
+        clearable="true"
       ></v-text-field>
     </v-card-subtitle>
     <v-expand-transition>
