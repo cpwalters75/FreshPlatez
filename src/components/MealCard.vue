@@ -43,6 +43,10 @@ import axios from "axios";
 
 export default {
   name: "MealCard",
+  props: ["meal"],
+  mounted: function() {
+    this.popPage();
+  },
   data: () => ({
     show: false,
     absolute: true,
@@ -57,12 +61,9 @@ export default {
           console.log(response);
         })
         .catch(err => {
-          console.log(error);
+          console.log(err);
         });
     }
-  },
-  beforeMount() {
-    popPage();
   }
 };
 </script>
