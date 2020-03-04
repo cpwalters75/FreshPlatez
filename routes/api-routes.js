@@ -10,14 +10,14 @@ const from_who = process.env.EMAIL_USER;
 
 const mailgun = new Mailgun({ apiKey: api_key, domain: domain });
 // ----------------------MailGun Routes-----------------------------------------------------
- 
-router.get ("/get", function(req, res) {
+
+router.get("/platez", function (req, res) {
   res.json("you got it")
 })
 // Send a message to the specified email address when you navigate to /submit/someaddr@email.com
 // The index redirects here
-router.post("/email", function(req, res) {
-    
+router.post("/email", function (req, res) {
+
   console.log(req.body)
   // need to render a thank you and summary page to user
 
@@ -32,7 +32,7 @@ router.post("/email", function(req, res) {
   };
 
   //Invokes the method to send emails given the above data with the helper library
-  mailgun.messages().send(data, function(err, body) {
+  mailgun.messages().send(data, function (err, body) {
     //If there is an error, render the error page
     if (err) {
       res.render("error");

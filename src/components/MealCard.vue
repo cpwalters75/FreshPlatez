@@ -48,18 +48,21 @@ export default {
     absolute: true,
     overlay: false
   }),
-  
+
   methods: {
     popPage() {
-      axios.get('/api/platez')
-        .then((response)=> {
-          console.log(response)
+      axios
+        .get("/api/platez")
+        .then(response => {
+          console.log(response);
         })
-        .catch((err) => {
-          console.log(error)
-        })
-      }
+        .catch(err => {
+          console.log(error);
+        });
     }
+  },
+  beforeMount() {
+    popPage();
   }
 };
 </script>
