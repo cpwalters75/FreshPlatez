@@ -23,7 +23,8 @@ const routes = [
           imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" //image name
         }
       ]
-    },
+    }
+  },
   {
     path: '/checkout',
     name: 'Checkout',
