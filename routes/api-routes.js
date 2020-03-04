@@ -2,8 +2,8 @@
 const express = require("express");
 const router = express.Router();
 const Mailgun = require("mailgun-js");
-const dotenv = require("../dotenv").config();
-const db = require("../models");
+
+// const db = require("../models");
 const api_key = process.env.API_KEY;
 const domain = process.env.DOMAIN;
 const from_who = process.env.EMAIL_USER;
@@ -11,12 +11,14 @@ const from_who = process.env.EMAIL_USER;
 const mailgun = new Mailgun({ apiKey: api_key, domain: domain });
 // ----------------------MailGun Routes-----------------------------------------------------
  
-
+router.get ("/get", function(req, res) {
+  res.json("you got it")
+})
 // Send a message to the specified email address when you navigate to /submit/someaddr@email.com
 // The index redirects here
 router.post("/email", function(req, res) {
     
-
+  console.log(req.body)
   // need to render a thank you and summary page to user
 
   let data = {
