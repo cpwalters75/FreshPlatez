@@ -14,7 +14,7 @@
           v-model="lastName"
           :rules="LNameRules"
           label="Last Name"
-          required
+          
         ></v-text-field>
 
         <v-text-field
@@ -53,10 +53,10 @@
 <script>
 
 import axios from 'axios';
-
+import { EventBus } from "../event-bus"
 export default {
   data: () => ({
-    show: true,
+    show: false,
     valid: true,
     firstName: "",
     FNameRules: [
@@ -76,7 +76,8 @@ export default {
 
 
   methods: {
-    validate() {
+    validate(e) {
+      e.preventDefault()
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         console.log(this.firstName, this.lastName, this.email);
@@ -97,9 +98,12 @@ export default {
       });
   }},
 
-    show() {
-      this.data.show = true
+    created() {
+      EventBus.$on('show', (data) => {
+        this.show = data
+      })
     },
+
 
     reset() {
       this.$refs.form.reset();
