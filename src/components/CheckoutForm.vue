@@ -24,6 +24,13 @@
           required
         ></v-text-field>
 
+        <v-textarea
+          v-model="notes"
+          auto-grow
+          label="Notes to the chef"
+          rows="1"
+        ></v-textarea>
+
         <v-checkbox
           v-model="checkbox"
           :rules="[
@@ -71,7 +78,8 @@ export default {
     emailRules: [
       v => !!v || "E-mail is required",
       v => /.+@.+\..+/.test(v) || "E-mail must be valid"
-    ]
+    ],
+    notes: ""
   }),
 
 
@@ -80,12 +88,12 @@ export default {
       e.preventDefault()
       if (this.$refs.form.validate()) {
         this.snackbar = true;
-        // console.log(this.firstName, this.lastName, this.email);
         const Fname = this.firstName;
         const Lname = this.lastName;
         const email = this.email;
+        const notes = this.notes;
         const emailParams = {
-          email, Fname, Lname
+          email, Fname, Lname, notes
         };
 
       axios.post('/api/email', emailParams)

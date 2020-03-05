@@ -26,12 +26,13 @@ router.post("/email", function(req, res) {
 
   let data = {
     from: from_who,
-    //The email to contact
     to: req.body.email,
-    //Subject and text data
     subject: 'FreshPlatez order',
     html:
-      `Thank you for your order ${req.body.Fname} ${req.body.Lname}!  You gots the below goooooood stuff coming at ya in 3-10 days`
+      `Thank you for your order ${req.body.Fname} ${req.body.Lname}!  You gots the below goooooood stuff coming at ya in 3-10 days
+      
+      Notes to the chef: ${req.body.notes}`
+      
   };
 
   //Invokes the method to send emails given the above data with the helper library
