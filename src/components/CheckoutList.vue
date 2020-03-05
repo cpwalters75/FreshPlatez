@@ -1,5 +1,5 @@
 <template>
-  <v-card v-for="item in getItems" :key="item.id"></v-card>
+  <!-- <v-card v-for="item in getItems" :key="item.id"></v-card> -->
 
   <v-card outlined raised color="grey lighten-5">
     <v-data-table :headers="headers" :items="desserts" sort-by="name" class="elevation-1">
@@ -22,7 +22,7 @@
 
 <script>
 import { EventBus } from "../event-bus";
-import { mapGetters } from "vuex";
+//import { mapGetters } from "vuex";
 
 export default {
   name: "CheckoutList",
@@ -62,8 +62,8 @@ export default {
   computed: {
     formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item";
-    },
-    mapGetters(["getItems"])
+    }
+    // mapGetters(["getItems"])
   },
 
   watch: {

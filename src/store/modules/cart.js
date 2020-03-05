@@ -1,22 +1,22 @@
-import axios from 'axios'; // in case we need user data/tokens along with the cart info
+// import axios from 'axios'; // in case we need user data/tokens along with the cart info
 
-const state = {
-    cart: [
-        {}
-    ]
-}
+// const state = {
+//     cart: [
+//         {}
+//     ]
+// }
 
-const getters = {
-    getItems: (state) => state.cart
-};
+// const getters = {
+//     getItems: (state) => state.cart
+// };
 
-const action = {};
+// const action = {};
 
-const mutations = {};
+// const mutations = {};
 
-export default {
-    state,
-    getters,
-    actions,
-    mutations
-};
+// export default {
+//     state,
+//     getters,
+//     actions,
+//     mutations
+// };

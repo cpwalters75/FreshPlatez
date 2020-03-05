@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const Mailgun = require("mailgun-js");
 
-const db = require("../models");
+// const db = require("../models");
 const api_key = process.env.API_KEY;
 const domain = process.env.DOMAIN;
 const from_who = process.env.EMAIL_USER;
