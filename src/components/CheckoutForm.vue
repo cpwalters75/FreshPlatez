@@ -80,7 +80,7 @@ export default {
       e.preventDefault()
       if (this.$refs.form.validate()) {
         this.snackbar = true;
-        console.log(this.firstName, this.lastName, this.email);
+        // console.log(this.firstName, this.lastName, this.email);
         const Fname = this.firstName;
         const Lname = this.lastName;
         const email = this.email;
