@@ -44,9 +44,9 @@ import axios from "axios";
 export default {
   name: "MealCard",
   props: ["meal"],
-  mounted: function() {
-    this.popPage();
-  },
+  // mounted: function() {
+  //   this.popPage();
+  // },
   data: () => ({
     show: false,
     absolute: true,

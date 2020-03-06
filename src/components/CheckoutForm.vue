@@ -1,15 +1,17 @@
 <template>
-  <v-card max-width="420" outlined raised color="grey lighten-5">
+  <v-card max-width: auto outlined raised color="grey lighten-5">
     <v-card-title>
-      Please Complete the Below
+      <span class="headline">Please complete the below</span>
+    </v-card-title >
       <v-form ref="form" v-model="valid" lazy-validation>
-        <v-text-field v-model="firstName" :rules="FNameRules" label="First Name" required></v-text-field>
 
-        <v-text-field v-model="lastName" :rules="LNameRules" label="Last Name"></v-text-field>
+        <v-text-field  v-model="firstName" :rules="FNameRules" label="First Name" required></v-text-field>
 
-        <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+        <v-text-field  v-model="lastName" :rules="LNameRules" label="Last Name"></v-text-field>
 
-        <v-textarea v-model="notes" auto-grow label="Notes to the chef" rows="1"></v-textarea>
+        <v-text-field  v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+
+        <v-textarea  v-model="notes" auto-grow label="Notes to the chef" rows="1"></v-textarea>
 
         <v-checkbox
           v-model="checkbox"
@@ -24,7 +26,6 @@
         <v-btn color="primary" class="mr-4 mb-2">Log In</v-btn>
         <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">Place Order</v-btn>
       </v-form>
-    </v-card-title>
   </v-card>
 </template>
 

@@ -1,9 +1,13 @@
 <template>
-  <div>
-    Hello
+ <v-row justify="center">
+    <v-dialog v-model="dialog" persistent max-width="600px">
+      <template v-slot:activator="{ on }">
+        <v-btn color="primary" dark v-on="on">Proceed to Checkout</v-btn>
+      </template>
   <!-- <v-card v-for="item in getItems" :key="item.id"></v-card> -->
-  <CheckoutForm />
-  </div>
+      <CheckoutForm />
+    </v-dialog>
+  </v-row>
 </template>
 
 <script>
@@ -15,7 +19,9 @@ export default {
   components: {
     CheckoutForm
   },
-  data: () => ({}),
+  data: () => ({
+    dialog: false
+  }),
 
   computed: {
     // mapGetters(["getItems"])
