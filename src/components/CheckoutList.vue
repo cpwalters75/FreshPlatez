@@ -21,43 +21,11 @@
 </template>
 
 <script>
-import { EventBus } from "../event-bus";
 //import { mapGetters } from "vuex";
 
 export default {
   name: "CheckoutList",
-  data: () => ({
-    dialog: false,
-    headers: [
-      {
-        text: "Delicious Dish",
-        align: "start",
-        sortable: true,
-        value: "name"
-      },
-      { text: "Description", value: "calories" },
-      { text: "Fat (g)", value: "fat" },
-      { text: "Carbs (g)", value: "carbs" },
-      { text: "Protein (g)", value: "protein" },
-      { text: "Actions", value: "action", sortable: false }
-    ],
-    desserts: [],
-    editedIndex: -1,
-    editedItem: {
-      name: "",
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0
-    },
-    defaultItem: {
-      name: "",
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0
-    }
-  }),
+  data: () => ({}),
 
   computed: {
     formTitle() {
@@ -77,10 +45,6 @@ export default {
   },
 
   methods: {
-    checkoutShow() {
-      EventBus.$emit("show", "!show");
-    },
-
     initialize() {
       this.desserts = [
         {
