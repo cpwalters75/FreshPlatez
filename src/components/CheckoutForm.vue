@@ -3,7 +3,8 @@
     <v-card-title>
       <span class="headline">Please complete the below</span>
     </v-card-title >
-      <v-form ref="form" v-model="valid" lazy-validation>
+    <v-container>
+      <v-form ref="form" v-model="valid" lazy-validation ma-2>
 
         <v-text-field  v-model="firstName" :rules="FNameRules" label="First Name" required></v-text-field>
 
@@ -23,9 +24,12 @@
           class="mb-4"
         ></v-checkbox>
 
-        <v-btn color="primary" class="mr-4 mb-2">Log In</v-btn>
-        <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">Place Order</v-btn>
+        <v-btn color="danger" class="ma-4" @click="$emit('close-modal')">Cancel</v-btn>
+        <v-btn color="primary" class="ma-4">Log In</v-btn>
+        <v-btn :disabled="!valid" color="success" class="ma-2" @click="validate">Place Order</v-btn>
+        
       </v-form>
+      </v-container>
   </v-card>
 </template>
 
@@ -34,6 +38,7 @@ import axios from "axios";
 
 export default {
   data: () => ({
+    checkbox: false,
     show: false,
     valid: true,
     firstName: "",
