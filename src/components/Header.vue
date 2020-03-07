@@ -1,23 +1,34 @@
 <template>
+
   <div
     fluid
     :style="'background:url('+logo+'); background-size: contain; background-repeat: no-repeat; background-position: center;'"
   >
     
   </div>
+ 
 </template>
 
 <script>
+
+
+
 import logo from "../assets/images/FreshPlatezLogo.jpg";
 
 export default {
   name: "Header",
   data: () => {
     return {
-      logo: logo
+      logo: logo,
+      
+        data: () => ({
+      drawer: false,
+    }),
+    }
+      }
     };
-  }
-};
+  
+
 </script>
 
 <style scoped>
