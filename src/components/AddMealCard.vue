@@ -1,16 +1,20 @@
 <template>
   <v-card elevation="6" class="mx-auto" max-width="344">
-    <v-card-title>
-     <v-btn 
-        large
-        center
-        fab 
-        ><v-icon x-large>mdi-camera-plus</v-icon>
-    </v-btn>
-    <div class='pl-2'>Add a Picture</div>
+    <v-form enctype="multipart/form-data">
+      <div v-if="message" :class="`message ${error ? 'error' : 'success'}`">
+        <div class="message-body">{{ message }}</div>
+      </div>
+      <div class="field">
+        <v-btn large center fab @click="sendFile"
+          ><v-icon x-large>mdi-camera-plus</v-icon>
+        </v-btn>
+      </div>
+      <div class="pl-2 field">
+        <label for="file" class="label"></label>
+        <input type="file" ref="file" @change="selectFile" />
+      </div>
       <v-img :src="newMeal.imageSrc" height="200px"></v-img>
-      
-   </v-card-title>
+    </v-form>
 
     <v-card-title>
       <v-text-field
@@ -93,6 +97,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "AddMealCard",
   props: ["newMeal"],
@@ -104,8 +109,45 @@ export default {
     name: "",
     shortDescription: "",
     nameRules: [v => !!v || "Name is required"],
-    shortDescriptionRules: [v => !!v || "Short Description is required"]
-  })
+    shortDescriptionRules: [v => !!v || "Short Description is required"],
+    file: "",
+    message: "",
+    error: false
+  }),
+
+  methods: {
+    selectFile() {
+      const file = this.$refs.file.files[0];
+      const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+      const MAX_SIZE = 2000000;
+      const tooLarge = file.size > MAX_SIZE
+
+      if (allowedTypes.includes(file.type) && !tooLarge) {
+        this.file = file;
+        this.error = false;
+        this.message = "";
+      } else {
+          this.error = true;
+          this.message = tooLarge ? "Too large. Max size is 2MB" :"Only images are allowed"
+      }
+    },
+
+    async sendFile(e) {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("file", this.file);
+
+      try {
+        await axios.post("/api/upload", formData);
+        this.message = "File has been uploaded";
+        this.file = "";
+        this.error = false;
+      } catch (err) {
+        this.message = err.response.data.error;
+        this.error = true;
+      }
+    }
+  }
 };
 </script>
 
