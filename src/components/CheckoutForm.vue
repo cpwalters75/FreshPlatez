@@ -41,7 +41,7 @@
           class="mb-4"
         ></v-checkbox>
 
-        <v-btn color="primary" class="mr-4 mb-2">
+        <v-btn text small color="primary" class="mr-4 mb-2">
           Log In
         </v-btn>
         <v-btn
@@ -60,7 +60,6 @@
 <script>
 
 import axios from 'axios';
-import { EventBus } from "../event-bus"
 export default {
   data: () => ({
     show: false,
@@ -79,7 +78,8 @@ export default {
       v => !!v || "E-mail is required",
       v => /.+@.+\..+/.test(v) || "E-mail must be valid"
     ],
-    notes: ""
+    notes: "",
+    checkbox: ""
   }),
 
 
@@ -96,6 +96,7 @@ export default {
           email, Fname, Lname, notes
         };
 
+
       axios.post('/api/email', emailParams)
       .then(function (response) {
           console.log(response);
@@ -105,13 +106,6 @@ export default {
           
       });
   }},
-
-    created() {
-      EventBus.$on('show', (data) => {
-        this.show = data
-      })
-    },
-
 
     reset() {
       this.$refs.form.reset();

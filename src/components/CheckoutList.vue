@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { EventBus } from "../event-bus";
+
 //import { mapGetters } from "vuex";
 
 export default {
@@ -77,9 +77,7 @@ export default {
   },
 
   methods: {
-    checkoutShow() {
-      EventBus.$emit("show", "!show");
-    },
+    
 
     initialize() {
       this.desserts = [
