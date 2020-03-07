@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  var Meal = sequelize.define("Meal", {
+  var meal = sequelize.define("Meal", {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -11,11 +11,11 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     },
     price_small: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false
     },
     price_large: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false
     },
     ingredients: {
@@ -49,12 +49,15 @@ module.exports = function (sequelize, DataTypes) {
     },
     createdAt: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+      allowNull: false
     },
     updatedAt: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+      allowNull: false
     }
   });
-  return Meal;
+  return meal;
 };
+

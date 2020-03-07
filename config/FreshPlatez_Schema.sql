@@ -1,9 +1,30 @@
+-- Run this so you have a db in place before you start the app and models attempt to run via sequelize
 DROP DATABASE IF EXISTS `FreshPlatez`;
 CREATE DATABASE `FreshPlatez`;
+USE `FreshPlatez`;
 
 
--- Origional database scripts
--- USE `FreshPlatez`;
+--------------------------------------------------------------------------------------------------------
+-- Commented this out as the models are now working
+--------------------------------------------------------------------------------------------------------
+
+
+-- CREATE TABLE meals (
+--   id INT NOT NULL AUTO_INCREMENT,
+--   short_description VARCHAR(75) NOT NULL,
+--   price_small DECIMAL(10,2) NOT NULL,
+--   price_large DECIMAL(10,2) NOT NULL,
+--   ingredients TEXT NOT NULL,
+--   calories_small  VARCHAR(15) NOT NULL,
+--   calories_large VARCHAR(15) NOT NULL,
+--   lead_time INT NOT NULL,
+--   image_name VARCHAR(150) NOT NULL,
+--   reheat_time TIME NULL,
+--   is_active BOOLEAN DEFAULT TRUE NOT NULL,
+--   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+--   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+--   PRIMARY KEY (id)
+-- );
 
 -- CREATE TABLE meals (
 --   id INT NOT NULL AUTO_INCREMENT,
@@ -22,7 +43,6 @@ CREATE DATABASE `FreshPlatez`;
 --   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
 --   PRIMARY KEY (id)
 -- );
-
 
 -- CREATE TABLE users (
 --   id INT NOT NULL AUTO_INCREMENT,
@@ -43,7 +63,6 @@ CREATE DATABASE `FreshPlatez`;
 -- CREATE TABLE orders (
 --   id INT NOT NULL AUTO_INCREMENT,
 --   user_id INT NOT NULL,
---   quanity INT NOT NULL,
 --   total DECIMAL(10,2) NOT NULL,
 --   notes VARCHAR(255) NOT NULL,
 --   order_status VARCHAR(45) NOT NULL,
