@@ -1,15 +1,15 @@
 <template>
   <v-card elevation="6" class="mx-auto" max-width="344">
-    <v-img :src="meal.imageSrc" height="200px"></v-img>
+    <!-- <v-img :src=."../assets/images/${meal.image_name}" height="200px"></v-img> -->
 
     <v-card-title>
-      {{meal.title}}
+      {{meal.short_Description}}
       <v-btn @click="show = !show" fab dark small color="primary " bottom right absolute>
         <v-icon>{{ show ? "mdi-minus" : "mdi-plus" }}</v-icon>
       </v-btn>
     </v-card-title>
 
-    <v-card-subtitle>{{meal.shortDescription}}</v-card-subtitle>
+    <v-card-subtitle>{{meal.ingredients}}</v-card-subtitle>
 
     <v-expand-transition>
       <div v-show="show">
@@ -17,8 +17,8 @@
 
         <v-card-actions>
           <v-col col="4" text-align="center">
-            <v-select :items="meal.prices" label="Size/Price(ea)" dense solo></v-select>
-            <v-select :items="meal.qty" label="Quantity" dense solo></v-select>
+            <v-select :items="pricing" label="Size/Price(ea)" dense solo></v-select>
+            <v-select :items="qty" label="Quantity" dense solo></v-select>
             <div icon @click="overlay = !overlay">
               <v-btn outlined color="success">
                 Add to Order
@@ -41,12 +41,16 @@
 <script>
 export default {
   name: "MealCard",
-  meal: ["meal"],
+  props: ["meal"],
   data: () => ({
     show: false,
     absolute: true,
-    overlay: false
-  })
+    overlay: false,
+    qty: [1, 2, 3, 4, 5, 6, 7]
+  }),
+  method: {
+    pricing: function() {}
+  }
 };
 </script>
 

@@ -26,7 +26,6 @@ export default {
   },
   methods: {
     getMealData() {
-      console.log("this functions being called");
       axios
         .get("/api/meals")
         .then(response => {
