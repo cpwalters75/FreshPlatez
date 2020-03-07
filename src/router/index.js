@@ -83,7 +83,17 @@ const routes = [
             "A beef burger over spinach with pickled zucchini and sweet potatato fries",
           imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
         }
-      ]
+      ],
+      newMeal:{
+        prices: ["Small.....$7.50", "Large.....$12.00"],
+        qty: ["1", "2", "3", "4"],
+        title: "",
+        shortDescription:
+          "",
+        imageSrc: ""
+
+        // C/O https://placeholder.com/"
+      }
     }
   }
 
