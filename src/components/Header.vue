@@ -1,18 +1,11 @@
 <template>
-
   <div
     fluid
     :style="'background:url('+logo+'); background-size: contain; background-repeat: no-repeat; background-position: center;'"
-  >
-    
-  </div>
- 
+  ></div>
 </template>
 
 <script>
-
-
-
 import logo from "../assets/images/FreshPlatezLogo.jpg";
 
 export default {
@@ -20,25 +13,23 @@ export default {
   data: () => {
     return {
       logo: logo,
-      
-        data: () => ({
-      drawer: false,
-    }),
-    }
-      }
-    };
-  
 
+      data: () => ({
+        drawer: false
+      })
+    };
+  }
+};
 </script>
 
 <style scoped>
 div {
-  min-height: 50%;
+  height: 600px;
   text-align: right;
 }
 @media (max-width: 600px) {
   div {
-    min-height: 20%;
+    height: 350px;
   }
 }
 </style>

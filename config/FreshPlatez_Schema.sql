@@ -26,6 +26,23 @@ USE `FreshPlatez`;
 --   PRIMARY KEY (id)
 -- );
 
+-- CREATE TABLE meals (
+--   id INT NOT NULL AUTO_INCREMENT,
+--   short_description VARCHAR(75) NOT NULL,
+--   long_description	VARCHAR(255) NOT NULL,
+--   price_small DECIMAL(10,2) NOT NULL,
+--   price_large DECIMAL(10,2) NOT NULL,
+--   ingredients TEXT NOT NULL,
+--   calories_small  VARCHAR(15) NOT NULL,
+--   calories_large VARCHAR(15) NOT NULL,
+--   lead_time INT NOT NULL,
+--   image_name VARCHAR(150) NOT NULL,
+--   reheat_time TIME NULL,
+--   is_active BOOLEAN DEFAULT TRUE NOT NULL,
+--   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+--   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+--   PRIMARY KEY (id)
+-- );
 
 -- CREATE TABLE users (
 --   id INT NOT NULL AUTO_INCREMENT,
