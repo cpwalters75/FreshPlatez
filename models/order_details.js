@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
       },
       price:  {
-        type:   DataTypes.DECIMAL,
+        type:   DataTypes.DECIMAL(10,2),
         allowNull: false,
       },
       meal_status:  {
@@ -31,16 +31,16 @@ module.exports = function(sequelize, DataTypes) {
         type:   DataTypes.DATE,
         allowNull: false,
       }, 
-      createdAt:  {
+      createdAt:   {
         type:   DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW
-      },
-      updatedAt:  {
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+      },  
+      updatedAt:   {
         type:   DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW
-      }   
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+      }
     });
     return orderDetails;
   };

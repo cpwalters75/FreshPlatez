@@ -11,11 +11,11 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       },    
       price_small:  {
-        type:   DataTypes.DECIMAL,
+        type:   DataTypes.DECIMAL(10,2),
         allowNull: false
       },
       price_large:  {
-        type:   DataTypes.DECIMAL,
+        type:   DataTypes.DECIMAL(10,2),
         allowNull: false
       },
       ingredients:  {
@@ -47,14 +47,16 @@ module.exports = function(sequelize, DataTypes) {
           allowNull: false,
           defaultValue: true
       },
-      createdAt:  {
-          type:     DataTypes.DATE,
-          defaultValue: DataTypes.NOW
-      },
-      updatedAt: {
-          type:     DataTypes.DATE,
-          defaultValue: DataTypes.NOW
-      }   
+      createdAt:   {
+        type:   DataTypes.DATE,
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+      },  
+      updatedAt:   {
+        type:   DataTypes.DATE,
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+      } 
     });
     return meal;
   };
