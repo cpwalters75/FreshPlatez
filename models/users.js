@@ -44,13 +44,13 @@ module.exports = function(sequelize, DataTypes) {
       },
       createdAt:   {
         type:   DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
       },  
       updatedAt:   {
         type:   DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
       }
     });
     return user;
