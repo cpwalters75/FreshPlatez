@@ -39,35 +39,14 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "MealCard",
-  props: ["meal"],
-
-  created: function() {
-    this.getMealData();
-  },
+  meal: ["meal"],
   data: () => ({
     show: false,
     absolute: true,
     overlay: false
-  }),
-
-  methods: {
-    getMealData() {
-      console.log("this functions being called");
-      axios
-        .get("/api/meals")
-        .then(response => {
-          console.log("server has returned:");
-          console.log(response);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
-  }
+  })
 };
 </script>
 
