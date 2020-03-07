@@ -68,5 +68,5 @@ USE `FreshPlatez`;
 --   PRIMARY KEY (id)
 -- );
 
-alter table order_details ADD CONSTRAINT fk_order_Id FOREIGN KEY(order_id) references orders(id);
-alter table orders ADD CONSTRAINT fk_user_id FOREIGN KEY(user_id) references users(id);
+-- alter table order_details ADD CONSTRAINT fk_order_Id FOREIGN KEY(order_id) references orders(id);
+-- alter table orders ADD CONSTRAINT fk_user_id FOREIGN KEY(user_id) references users(id);
