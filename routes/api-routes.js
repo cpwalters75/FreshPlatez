@@ -4,7 +4,7 @@ const router = express.Router();
 const Mailgun = require("mailgun-js");
 const multer = require("multer")
 
-// const db = require("../models");
+const db = require("../models");
 const api_key = process.env.API_KEY;
 const domain = process.env.DOMAIN;
 const from_who = process.env.EMAIL_USER;
@@ -56,10 +56,10 @@ router.post("/email", function (req, res) {
 
 
 
-const fileFilter = function(req, file, cb) {
+const fileFilter = function (req, file, cb) {
   const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
-  
-  if(!allowedTypes.includes(file.mimetype)) {
+
+  if (!allowedTypes.includes(file.mimetype)) {
     const error = new Error("Wrong file type");
     error.code = "LIMIT_FILE_TYPES";
     return cb(error, false);
@@ -77,7 +77,5 @@ const upload = multer({
 router.post('/upload', upload.single("file"), (req, res) => {
   res.json({ file: req.file })
 });
-
-
 
 module.exports = router, fileFilter;
