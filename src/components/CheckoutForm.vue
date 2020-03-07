@@ -14,7 +14,7 @@
           v-model="lastName"
           :rules="LNameRules"
           label="Last Name"
-          required
+          
         ></v-text-field>
 
         <v-text-field
@@ -23,6 +23,13 @@
           label="E-mail"
           required
         ></v-text-field>
+
+        <v-textarea
+          v-model="notes"
+          auto-grow
+          label="Notes to the chef"
+          rows="1"
+        ></v-textarea>
 
         <v-checkbox
           v-model="checkbox"
@@ -34,7 +41,7 @@
           class="mb-4"
         ></v-checkbox>
 
-        <v-btn color="primary" class="mr-4 mb-2">
+        <v-btn text small color="primary" class="mr-4 mb-2">
           Log In
         </v-btn>
         <v-btn
@@ -53,10 +60,9 @@
 <script>
 
 import axios from 'axios';
-
 export default {
   data: () => ({
-    show: true,
+    show: false,
     valid: true,
     firstName: "",
     FNameRules: [
@@ -71,21 +77,25 @@ export default {
     emailRules: [
       v => !!v || "E-mail is required",
       v => /.+@.+\..+/.test(v) || "E-mail must be valid"
-    ]
+    ],
+    notes: "",
+    checkbox: ""
   }),
 
 
   methods: {
-    validate() {
+    validate(e) {
+      e.preventDefault()
       if (this.$refs.form.validate()) {
         this.snackbar = true;
-        console.log(this.firstName, this.lastName, this.email);
         const Fname = this.firstName;
         const Lname = this.lastName;
         const email = this.email;
+        const notes = this.notes;
         const emailParams = {
-          email, Fname, Lname
+          email, Fname, Lname, notes
         };
+
 
       axios.post('/api/email', emailParams)
       .then(function (response) {
@@ -96,10 +106,6 @@ export default {
           
       });
   }},
-
-    show() {
-      this.data.show = true
-    },
 
     reset() {
       this.$refs.form.reset();
