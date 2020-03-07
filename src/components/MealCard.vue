@@ -1,6 +1,6 @@
 <template>
   <v-card elevation="6" class="mx-auto" max-width="344">
-    <!-- <v-img :src=."../assets/images/${meal.image_name}" height="200px"></v-img> -->
+    <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px"></v-img>
 
     <v-card-title>
       {{meal.short_Description}}
@@ -46,10 +46,14 @@ export default {
     show: false,
     absolute: true,
     overlay: false,
-    qty: [1, 2, 3, 4, 5, 6, 7]
+    qty: [1, 2, 3, 4, 5, 6, 7],
+    pricing: ["Small.....$7.50", "Large.....$12.00"]
   }),
   method: {
-    pricing: function() {}
+    // pricing: function() {},
+    // getImgSrc() {
+    //   return require("../assets/images/Chicken&RiceNoodleStirFry.png");
+    // }
   }
 };
 </script>
