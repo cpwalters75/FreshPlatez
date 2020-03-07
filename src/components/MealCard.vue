@@ -44,8 +44,9 @@ import axios from "axios";
 export default {
   name: "MealCard",
   props: ["meal"],
-  mounted: function() {
-    this.popPage();
+
+  created: function() {
+    this.getMealData();
   },
   data: () => ({
     show: false,
@@ -54,10 +55,12 @@ export default {
   }),
 
   methods: {
-    popPage() {
+    getMealData() {
+      console.log("this functions being called");
       axios
-        .get("/api/platez")
+        .get("/api/meals")
         .then(response => {
+          console.log("server has returned:");
           console.log(response);
         })
         .catch(err => {

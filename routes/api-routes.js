@@ -1,4 +1,3 @@
-
 const express = require("express");
 const router = express.Router();
 const Mailgun = require("mailgun-js");
@@ -10,13 +9,17 @@ const domain = process.env.DOMAIN;
 const from_who = process.env.EMAIL_USER;
 
 const mailgun = new Mailgun({ apiKey: api_key, domain: domain });
-// ----------------------MailGun Routes-----------------------------------------------------
 
-router.get("/platez", function (req, res) {
-  db.meals.findAll({}).then(function (mealData) {
+// ------------------Meal Routes------------------------------------------------------------
+
+router.get("/meals", function (req, res) {
+  //res.json("hello from the server")
+  db.Meal.findAll({}).then(mealData => {
     res.json(mealData);
   })
 })
+// ----------------------MailGun Routes-----------------------------------------------------
+
 // Send a message to the specified email address when you navigate to /submit/someaddr@email.com
 // The index redirects here
 router.post("/email", function (req, res) {
@@ -66,7 +69,6 @@ const fileFilter = function (req, file, cb) {
   }
 
   cb(null, true);
-
 }
 
 const upload = multer({
