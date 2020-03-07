@@ -15,6 +15,7 @@
     "mailgun-js": "^0.22.0",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.5",
+    "multer": "^1.4.2",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5",
     "vuetify": "^2.2.11",

@@ -39,14 +39,32 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "MealCard",
   props: ["meal"],
+  mounted: function() {
+    this.popPage();
+  },
   data: () => ({
     show: false,
     absolute: true,
     overlay: false
-  })
+  }),
+
+  methods: {
+    popPage() {
+      axios
+        .get("/api/platez")
+        .then(response => {
+          console.log(response);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }
 };
 </script>
 
