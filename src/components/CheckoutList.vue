@@ -117,7 +117,7 @@ export default {
   }),
 
   computed: {
-    // mapGetters(["getItems"])
+    mapGetters([" getItems" ])
   },
 
   methods: {
