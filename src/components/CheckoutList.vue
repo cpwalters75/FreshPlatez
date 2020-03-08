@@ -50,7 +50,7 @@ export default {
         title: "1 Beef Burger Over Spinach",
         shortDescription:
           "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-        imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+        image_name: "ChickenTinga.jpg"
       },
       {
         price_small: "7.50",
@@ -60,7 +60,7 @@ export default {
         title: "2 Beef Burger Over Spinach",
         shortDescription:
           "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-        imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+        image_name: "ChickenTinga.jpg"
       },
       {
         price_small: "7.50",
@@ -70,7 +70,7 @@ export default {
         title: "3 Beef Burger Over Spinach",
         shortDescription:
           "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-        imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+        image_name: "ChickenTinga.jpg"
       },
       {
         price_small: "7.50",
@@ -80,7 +80,7 @@ export default {
         title: "4 Beef Burger Over Spinach",
         shortDescription:
           "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-        imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+        image_name: "ChickenTinga.jpg"
       },
       {
         price_small: "7.50",
@@ -90,7 +90,7 @@ export default {
         title: "5 Beef Burger Over Spinach",
         shortDescription:
           "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-        imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+        image_name: "ChickenTinga.jpg"
       },
       {
         price_small: "7.50",
@@ -100,7 +100,7 @@ export default {
         title: "6 Beef Burger Over Spinach",
         shortDescription:
           "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-        imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+        image_name: "ChickenTinga.jpg"
       }
     ]
   }),
@@ -129,4 +129,12 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>
 

@@ -1,10 +1,15 @@
 <template>
   <v-card elevation="6" class="mx-auto" max-width="344">
-    <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px"></v-img>
+    <v-img
+      :src="require('../assets/images/' + item.image_name)"
+      :alt="mealImage"
+      height="200px"
+      width="344px"
+    ></v-img>
 
     <v-card-title>
       {{item.title}}
-      <v-btn @click="show = !show" fab dark small color="primary " bottom right absolute>
+      <v-btn @click="show = !show" fab dark small color="primary " bottom left absolute>
         <v-icon>{{ show ? "mdi-minus" : "mdi-plus" }}</v-icon>
       </v-btn>
     </v-card-title>
@@ -49,20 +54,15 @@ export default {
     qty: [1, 2, 3, 4, 5, 6, 7],
     pricing: ["Small.....$7.50", "Large.....$12.00"]
   }),
-  method: {
-    // pricing: function() {},
-    // getImgSrc() {
-    //   return require("../assets/images/Chicken&RiceNoodleStirFry.png");
-    // }
-  }
+  method: {}
 };
 </script>
 
 <style>
 /* Temp fix for word wrapping in cards breaking words https://github.com/vuetifyjs/vuetify/issues/9130*/
-v-card-subtitle,
+/* v-card-subtitle,
 v-card-title {
   white-space: normal;
   text-overflow: ellipsis;
-}
+} */
 </style>
