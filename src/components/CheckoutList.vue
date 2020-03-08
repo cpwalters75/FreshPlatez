@@ -4,7 +4,12 @@
       <v-row>
         <v-col col="12">
           <v-container v-bind:key="item.title" v-for="item in cart">
-            <CheckoutCard v-bind:item="item" />
+            <div v-if="!isMobile()">
+              <CheckoutCard v-bind:item="item" />
+            </div>
+            <div v-else>
+              <MobileCheckoutCard v-bind:item="item" />
+            </div>
           </v-container>
         </v-col>
       </v-row>
@@ -26,12 +31,13 @@
 //import { mapGetters } from "vuex";
 import CheckoutForm from "../components/CheckoutForm";
 import CheckoutCard from "../components/CheckoutCard";
-
+import MobileCheckoutCard from "../components/MobileCheckoutCard";
 export default {
   name: "CheckoutList",
   components: {
     CheckoutForm,
-    CheckoutCard
+    CheckoutCard,
+    MobileCheckoutCard
   },
   data: () => ({
     displayModal: false,
@@ -106,6 +112,19 @@ export default {
   methods: {
     closeModal: function() {
       this.displayModal = !this.displayModal;
+    },
+    // isMobile method solution from https://stackoverflow.com/questions/48515023/display-different-vuejs-components-for-mobile-browsers
+    // queries the devices operating system to determine if the user is mobile and toggles component render accordingly
+    isMobile: function() {
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+      ) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 };

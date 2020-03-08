@@ -25,8 +25,8 @@ export default {
 
 <style>
 /* Temp fix for word wrapping in cards breaking words https://github.com/vuetifyjs/vuetify/issues/9130*/
-.v-card__text,
-.v-card__title {
+v-card-subtitle,
+v-card-title {
   word-break: normal; /* maybe !important  */
 }
 </style>

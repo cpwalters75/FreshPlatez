@@ -3,13 +3,13 @@
     <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px"></v-img>
 
     <v-card-title>
-      {{meal.short_Description}}
+      {{item.title}}
       <v-btn @click="show = !show" fab dark small color="primary " bottom right absolute>
         <v-icon>{{ show ? "mdi-minus" : "mdi-plus" }}</v-icon>
       </v-btn>
     </v-card-title>
 
-    <v-card-subtitle>{{meal.ingredients}}</v-card-subtitle>
+    <v-card-subtitle>{{item.shortDescription}}</v-card-subtitle>
 
     <v-expand-transition>
       <div v-show="show">
@@ -41,7 +41,7 @@
 <script>
 export default {
   name: "MealCard",
-  props: ["meal"],
+  props: ["item"],
   data: () => ({
     show: false,
     absolute: true,
