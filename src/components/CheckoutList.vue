@@ -1,5 +1,5 @@
 <template>
-  <v-card elevation="6" class="mx-auto">
+  <v-card elevation="2" class="mx-auto">
     <v-container>
       <v-row>
         <v-col col="12">

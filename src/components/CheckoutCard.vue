@@ -3,8 +3,13 @@
     <v-col cols="12">
       <v-card class="mx-auto outlined word-break">
         <v-row>
-          <v-col cols="3">
-            <v-img :src="item.imageSrc" />
+          <v-col cols="3" class="pa-0">
+            <v-img
+              :src="require('../assets/images/' + item.image_name)"
+              :alt="mealImage"
+              height="200px"
+              width="344px"
+            />
           </v-col>
           <v-col cols="9">
             <v-card-title>{{ item.title }}</v-card-title>

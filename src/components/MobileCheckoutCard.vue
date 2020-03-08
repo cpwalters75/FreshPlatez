@@ -5,8 +5,7 @@
       :alt="mealImage"
       height="200px"
       width="344px"
-    ></v-img>
-
+    />
     <v-card-title>
       {{item.title}}
       <v-btn @click="show = !show" fab dark small color="primary " bottom left absolute>
