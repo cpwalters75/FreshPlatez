@@ -11,7 +11,6 @@
 <script>
 import CheckoutList from "../components/CheckoutList";
 
-
 export default {
   name: "Checkout",
   components: {

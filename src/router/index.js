@@ -15,75 +15,7 @@ const routes = [
   {
     path: '/checkout',
     name: 'Checkout',
-    component: Checkout,
-    props: {
-      cart: [
-
-        {
-          price_small: "7.50",
-          price_large: "12.00",
-          qty_small: "3",
-          qty_large: "1",
-          title: "6 Beef Burger Over Spinach",
-          shortDescription:
-            "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-          imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-        },
-        {
-          price_small: "7.50",
-          price_large: "12.00",
-          qty_small: "3",
-          qty_large: "1",
-          title: "6 Beef Burger Over Spinach",
-          shortDescription:
-            "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-          imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-        },
-        {
-          price_small: "7.50",
-          price_large: "12.00",
-          qty_small: "3",
-          qty_large: "1",
-          title: "6 Beef Burger Over Spinach",
-          shortDescription:
-            "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-          imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-        }
-        ,
-        {
-          price_small: "7.50",
-          price_large: "12.00",
-          qty_small: "3",
-          qty_large: "1",
-          title: "6 Beef Burger Over Spinach",
-          shortDescription:
-            "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-          imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-        }
-        ,
-        {
-          price_small: "7.50",
-          price_large: "12.00",
-          qty_small: "3",
-          qty_large: "1",
-          title: "6 Beef Burger Over Spinach",
-          shortDescription:
-            "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-          imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-        }
-        ,
-        {
-          price_small: "7.50",
-          price_large: "12.00",
-          qty_small: "3",
-          qty_large: "1",
-          title: "6 Beef Burger Over Spinach",
-          shortDescription:
-            "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-          imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-        }
-      ],
-    }
+    component: Checkout
   },
   {
     path: '/admin',
