@@ -13,7 +13,7 @@
         <label for="file" class="label"></label>
         <input type="file" ref="file" @change="selectFile" />
       </div>
-      <v-img :src="newMeal.imageSrc" height="200px"></v-img>
+      <v-img :src="uploadedFile" height="200px"></v-img>
     </v-form>
 
     <v-card-title>
@@ -22,7 +22,7 @@
         :rules="nameRules"
         label="Name"
         required
-        clearable="true"
+        clearable= true
       ></v-text-field>
       <v-btn
         @click="show = !show"
@@ -45,8 +45,8 @@
         :rules="shortDescriptionRules"
         label="Short Description"
         required
-        clearable="true"
-        auto-grow="true"
+        clearable= true
+        auto-grow= true
       >
         <template v-slot:label>
           <div>Short Description</div>
@@ -112,11 +112,13 @@ export default {
     shortDescriptionRules: [v => !!v || "Short Description is required"],
     file: "",
     message: "",
-    error: false
+    error: false,
+    uploadedFile: "",
   }),
 
   methods: {
     selectFile() {
+        
       const file = this.$refs.file.files[0];
       const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
       const MAX_SIZE = 2000000;
@@ -132,15 +134,17 @@ export default {
       }
     },
 
-    async sendFile(e) {
-      e.preventDefault();
+    async sendFile() {
+    
+      const file = this.$refs.file.files[0];
       const formData = new FormData();
-      formData.append("file", this.file);
-
+      formData.append("file", file);
+        
       try {
-        await axios.post("/api/upload", formData);
+        const res= await axios.post('/api/upload', formData);
         this.message = "File has been uploaded";
-        this.file = "";
+        this.uploadedFile.push(res.data.file);
+        console.log(res.data.file)
         this.error = false;
       } catch (err) {
         this.message = err.response.data.error;
