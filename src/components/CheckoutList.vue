@@ -13,14 +13,26 @@
           </v-container>
         </v-col>
       </v-row>
-
-      <v-row justify="center" elevation="1">
-        <v-dialog v-model="displayModal" persistent max-width="600px">
-          <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark v-on="on">Proceed to Checkout</v-btn>
-          </template>
-          <CheckoutForm @close-modal="closeModal" />
-        </v-dialog>
+      <v-row>
+        <v-col col="12">
+          <v-container elevation="2">
+            <v-row>
+              <v-col cols="12">
+                <v-text-field disabled label="Order Total.....................$$$$$$$" outlined></v-text-field>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12">
+                <v-dialog v-model="displayModal" persistent max-width="600px">
+                  <template v-slot:activator="{ on }">
+                    <v-btn color="primary" dark v-on="on">Proceed to Checkout</v-btn>
+                  </template>
+                  <CheckoutForm @close-modal="closeModal" />
+                </v-dialog>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-col>
       </v-row>
     </v-container>
   </v-card>
