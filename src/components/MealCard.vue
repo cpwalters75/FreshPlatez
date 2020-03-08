@@ -1,6 +1,6 @@
 <template>
   <v-card elevation="6" class="mx-auto" max-width="344">
-    <v-img contain :src="require('../assets/images/' + meal.image_name)" :alt="mealImage" height="200px" width= "344px"> </v-img>
+    <v-img :src="require('../assets/images/' + meal.image_name)" :alt="mealImage" height="200px" width= "344px"> </v-img>
 
     <v-card-title>
       {{meal.short_Description}}
@@ -54,16 +54,14 @@ export default {
     // pricing: function() {},
     
   },
-  // computed: {
-  //   mealImage(meal) {
-  //     console.log()
-  //     const filename = meal.image_name
-  //     return require(`../assets/images/${filename}`)
-  //   }
 
-  // }
 };
 </script>
 
 <style>
+img{
+    /* width: 100%;
+    height: 100%; */
+    object-fit: cover;
+}
 </style>
