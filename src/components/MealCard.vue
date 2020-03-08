@@ -9,7 +9,7 @@
 
     <v-card-title>
       {{meal.short_Description}}
-      <v-btn @click="show = !show" fab dark small color="primary " bottom right absolute>
+      <v-btn @click="show = !show" fab dark small color="primary " bottom left absolute>
         <v-icon>{{ show ? "mdi-minus" : "mdi-plus" }}</v-icon>
       </v-btn>
     </v-card-title>
