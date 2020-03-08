@@ -3,8 +3,8 @@
     <v-container>
       <v-row>
         <v-col col="12">
-          <v-container  v-bind:key="item.title" v-for="item in cart">
-            <CheckoutCard />
+          <v-container v-bind:key="item.title" v-for="item in cart">
+            <CheckoutCard v-bind:item="item" />
           </v-container>
         </v-col>
       </v-row>
@@ -41,7 +41,7 @@ export default {
         price_large: "12.00",
         qty_small: "3",
         qty_large: "1",
-        title: "6 Beef Burger Over Spinach",
+        title: "1 Beef Burger Over Spinach",
         shortDescription:
           "A beef burger over spinach with pickled zucchini and sweet potatato fries",
         imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
@@ -51,7 +51,7 @@ export default {
         price_large: "12.00",
         qty_small: "3",
         qty_large: "1",
-        title: "6 Beef Burger Over Spinach",
+        title: "2 Beef Burger Over Spinach",
         shortDescription:
           "A beef burger over spinach with pickled zucchini and sweet potatato fries",
         imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
@@ -61,7 +61,7 @@ export default {
         price_large: "12.00",
         qty_small: "3",
         qty_large: "1",
-        title: "6 Beef Burger Over Spinach",
+        title: "3 Beef Burger Over Spinach",
         shortDescription:
           "A beef burger over spinach with pickled zucchini and sweet potatato fries",
         imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
@@ -71,7 +71,7 @@ export default {
         price_large: "12.00",
         qty_small: "3",
         qty_large: "1",
-        title: "6 Beef Burger Over Spinach",
+        title: "4 Beef Burger Over Spinach",
         shortDescription:
           "A beef burger over spinach with pickled zucchini and sweet potatato fries",
         imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
@@ -81,7 +81,7 @@ export default {
         price_large: "12.00",
         qty_small: "3",
         qty_large: "1",
-        title: "6 Beef Burger Over Spinach",
+        title: "5 Beef Burger Over Spinach",
         shortDescription:
           "A beef burger over spinach with pickled zucchini and sweet potatato fries",
         imageSrc: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"

@@ -3,10 +3,12 @@
     <v-col cols="12">
       <v-card class="mx-auto outlined">
         <v-list-item two-line>
-          <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
+          <v-list-item-avatar tile size="100">
+            <v-img :src="item.imageSrc" class="fill-height" />
+          </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title class="headline mb-1">Headline 5</v-list-item-title>
-            <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
+            <v-list-item-title class="headline mb-1">{{ item.title }}</v-list-item-title>
+            <v-list-item-subtitle>{{ item.shortDescription }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-card>
@@ -17,7 +19,7 @@
 <script>
 export default {
   name: "CheckoutCard",
-  item: ["item"]
+  props: ["item"]
 };
 </script>
 
