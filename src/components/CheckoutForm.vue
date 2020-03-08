@@ -25,7 +25,18 @@
 
         <v-btn color="danger" class="ma-4" @click="$emit('close-modal')">Cancel</v-btn>
         <v-btn color="primary" class="ma-4">Log In</v-btn>
-        <v-btn :disabled="!valid" color="success" class="ma-2" @click="validate">Place Order</v-btn>
+        <v-btn
+          :disabled="!valid"
+          color="success"
+          class="ma-2"
+          @click="validate; overlay = !overlay"
+        >Place Order</v-btn>
+        <v-overlay :absolute="absolute" :value="overlay">
+          <v-btn color="success" @click="overlay= !overlay; show= !show">
+            Order Updated!
+            <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
+          </v-btn>
+        </v-overlay>
       </v-form>
     </v-container>
   </v-card>
@@ -39,6 +50,7 @@ export default {
     checkbox: false,
     show: false,
     valid: true,
+    overlay: false,
     firstName: "",
     FNameRules: [v => !!v || "First name is required"],
     lastName: "",
@@ -49,8 +61,7 @@ export default {
       v => !!v || "E-mail is required",
       v => /.+@.+\..+/.test(v) || "E-mail must be valid"
     ],
-    notes: "",
-    checkbox: ""
+    notes: ""
   }),
 
   methods: {
