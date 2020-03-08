@@ -2,7 +2,6 @@
   <v-app>
     <NavBar />
     <CheckoutButton />
-
     <Header />
     <v-content>
       <router-view />
@@ -27,3 +26,4 @@ export default {
   }
 };
 </script>
+
