@@ -5,11 +5,7 @@
         <v-container class="pa-0">
           <v-row>
             <v-col cols="3" class="pa-0">
-              <v-img
-                :src="require('../assets/images/' + item.image_name)"
-                :alt="mealImage"
-                height="344px"
-              />
+              <v-img :src="require('../assets/images/' + item.image_name)" height="344px" />
             </v-col>
             <v-col cols="7">
               <v-row>

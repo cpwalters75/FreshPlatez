@@ -1,11 +1,6 @@
 <template>
   <v-card elevation="6" class="mx-auto" max-width="344">
-    <v-img
-      :src="require('../assets/images/' + item.image_name)"
-      :alt="mealImage"
-      height="200px"
-      width="344px"
-    />
+    <v-img :src="require('../assets/images/' + item.image_name)" height="200px" width="344px" />
     <v-card-title>{{item.title}}</v-card-title>
     <v-card-subtitle>{{item.shortDescription}}</v-card-subtitle>
     <v-divider></v-divider>
@@ -55,7 +50,7 @@
 
 <script>
 export default {
-  name: "MealCard",
+  name: "MobileCheckoutCard",
   props: ["item"],
   data: () => ({
     absolute: true,
