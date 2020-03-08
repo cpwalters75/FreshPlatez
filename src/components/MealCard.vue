@@ -1,6 +1,11 @@
 <template>
   <v-card elevation="6" class="mx-auto" max-width="344">
-    <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px"></v-img>
+    <v-img
+      :src="require('../assets/images/' + meal.image_name)"
+      :alt="mealImage"
+      height="200px"
+      width="344px"
+    ></v-img>
 
     <v-card-title>
       {{meal.short_Description}}
@@ -51,9 +56,6 @@ export default {
   }),
   method: {
     // pricing: function() {},
-    // getImgSrc() {
-    //   return require("../assets/images/Chicken&RiceNoodleStirFry.png");
-    // }
   }
 };
 </script>
@@ -64,5 +66,10 @@ v-card-subtitle,
 v-card-title {
   white-space: normal;
   text-overflow: ellipsis;
+}
+img {
+  /* width: 100%;
+    height: 100%; */
+  object-fit: cover;
 }
 </style>
