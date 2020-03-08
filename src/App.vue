@@ -1,7 +1,8 @@
 <template>
   <v-app>
-    <Header />
     <NavBar />
+
+    <Header />
     <v-content>
       <router-view />
     </v-content>
@@ -9,17 +10,17 @@
 </template>
 
 <script>
-import Header from "./components/Header";
 import NavBar from "./components/NavBar";
+import Header from "./components/Header";
+
 import router from "./router";
 
 export default {
   name: "App",
   router,
   components: {
-    Header,
-    NavBar
-  },
-  data: () => ({})
+    NavBar,
+    Header
+  }
 };
 </script>

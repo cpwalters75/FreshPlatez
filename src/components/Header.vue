@@ -2,9 +2,7 @@
   <div
     fluid
     :style="'background:url('+logo+'); background-size: contain; background-repeat: no-repeat; background-position: center;'"
-  >
-    
-  </div>
+  ></div>
 </template>
 
 <script>
@@ -14,7 +12,11 @@ export default {
   name: "Header",
   data: () => {
     return {
-      logo: logo
+      logo: logo,
+
+      data: () => ({
+        drawer: false
+      })
     };
   }
 };
@@ -22,12 +24,12 @@ export default {
 
 <style scoped>
 div {
-  min-height: 50%;
+  height: 600px;
   text-align: right;
 }
 @media (max-width: 600px) {
   div {
-    min-height: 20%;
+    height: 350px;
   }
 }
 </style>

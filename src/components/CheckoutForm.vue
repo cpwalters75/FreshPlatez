@@ -2,17 +2,16 @@
   <v-card max-width: auto outlined raised color="grey lighten-5">
     <v-card-title>
       <span class="headline">Please complete the below</span>
-    </v-card-title >
+    </v-card-title>
     <v-container>
       <v-form ref="form" v-model="valid" lazy-validation ma-2>
+        <v-text-field v-model="firstName" :rules="FNameRules" label="First Name" required></v-text-field>
 
-        <v-text-field  v-model="firstName" :rules="FNameRules" label="First Name" required></v-text-field>
+        <v-text-field v-model="lastName" :rules="LNameRules" label="Last Name"></v-text-field>
 
-        <v-text-field  v-model="lastName" :rules="LNameRules" label="Last Name"></v-text-field>
+        <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
 
-        <v-text-field  v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
-
-        <v-textarea  v-model="notes" auto-grow label="Notes to the chef" rows="1"></v-textarea>
+        <v-textarea v-model="notes" auto-grow label="Notes to the chef" rows="1"></v-textarea>
 
         <v-checkbox
           v-model="checkbox"
@@ -27,9 +26,8 @@
         <v-btn color="danger" class="ma-4" @click="$emit('close-modal')">Cancel</v-btn>
         <v-btn color="primary" class="ma-4">Log In</v-btn>
         <v-btn :disabled="!valid" color="success" class="ma-2" @click="validate">Place Order</v-btn>
-        
       </v-form>
-      </v-container>
+    </v-container>
   </v-card>
 </template>
 
@@ -51,7 +49,8 @@ export default {
       v => !!v || "E-mail is required",
       v => /.+@.+\..+/.test(v) || "E-mail must be valid"
     ],
-    notes: ""
+    notes: "",
+    checkbox: ""
   }),
 
   methods: {
