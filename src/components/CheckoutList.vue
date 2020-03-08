@@ -14,12 +14,11 @@
         </v-col>
       </v-row>
 
-      <v-row justify="center">
+      <v-row justify="center" elevation="1">
         <v-dialog v-model="displayModal" persistent max-width="600px">
           <template v-slot:activator="{ on }">
             <v-btn color="primary" dark v-on="on">Proceed to Checkout</v-btn>
           </template>
-          <!-- <v-card v-for="item in getItems" :key="item.id"></v-card> -->
           <CheckoutForm @close-modal="closeModal" />
         </v-dialog>
       </v-row>
