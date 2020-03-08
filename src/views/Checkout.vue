@@ -1,11 +1,8 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12" md="8">
+      <v-col cols="12">
         <CheckoutList />
-      </v-col>
-      <v-col cols="6" md="4">
-        <CheckoutForm v-show="!show" />
       </v-col>
     </v-row>
   </v-container>
@@ -13,13 +10,11 @@
 
 <script>
 import CheckoutList from "../components/CheckoutList";
-import CheckoutForm from "../components/CheckoutForm";
 
 export default {
   name: "Checkout",
   components: {
-    CheckoutList,
-    CheckoutForm
+    CheckoutList
   }
 };
 </script>

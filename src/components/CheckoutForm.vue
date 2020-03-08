@@ -1,35 +1,17 @@
 <template>
-  <v-card max-width="420" outlined raised color="grey lighten-5">
-    <v-card-title
-      >Please Complete the Below
-      <v-form ref="form" v-model="valid" lazy-validation>
-        <v-text-field
-          v-model="firstName"
-          :rules="FNameRules"
-          label="First Name"
-          required
-        ></v-text-field>
+  <v-card max-width: auto outlined raised color="grey lighten-5">
+    <v-card-title>
+      <span class="headline">Please complete the below</span>
+    </v-card-title>
+    <v-container>
+      <v-form ref="form" v-model="valid" lazy-validation ma-2>
+        <v-text-field v-model="firstName" :rules="FNameRules" label="First Name" required></v-text-field>
 
-        <v-text-field
-          v-model="lastName"
-          :rules="LNameRules"
-          label="Last Name"
-          
-        ></v-text-field>
+        <v-text-field v-model="lastName" :rules="LNameRules" label="Last Name"></v-text-field>
 
-        <v-text-field
-          v-model="email"
-          :rules="emailRules"
-          label="E-mail"
-          required
-        ></v-text-field>
+        <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
 
-        <v-textarea
-          v-model="notes"
-          auto-grow
-          label="Notes to the chef"
-          rows="1"
-        ></v-textarea>
+        <v-textarea v-model="notes" auto-grow label="Notes to the chef" rows="1"></v-textarea>
 
         <v-checkbox
           v-model="checkbox"
@@ -41,51 +23,50 @@
           class="mb-4"
         ></v-checkbox>
 
-        <v-btn text small color="primary" class="mr-4 mb-2">
-          Log In
-        </v-btn>
+        <v-btn color="danger" class="ma-4" @click="$emit('close-modal')">Cancel</v-btn>
+        <v-btn color="primary" class="ma-4">Log In</v-btn>
         <v-btn
           :disabled="!valid"
           color="success"
-          class="mr-4"
-          @click="validate"
-        >
-          Place Order
-        </v-btn>
+          class="ma-2"
+          @click="validate; overlay = !overlay"
+        >Place Order</v-btn>
+        <v-overlay :absolute="absolute" :value="overlay">
+          <v-btn color="success" @click="overlay= !overlay; show= !show">
+            Order Updated!
+            <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
+          </v-btn>
+        </v-overlay>
       </v-form>
-    </v-card-title>
+    </v-container>
   </v-card>
 </template>
 
 <script>
+import axios from "axios";
 
-import axios from 'axios';
 export default {
   data: () => ({
+    checkbox: false,
     show: false,
     valid: true,
+    overlay: false,
     firstName: "",
-    FNameRules: [
-      v => !!v || "First name is required",
-    ],
+    FNameRules: [v => !!v || "First name is required"],
     lastName: "",
-    LNameRules: [
-      v => !!v || "Last name is required",
-    ],
+    LNameRules: [v => !!v || "Last name is required"],
 
     email: "",
     emailRules: [
       v => !!v || "E-mail is required",
       v => /.+@.+\..+/.test(v) || "E-mail must be valid"
     ],
-    notes: "",
-    checkbox: ""
+    notes: ""
   }),
-
 
   methods: {
     validate(e) {
-      e.preventDefault()
+      e.preventDefault();
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         const Fname = this.firstName;
@@ -93,19 +74,22 @@ export default {
         const email = this.email;
         const notes = this.notes;
         const emailParams = {
-          email, Fname, Lname, notes
+          email,
+          Fname,
+          Lname,
+          notes
         };
 
-
-      axios.post('/api/email', emailParams)
-      .then(function (response) {
-          console.log(response);
-      })
-      .catch(function (error) {
-          console.log(error)
-          
-      });
-  }},
+        axios
+          .post("/api/email", emailParams)
+          .then(function(response) {
+            console.log(response);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      }
+    },
 
     reset() {
       this.$refs.form.reset();
