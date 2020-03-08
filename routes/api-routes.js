@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Mailgun = require("mailgun-js");
 const multer = require("multer")
+const sharp = require("sharp");
+const fs = require("fs");
 
 const db = require("../models");
 const api_key = process.env.API_KEY;
@@ -71,13 +73,40 @@ const fileFilter = function (req, file, cb) {
   cb(null, true);
 }
 
-const upload = multer({
-  dest: './src/assets/images/uploads',
-  fileFilter
-});
 
-router.post('/upload', upload.single("file"), (req, res) => {
-  res.json({ file: req.file })
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'src/assets/images/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+const upload = multer({storage: storage, fileFilter})
+
+
+
+// const upload = multer({
+//   dest: './src/assets/images/uploads',
+//   fileFilter
+// });
+
+router.post('/upload', upload.single("file"), async (req, res) => {
+  
+  try {
+    await sharp(req.file.path)
+      .resize(344)
+      .backgroung('white')
+      .embed()
+      .toFile(`../public/${req.file.originalname}`)
+
+      
+      fs.unlink(req.file.path, () => {
+        res.json({ file: `/public/${req.file.originalname}`})
+      })
+    } catch(err) {
+        res.status(422).json({ err });
+      } 
 });
 
 module.exports = router, fileFilter;

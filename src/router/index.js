@@ -79,7 +79,7 @@ const routes = [
           "",
         imageSrc: ""
 
-        // C/O https://placeholder.com/"
+    
       }
     }
   }
