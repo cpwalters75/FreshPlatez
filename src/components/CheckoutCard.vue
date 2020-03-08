@@ -1,5 +1,7 @@
 <template>
-  <div>Hello</div>
+  <v-row dense>
+    <v-col cols="12">Hello</v-col>
+  </v-row>
 </template>
 
 <script>

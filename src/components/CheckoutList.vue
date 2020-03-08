@@ -2,8 +2,10 @@
   <v-card elevation="6" class="mx-auto">
     <v-container>
       <v-row>
-        <v-col col="12" v-bind:key="item.title" v-for="item in cart">
-          <CheckoutCard />
+        <v-col col="12">
+          <v-container  v-bind:key="item.title" v-for="item in cart">
+            <CheckoutCard />
+          </v-container>
         </v-col>
       </v-row>
 
