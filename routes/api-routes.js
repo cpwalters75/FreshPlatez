@@ -1,22 +1,27 @@
-
 const express = require("express");
 const router = express.Router();
 const Mailgun = require("mailgun-js");
 const multer = require("multer")
+const sharp = require("sharp");
+const fs = require("fs");
 
-// const db = require("../models");
+const db = require("../models");
 const api_key = process.env.API_KEY;
 const domain = process.env.DOMAIN;
 const from_who = process.env.EMAIL_USER;
 
 const mailgun = new Mailgun({ apiKey: api_key, domain: domain });
-// ----------------------MailGun Routes-----------------------------------------------------
 
-router.get("/platez", function (req, res) {
-  db.meals.findAll({}).then(function (mealData) {
+// ------------------Meal Routes------------------------------------------------------------
+
+router.get("/meals", function (req, res) {
+  //res.json("hello from the server")
+  db.Meal.findAll({}).then(mealData => {
     res.json(mealData);
   })
 })
+// ----------------------MailGun Routes-----------------------------------------------------
+
 // Send a message to the specified email address when you navigate to /submit/someaddr@email.com
 // The index redirects here
 router.post("/email", function (req, res) {
@@ -56,28 +61,52 @@ router.post("/email", function (req, res) {
 
 
 
-const fileFilter = function(req, file, cb) {
+const fileFilter = function (req, file, cb) {
   const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
-  
-  if(!allowedTypes.includes(file.mimetype)) {
+
+  if (!allowedTypes.includes(file.mimetype)) {
     const error = new Error("Wrong file type");
     error.code = "LIMIT_FILE_TYPES";
     return cb(error, false);
   }
 
   cb(null, true);
-
 }
 
-const upload = multer({
-  dest: './src/assets/images/uploads',
-  fileFilter
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'src/assets/images/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+const upload = multer({storage: storage, fileFilter})
+
+
+
+// const upload = multer({
+//   dest: './src/assets/images/uploads',
+//   fileFilter
+// });
+
+router.post('/upload', upload.single("file"), async (req, res) => {
+  
+  try {
+    await sharp(req.file.path)
+      .resize(344)
+      .backgroung('white')
+      .embed()
+      .toFile(`../public/${req.file.originalname}`)
+
+      
+      fs.unlink(req.file.path, () => {
+        res.json({ file: `/public/${req.file.originalname}`})
+      })
+    } catch(err) {
+        res.status(422).json({ err });
+      } 
 });
-
-router.post('/upload', upload.single("file"), (req, res) => {
-  res.json({ file: req.file })
-});
-
-
 
 module.exports = router, fileFilter;
