@@ -18,6 +18,7 @@ router.get("/meals", function (req, res) {
   //res.json("hello from the server")
   db.Meal.findAll({}).then(mealData => {
     res.json(mealData);
+    
   })
 })
 // ----------------------MailGun Routes-----------------------------------------------------
