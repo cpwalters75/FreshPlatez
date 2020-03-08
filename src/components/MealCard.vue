@@ -1,6 +1,6 @@
 <template>
   <v-card elevation="6" class="mx-auto" max-width="344">
-    <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px"></v-img>
+    <v-img contain :src="require('../assets/images/' + meal.image_name)" :alt="mealImage" height="200px" width= "344px"> </v-img>
 
     <v-card-title>
       {{meal.short_Description}}
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+
 export default {
   name: "MealCard",
   props: ["meal"],
@@ -51,10 +52,16 @@ export default {
   }),
   method: {
     // pricing: function() {},
-    // getImgSrc() {
-    //   return require("../assets/images/Chicken&RiceNoodleStirFry.png");
-    // }
-  }
+    
+  },
+  // computed: {
+  //   mealImage(meal) {
+  //     console.log()
+  //     const filename = meal.image_name
+  //     return require(`../assets/images/${filename}`)
+  //   }
+
+  // }
 };
 </script>
 
