@@ -6,38 +6,49 @@
       height="200px"
       width="344px"
     />
-    <v-card-title>
-      {{item.title}}
-      <v-btn @click="show = !show" fab dark small color="primary " bottom left absolute>
-        <v-icon>{{ show ? "mdi-minus" : "mdi-plus" }}</v-icon>
-      </v-btn>
-    </v-card-title>
-
+    <v-card-title>{{item.title}}</v-card-title>
     <v-card-subtitle>{{item.shortDescription}}</v-card-subtitle>
-
-    <v-expand-transition>
-      <div v-show="show">
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <v-col col="4" text-align="center">
+    <v-divider></v-divider>
+    <v-card-actions>
+      <v-container>
+        <v-row dense>
+          <v-col col="6" text-align="left">
             <v-select :items="pricing" label="Size/Price(ea)" dense solo></v-select>
+          </v-col>
+          <v-col col="6" text-align="right">
             <v-select :items="qty" label="Quantity" dense solo></v-select>
-            <div icon @click="overlay = !overlay">
-              <v-btn outlined color="success">
-                Add to Order
-                <v-icon class="ml-2">mdi-cart</v-icon>
+          </v-col>
+        </v-row>
+        <v-row dense>
+          <v-col col="6" class="r-0">
+            <div icon @click="overlay = !overlay; update= false">
+              <v-btn color="error" outlined>
+                <v-icon>mdi-delete</v-icon>
               </v-btn>
             </div>
           </v-col>
-        </v-card-actions>
+          <v-spacer></v-spacer>
+          <v-col col="6" text-align="left">
+            <div icon @click="overlay = !overlay; update= true">
+              <v-btn color="primary" outlined>Update</v-btn>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-card-actions>
+    <v-overlay :absolute="absolute" :value="overlay" :update="update">
+      <div v-if="update">
+        <v-btn color="primary" @click="overlay= !overlay; show= !show">
+          Item Updated!
+          <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
+        </v-btn>
       </div>
-    </v-expand-transition>
-    <v-overlay :absolute="absolute" :value="overlay">
-      <v-btn color="success" @click="overlay= !overlay; show= !show">
-        Order Updated!
-        <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
-      </v-btn>
+      <div v-else>
+        <v-btn color="error" @click="overlay= !overlay; show= !show">
+          Remove Item?
+          <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
+        </v-btn>
+      </div>
     </v-overlay>
   </v-card>
 </template>
@@ -47,9 +58,9 @@ export default {
   name: "MealCard",
   props: ["item"],
   data: () => ({
-    show: false,
     absolute: true,
     overlay: false,
+    update: false,
     qty: [1, 2, 3, 4, 5, 6, 7],
     pricing: ["Small.....$7.50", "Large.....$12.00"]
   }),
