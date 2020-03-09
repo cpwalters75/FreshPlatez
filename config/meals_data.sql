@@ -22,9 +22,6 @@ GARLIC LEMON GRASS, CILANTRO, THAI BASIL, VEGTABLE PROTEIN FROM SOYBEAN, EXTRA V
 ('Beef Burger over Spinach, Carrots, pickled Zucchini a Sweet Potato Fries', 10.99,12.99, 'Ingredients text area',
 '300-400','500-600',2, 'BeefBurgeroverSpinachCarrotspickledZucchiniaSweetPotatoFries.jpg','00:30:00'),
 
-('Turkey and Butternut Squash Risotto with Cranberries', 10.99,12.99, 'Ingredients text area',
-'300-400','500-600',2, 'TurkeyandButternutSquashRisottowithCranberries.jpg','00:30:00'),
-
 ('Chicken Tinga', 10.99,12.99, 'ORGANIC BONELESS SKINELESS CHICKEN THIGHS, GARBANZOS, TOMATO PASTE, CHICKEN BONES, WATER, CARROTS, CELERY,
  ONION, GARLIC, BAY LEAF, SHERRY VINEGAR, EXTRA VIRGIN OLIVE, SALT AND PEPPER','300-400','500-600',2, 'ChickenTinga.jpg','00:30:00'),
 
