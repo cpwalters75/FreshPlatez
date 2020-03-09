@@ -72,16 +72,27 @@ const state = {
 };
 
 const getters = {
-    getItems: (state) => state.cart
+    getCartItems: (state) => state.cart
 };
 
 const actions = {
+    removeCartItem: function ({ commit }, itemId) {
+        commit('removeItem', itemId);
+    },
 
+    addCartItem: function ({ commit }, newItem) {
+        commit('addItem', newItem);
+    }
 };
 
 const mutations = {
-    addItemtoCart: (state, item) => (state.cart.push(item))
+    addItem: (state, newItem) => (state.cart.push(newItem)),
+
+    removeItem: (state, itemId) => (state.cart.filter(item => {
+        return item.id != itemId;
+    }))
 };
+
 
 export default {
     state,

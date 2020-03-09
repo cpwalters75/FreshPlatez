@@ -38,7 +38,15 @@
                 <v-col col="12" class="r-0" justify="right">
                   <div icon>
                     <div>
-                      <v-btn color="error" outlined large absolute right class="mt-8">
+                      <v-btn
+                        color="error"
+                        outlined
+                        large
+                        absolute
+                        right
+                        class="mt-8"
+                        @click="$emit('remove-cart-item',item.id)"
+                      >
                         <v-icon>mdi-delete</v-icon>
                       </v-btn>
                     </div>
