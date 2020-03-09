@@ -24,7 +24,8 @@
           <v-col col="4" text-align="center">
             <v-select :items="pricing" label="Size/Price(ea)" dense solo @change="size = size"></v-select>
             <v-select :items="qty" label="Quantity" dense solo @change="qty= qty"></v-select>
-            <div icon @click="overlay = !overlay; addItemToCart(this.meal)">
+            <!-- <div icon @click="overlay = !overlay; addItemToCart(this.meal)">  -->
+            <div icon @click="overlay = !overlay">
               <v-btn outlined color="success">
                 Add to Order
                 <v-icon class="ml-2">mdi-cart</v-icon>
@@ -56,13 +57,12 @@ export default {
     currentSize: ""
   }),
   method: {
-    addItemToCart(meal) {
-      const item = {
-        short_Description: this.meal.short_Description,
-        qty: this.qty,
-        size: this.size
-      };
-    }
+    // addItemToCart(meal) {
+    //   const item = {
+    //     short_Description: this.meal.short_Description,
+    //     qty: this.qty,
+    //     size: this.size
+    //   };
   }
 };
 </script>
