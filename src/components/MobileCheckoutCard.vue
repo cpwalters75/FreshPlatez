@@ -39,7 +39,10 @@
         </v-btn>
       </div>
       <div v-else>
-        <v-btn color="error" @click="overlay= !overlay; show= !show">
+        <v-btn
+          color="error"
+          @click="overlay= !overlay; show= !show; $emit('remove-cart-item',item.id)"
+        >
           Remove Item?
           <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
         </v-btn>
@@ -59,7 +62,7 @@ export default {
     qty: [1, 2, 3, 4, 5, 6, 7],
     pricing: ["Small.....$7.50", "Large.....$12.00"]
   }),
-  method: {}
+  methods: {}
 };
 </script>
 

@@ -3,12 +3,12 @@
     <v-container>
       <v-row>
         <v-col col="12">
-          <v-container v-for="item in cart" v-bind:key="item.id">
+          <v-container v-for="item in getCartItems" v-bind:key="item.id">
             <div v-if="!isMobile()">
-              <CheckoutCard v-bind:item="item" />
+              <CheckoutCard v-bind:item="item" @remove-cart-item="removeCartItem(item.id)" />
             </div>
             <div v-else>
-              <MobileCheckoutCard v-bind:item="item" />
+              <MobileCheckoutCard v-bind:item="item" @remove-cart-item="removeCartItem(item.id)" />
             </div>
           </v-container>
         </v-col>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-// import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import CheckoutForm from "../components/CheckoutForm";
 import CheckoutCard from "../components/CheckoutCard";
 import MobileCheckoutCard from "../components/MobileCheckoutCard";
@@ -50,17 +50,15 @@ export default {
     CheckoutCard,
     MobileCheckoutCard
   },
+
+  computed: mapGetters(["getCartItems"]),
+
   data: () => ({
     displayModal: false
   }),
 
-  // computed: {
-  //   mapGetters(['getItems'])
-  // },
-  // created () {
-  //     this.getItems();
-  //   }
   methods: {
+    ...mapActions(["removeCartItem"]),
     closeModal: function() {
       this.displayModal = !this.displayModal;
     },
