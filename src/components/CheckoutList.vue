@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col col="12">
-          <v-container v-bind:key="item.title" v-for="item in cart">
+          <v-container v-for="item in cart" v-bind:key="item.id">
             <div v-if="!isMobile()">
               <CheckoutCard v-bind:item="item" />
             </div>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-//import { mapGetters } from "vuex";
+// import { mapGetters } from "vuex";
 import CheckoutForm from "../components/CheckoutForm";
 import CheckoutCard from "../components/CheckoutCard";
 import MobileCheckoutCard from "../components/MobileCheckoutCard";
@@ -51,75 +51,15 @@ export default {
     MobileCheckoutCard
   },
   data: () => ({
-    displayModal: false,
-    cart: [
-      {
-        price_small: "7.50",
-        price_large: "12.00",
-        qty_small: "3",
-        qty_large: "1",
-        title: "1 Beef Burger Over Spinach",
-        shortDescription:
-          "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-        image_name: "ChickenTinga.jpg"
-      },
-      {
-        price_small: "7.50",
-        price_large: "12.00",
-        qty_small: "3",
-        qty_large: "1",
-        title: "2 Beef Burger Over Spinach",
-        shortDescription:
-          "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-        image_name: "ChickenTinga.jpg"
-      },
-      {
-        price_small: "7.50",
-        price_large: "12.00",
-        qty_small: "3",
-        qty_large: "1",
-        title: "3 Beef Burger Over Spinach",
-        shortDescription:
-          "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-        image_name: "ChickenTinga.jpg"
-      },
-      {
-        price_small: "7.50",
-        price_large: "12.00",
-        qty_small: "3",
-        qty_large: "1",
-        title: "4 Beef Burger Over Spinach",
-        shortDescription:
-          "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-        image_name: "ChickenTinga.jpg"
-      },
-      {
-        price_small: "7.50",
-        price_large: "12.00",
-        qty_small: "3",
-        qty_large: "1",
-        title: "5 Beef Burger Over Spinach",
-        shortDescription:
-          "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-        image_name: "ChickenTinga.jpg"
-      },
-      {
-        price_small: "7.50",
-        price_large: "12.00",
-        qty_small: "3",
-        qty_large: "1",
-        title: "6 Beef Burger Over Spinach",
-        shortDescription:
-          "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-        image_name: "ChickenTinga.jpg"
-      }
-    ]
+    displayModal: false
   }),
 
-  computed: {
-    // mapGetters(["getItems"])
-  },
-
+  // computed: {
+  //   mapGetters(['getItems'])
+  // },
+  // created () {
+  //     this.getItems();
+  //   }
   methods: {
     closeModal: function() {
       this.displayModal = !this.displayModal;

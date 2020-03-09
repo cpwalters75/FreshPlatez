@@ -1,11 +1,6 @@
 <template>
   <v-card elevation="6" class="mx-auto" max-width="344">
-    <v-img
-      :src="require('../assets/images/' + meal.image_name)"
-      :alt="mealImage"
-      height="200px"
-      width="344px"
-    ></v-img>
+    <v-img :src="require('../assets/images/' + meal.image_name)" height="200px" width="344px"></v-img>
 
     <v-card-title>
       {{meal.short_Description}}
@@ -22,8 +17,9 @@
 
         <v-card-actions>
           <v-col col="4" text-align="center">
-            <v-select :items="pricing" label="Size/Price(ea)" dense solo></v-select>
-            <v-select :items="qty" label="Quantity" dense solo></v-select>
+            <v-select :items="pricing" label="Size/Price(ea)" dense solo @change="size = size"></v-select>
+            <v-select :items="qty" label="Quantity" dense solo @change="qty= qty"></v-select>
+            <!-- <div icon @click="overlay = !overlay; addItemToCart(this.meal)">  -->
             <div icon @click="overlay = !overlay">
               <v-btn outlined color="success">
                 Add to Order
@@ -52,10 +48,16 @@ export default {
     absolute: true,
     overlay: false,
     qty: [1, 2, 3, 4, 5, 6, 7],
-    pricing: ["Small.....$7.50", "Large.....$12.00"]
+    pricing: ["Small.....$7.50", "Large.....$12.00"],
+    currentSize: ""
   }),
   method: {
-    // pricing: function() {},
+    // addItemToCart(meal) {
+    //   const item = {
+    //     short_Description: this.meal.short_Description,
+    //     qty: this.qty,
+    //     size: this.size
+    //   };
   }
 };
 </script>

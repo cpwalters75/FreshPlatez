@@ -9,6 +9,7 @@
 </template>
 
 <script>
+//import { mapActions } from "vuex";
 import MealCard from "../components/MealCard.vue";
 import axios from "axios";
 export default {
@@ -35,6 +36,7 @@ export default {
           console.log(err);
         });
     }
+    // ...mapAction([addItem])
   }
 };
 </script>
