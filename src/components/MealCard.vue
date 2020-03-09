@@ -1,11 +1,6 @@
 <template>
   <v-card elevation="6" class="mx-auto" max-width="344">
-    <v-img
-      :src="require('../assets/images/' + meal.image_name)"
-      :alt="mealImage"
-      height="200px"
-      width="344px"
-    ></v-img>
+    <v-img :src="require('../assets/images/' + meal.image_name)" height="200px" width="344px"></v-img>
 
     <v-card-title>
       {{meal.short_Description}}
