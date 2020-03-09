@@ -86,11 +86,13 @@ const actions = {
 };
 
 const mutations = {
-    addItem: (state, newItem) => (state.cart.push(newItem)),
+    addItem: (state, newItem) => (state.cart = state.cart.push(newItem)),
 
-    removeItem: (state, itemId) => (state.cart.filter(item => {
-        return item.id != itemId;
-    }))
+    removeItem: (state, itemId) => (
+        state.cart = state.cart.filter(item => {
+            return item.id != itemId;
+        }
+        ))
 };
 
 
