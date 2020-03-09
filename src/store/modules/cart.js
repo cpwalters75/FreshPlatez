@@ -1,18 +1,27 @@
+import axios from "axios";
+
 //import axios from 'axios'; // in case we need user data/tokens along with the cart info
 
 const state = {
     cart: [
-        {}
     ]
-}
+};
 
 const getters = {
     getItems: (state) => state.cart
 };
 
-const action = {};
+const action = {
+    addItem() {
 
-const mutations = {};
+    }
+};
+
+const mutations = {
+    increment(cart, n) {
+        state.count += n
+    }
+};
 
 export default {
     state,

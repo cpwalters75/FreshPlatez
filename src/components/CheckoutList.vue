@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col col="12">
-          <v-container v-bind:key="item.title" v-for="item in cart">
+          <v-container v-for="item in cart" v-bind:key="item.id">
             <div v-if="!isMobile()">
               <CheckoutCard v-bind:item="item" />
             </div>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-//import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 import CheckoutForm from "../components/CheckoutForm";
 import CheckoutCard from "../components/CheckoutCard";
 import MobileCheckoutCard from "../components/MobileCheckoutCard";
