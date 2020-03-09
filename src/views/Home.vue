@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col col="4" v-bind:key="meal.id" v-for="meal in meals">
-        <MealCard v-bind:meal="meal" @add-cart-item="addCartItem(item)" />
+        <MealCard v-bind:meal="meal" @add-cart-item="addCartItem(meal)" />
       </v-col>
     </v-row>
   </v-container>
