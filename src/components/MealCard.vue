@@ -22,9 +22,9 @@
 
         <v-card-actions>
           <v-col col="4" text-align="center">
-            <v-select :items="pricing" label="Size/Price(ea)" dense solo></v-select>
-            <v-select :items="qty" label="Quantity" dense solo></v-select>
-            <div icon @click="overlay = !overlay">
+            <v-select :items="pricing" label="Size/Price(ea)" dense solo @change="size = size"></v-select>
+            <v-select :items="qty" label="Quantity" dense solo @change="qty= qty"></v-select>
+            <div icon @click="overlay = !overlay; addItemToCart(this.meal)">
               <v-btn outlined color="success">
                 Add to Order
                 <v-icon class="ml-2">mdi-cart</v-icon>
@@ -52,10 +52,17 @@ export default {
     absolute: true,
     overlay: false,
     qty: [1, 2, 3, 4, 5, 6, 7],
-    pricing: ["Small.....$7.50", "Large.....$12.00"]
+    pricing: ["Small.....$7.50", "Large.....$12.00"],
+    currentSize: ""
   }),
   method: {
-    // pricing: function() {},
+    addItemToCart(meal) {
+      const item = {
+        short_Description: this.meal.short_Description,
+        qty: this.qty,
+        size: this.size
+      };
+    }
   }
 };
 </script>

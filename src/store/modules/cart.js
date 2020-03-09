@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Store } from "vuex";
 
 //import axios from 'axios'; // in case we need user data/tokens along with the cart info
 
@@ -13,13 +14,16 @@ const getters = {
 
 const action = {
     addItem() {
+        Store.commit('increment')
 
     }
 };
 
 const mutations = {
+
     increment(cart, n) {
         state.count += n
+
     }
 };
 
