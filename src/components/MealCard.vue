@@ -64,10 +64,17 @@ export default {
 
 <style>
 
+<<<<<<< HEAD
 img {
     
     object-fit: cover;
 
+=======
+img{
+    
+    object-fit: cover;
+=======
+>>>>>>> 1b9870387a4996d36136315521ecc23fd51f70ec
 /* Temp fix for word wrapping in cards breaking words https://github.com/vuetifyjs/vuetify/issues/9130
 v-card-subtitle,
 v-card-title {
@@ -75,6 +82,9 @@ v-card-title {
   text-overflow: ellipsis;
 } */
 
+<<<<<<< HEAD
 
 }
+=======
+>>>>>>> 1b9870387a4996d36136315521ecc23fd51f70ec
 </style>
