@@ -63,18 +63,27 @@ export default {
 </script>
 
 <style>
+<<<<<<< HEAD:src/components/MealCard.vue
 
+=======
+>>>>>>> f5b6fef62e404caed3baa34a60b7a0eedb134f20:client/src/components/MealCard.vue
 img {
-    
-    object-fit: cover;
+  object-fit: cover;
 
+<<<<<<< HEAD:src/components/MealCard.vue
 /* Temp fix for word wrapping in cards breaking words https://github.com/vuetifyjs/vuetify/issues/9130
+=======
+  /* Temp fix for word wrapping in cards breaking words https://github.com/vuetifyjs/vuetify/issues/9130
+>>>>>>> f5b6fef62e404caed3baa34a60b7a0eedb134f20:client/src/components/MealCard.vue
 v-card-subtitle,
 v-card-title {
   white-space: normal;
   text-overflow: ellipsis;
 } */
+<<<<<<< HEAD:src/components/MealCard.vue
 
 
+=======
+>>>>>>> f5b6fef62e404caed3baa34a60b7a0eedb134f20:client/src/components/MealCard.vue
 }
 </style>
