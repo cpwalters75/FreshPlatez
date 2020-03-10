@@ -34,7 +34,7 @@ app.use(function (err, req, res, next) {
 
 // Sync sequelize models then start Express app
 // =============================================
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log(`App listening on PORT ${PORT} and process is PID ${process.pid}`);
   });
