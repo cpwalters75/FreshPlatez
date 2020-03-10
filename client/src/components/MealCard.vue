@@ -19,7 +19,6 @@
           <v-col col="4" text-align="center">
             <v-select :items="pricing" label="Size/Price(ea)" dense solo @change="size = size"></v-select>
             <v-select :items="qty" label="Quantity" dense solo @change="qty= qty"></v-select>
-            <!-- <div icon @click="overlay = !overlay; addItemToCart(this.meal)">  -->
             <div icon @click="overlay = !overlay; $emit('add-cart-item',meal)">
               <v-btn outlined color="success">
                 Add to Order

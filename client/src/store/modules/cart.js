@@ -4,70 +4,15 @@ const state = {
     cart: [
         {
             id: 1,
-            price_small: "7.50",
-            price_large: "12.00",
-            qty_small: "3",
-            qty_large: "1",
-            title: "1 Beef Burger Over Spinach",
-            shortDescription:
-                "A beef burger over spinach with pickled zucchini and sweet potatato fries",
+            MealId: 1,
+            price: 7.50,
+            size: 'Small',
+            qty: 1,
+            short_Description: "1 Beef Burger Over Spinach",
+            ingredients: "these are some ingredients that need shome shit to tlak about in this thing that Wher ewwerie iting alwek icnd",
             image_name: "ChickenTinga.jpg"
         },
-        {
-            id: 2,
-            price_small: "7.50",
-            price_large: "12.00",
-            qty_small: "3",
-            qty_large: "1",
-            title: "2 Beef Burger Over Spinach",
-            shortDescription:
-                "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-            image_name: "ChickenTinga.jpg"
-        },
-        {
-            id: 3,
-            price_small: "7.50",
-            price_large: "12.00",
-            qty_small: "3",
-            qty_large: "1",
-            title: "3 Beef Burger Over Spinach",
-            shortDescription:
-                "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-            image_name: "ChickenTinga.jpg"
-        },
-        {
-            id: 4,
-            price_small: "7.50",
-            price_large: "12.00",
-            qty_small: "3",
-            qty_large: "1",
-            title: "4 Beef Burger Over Spinach",
-            shortDescription:
-                "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-            image_name: "ChickenTinga.jpg"
-        },
-        {
-            id: 5,
-            price_small: "7.50",
-            price_large: "12.00",
-            qty_small: "3",
-            qty_large: "1",
-            title: "5 Beef Burger Over Spinach",
-            shortDescription:
-                "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-            image_name: "ChickenTinga.jpg"
-        },
-        {
-            id: 6,
-            price_small: "7.50",
-            price_large: "12.00",
-            qty_small: "3",
-            qty_large: "1",
-            title: "6 Beef Burger Over Spinach",
-            shortDescription:
-                "A beef burger over spinach with pickled zucchini and sweet potatato fries",
-            image_name: "ChickenTinga.jpg"
-        }
+
     ]
 };
 
