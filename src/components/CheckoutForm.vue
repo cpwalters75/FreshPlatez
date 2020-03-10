@@ -46,6 +46,7 @@
 import axios from "axios";
 
 export default {
+  name: "CheckoutForm",
   data: () => ({
     checkbox: false,
     show: false,

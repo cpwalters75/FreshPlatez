@@ -2,20 +2,15 @@
   <v-card elevation="6" class="mx-auto" max-width="344">
     <v-img
       :src="require('../assets/images/' + meal.image_name)"
-      alt= "meal.short_Description"
+      alt="meal.short_Description"
       height="200px"
       width="344px"
     >
     </v-img>
 
     <v-card-title>
-     Current Title:  {{ meal.short_Description }}
-      <v-text-field
-        v-model="newName"
-        label="New Name"
-        required
-        clearable= true
-      ></v-text-field>
+      Current Title: {{ meal.short_Description }}
+
       <v-btn
         @click="show = !show"
         fab
@@ -26,23 +21,32 @@
         right
         absolute
       >
-        <v-icon>{{ show ? "mdi-minus" : "mdi-plus" }}</v-icon>
+        <v-icon>{{ show ? "mdi-minus" : "mdi-pencil" }}</v-icon>
       </v-btn>
     </v-card-title>
 
-    <v-card-subtitle>Current Ingredients: {{ meal.ingredients }}
-      <v-textarea
-        v-model="newIngredients"
-        :rules="shortDescriptionRules"
-        label="Update Ingredients"
-        required
-        clearable= true
-        auto-grow= true
-      >
-      </v-textarea>
-    </v-card-subtitle>
     <v-expand-transition>
       <div v-show="show">
+        <v-text-field
+          class= "ml-2"
+          v-model="newName"
+          label="New Name"
+          required
+          clearable="true"
+        ></v-text-field>
+        <v-card-subtitle
+          >Current Ingredients: {{ meal.ingredients }}
+          <v-textarea
+            v-model="newIngredients"
+            :rules="shortDescriptionRules"
+            label="Update Ingredients"
+            required
+            clearable="true"
+            auto-grow="true"
+          >
+          </v-textarea>
+        </v-card-subtitle>
+
         <v-divider></v-divider>
 
         <v-card-actions>
@@ -101,14 +105,8 @@
       </div>
     </v-expand-transition>
     <v-overlay :absolute="absolute" :value="overlay">
-      <v-btn
-        color="success"
-        @click="
-          overlay = !overlay;
-        "
-      >
-        Meal Updated!
-        Refresh page to see change!
+      <v-btn color="success" @click="overlay = !overlay">
+        Meal Updated! Refresh page to see change!
         <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
       </v-btn>
     </v-overlay>
@@ -118,12 +116,11 @@
 <script>
 import axios from "axios";
 
-
 export default {
   name: "AdminMealCard",
   props: ["meal"],
   data: () => ({
-    show: true,
+    show: false,
     absolute: true,
     overlay: false,
     valid: false,
@@ -140,18 +137,21 @@ export default {
   }),
 
   methods: {
-    
-
     updateMeal(meal) {
-      console.log(meal)
-      const id = meal.id
-      const name = this.newName === "" ? meal.short_Description : this.newName
-      const ingredients = this.newIngredients === "" ? meal.ingredients : this.newIngredients
-      const smallPrice = this.newSmallPrice === "" ? meal.price_small : this.newSmallPrice 
-      const largePrice = this.newLargePrice === "" ? meal.price_large : this.newLargePrice 
-      const smallCal = this.newSmallCal === "" ? meal.calories_small : this.newSmallCal 
-      const largeCal = this.newLargeCal === "" ? meal.calories_large : this.newLargeCal
-      const mealShow = this.mealShow
+      console.log(meal);
+      const id = meal.id;
+      const name = this.newName === "" ? meal.short_Description : this.newName;
+      const ingredients =
+        this.newIngredients === "" ? meal.ingredients : this.newIngredients;
+      const smallPrice =
+        this.newSmallPrice === "" ? meal.price_small : this.newSmallPrice;
+      const largePrice =
+        this.newLargePrice === "" ? meal.price_large : this.newLargePrice;
+      const smallCal =
+        this.newSmallCal === "" ? meal.calories_small : this.newSmallCal;
+      const largeCal =
+        this.newLargeCal === "" ? meal.calories_large : this.newLargeCal;
+      const mealShow = this.mealShow;
       const updateParams = {
         id,
         name,
@@ -161,20 +161,18 @@ export default {
         smallCal,
         largeCal,
         mealShow
-      }
+      };
       // console.log(updateParams)
 
       axios
         .put("/api/update", updateParams)
         .then(function(response) {
-          console.log( response);
+          console.log(response);
         })
-        .then(()=>{
-          
-        })
+        .then(() => {})
         .catch(function(error) {
           console.log(error);
-        })
+        });
     }
   }
 };
