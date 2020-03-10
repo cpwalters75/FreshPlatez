@@ -2,13 +2,14 @@
   <v-container>
     <v-row>
       <v-col col="4" v-bind:key="meal.id" v-for="meal in meals">
-        <MealCard v-bind:meal="meal" />
+        <MealCard v-bind:meal="meal" @add-cart-item="addCartItem(meal)" />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import MealCard from "../components/MealCard.vue";
 import axios from "axios";
 export default {
@@ -25,6 +26,7 @@ export default {
     this.getMealData();
   },
   methods: {
+    ...mapActions(["addCartItem"]),
     getMealData() {
       axios
         .get("/api/meals")
