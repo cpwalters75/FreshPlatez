@@ -31,6 +31,24 @@ app.use(function (err, req, res, next) {
   }
 })
 
+// app.put('/api/update', function (req, res) {
+//   console.log('body', req.body) 
+
+//   db.Meal.update({
+//     short_Description: req.body.name,
+//     ingredients: req.body.ingredients,
+//     price_small: req.body.smallPrice,
+//     price_large: req.body.largePrice,
+//     calories_small: req.body.smallCal,
+//     calories_large: req.body.largeCal,
+//     is_active: req.body.mealShow},
+//     {where:{id: req.body.id}})
+//     .then((result) => {
+//       console.log(result)
+//       res.json(result)
+//     })
+//   })
+
 
 // Sync sequelize models then start Express app
 // =============================================

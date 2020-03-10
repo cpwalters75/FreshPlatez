@@ -139,12 +139,14 @@ export default {
       const file = this.$refs.file.files[0];
       const formData = new FormData();
       formData.append("file", file);
-        
+      console.log('file', File)
       try {
+        
         const res= await axios.post('/api/upload', formData);
+        console.log("try")
         this.message = "File has been uploaded";
         this.uploadedFile.push(res.data.file);
-        console.log(res.data.file)
+        
         this.error = false;
       } catch (err) {
         this.message = err.response.data.error;

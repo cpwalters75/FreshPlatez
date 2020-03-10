@@ -60,7 +60,7 @@ router.post("/email", function (req, res) {
 
 });
 
-
+// --------------- update Meals routes----------------------------------------
 
 const fileFilter = function (req, file, cb) {
   const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
@@ -74,23 +74,15 @@ const fileFilter = function (req, file, cb) {
   cb(null, true);
 }
 
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'src/assets/images/uploads')
+    cb(null, 'src/assets/images/')
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }
 })
 const upload = multer({storage: storage, fileFilter})
-
-
-
-// const upload = multer({
-//   dest: './src/assets/images/uploads',
-//   fileFilter
-// });
 
 router.post('/upload', upload.single("file"), async (req, res) => {
   
@@ -109,5 +101,24 @@ router.post('/upload', upload.single("file"), async (req, res) => {
         res.status(422).json({ err });
       } 
 });
+
+router.put("/update", function (req, res) {
+  console.log('body', req.body) 
+
+  db.Meal.update({
+    short_Description: req.body.name,
+    ingredients: req.body.ingredients,
+    price_small: req.body.smallPrice,
+    price_large: req.body.largePrice,
+    calories_small: req.body.smallCal,
+    calories_large: req.body.largeCal,
+    is_active: req.body.mealShow},
+    {where:{id: req.body.id}})
+    .then((result) => {
+      console.log(result)
+    })
+  })
+
+
 
 module.exports = router, fileFilter;
