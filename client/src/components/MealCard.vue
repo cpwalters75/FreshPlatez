@@ -63,28 +63,14 @@ export default {
 </script>
 
 <style>
-
-<<<<<<< HEAD
 img {
-    
-    object-fit: cover;
+  object-fit: cover;
 
-=======
-img{
-    
-    object-fit: cover;
-=======
->>>>>>> 1b9870387a4996d36136315521ecc23fd51f70ec
-/* Temp fix for word wrapping in cards breaking words https://github.com/vuetifyjs/vuetify/issues/9130
+  /* Temp fix for word wrapping in cards breaking words https://github.com/vuetifyjs/vuetify/issues/9130
 v-card-subtitle,
 v-card-title {
   white-space: normal;
   text-overflow: ellipsis;
 } */
-
-<<<<<<< HEAD
-
 }
-=======
->>>>>>> 1b9870387a4996d36136315521ecc23fd51f70ec
 </style>
