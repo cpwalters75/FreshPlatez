@@ -13,6 +13,7 @@
               v-bind:item="item"
               @remove-cart-item="removeCartItem(item.id)"
               @update-cart-item="updateCartItem"
+              @update-order-total="calcTotal"
             />
             <!-- </div> -->
           </v-container>
@@ -23,7 +24,7 @@
           <v-container elevation="2">
             <v-row>
               <v-col cols="12">
-                <v-text-field disabled label="Order Total.....................$$$$$$$" outlined></v-text-field>
+                <v-text-field disabled v-model="orderTotal" label="Order Total" outlined></v-text-field>
               </v-col>
             </v-row>
             <v-row>
@@ -58,14 +59,37 @@ export default {
 
   computed: mapGetters(["getCartItems"]),
 
+  created: function() {
+    this.calcTotal();
+  },
+
   data: () => ({
-    displayModal: false
+    displayModal: false,
+    orderTotal: 0,
+    itemPrice: 0,
+    itemTotal: 0
   }),
 
   methods: {
     ...mapActions(["removeCartItem", "updateCartItem"]),
     closeModal: function() {
       this.displayModal = !this.displayModal;
+    },
+
+    calcTotal: function() {
+      this.orderTotal = 0;
+      this.getCartItems.forEach(cartItem => {
+        if (cartItem.meal_size === "Small") {
+          this.itemPrice = cartItem.price_small;
+        } else if (cartItem.meal_size === "Large") {
+          this.itemPrice = cartItem.price_large;
+        }
+        this.itemTotal = this.itemPrice * cartItem.quantity;
+        this.orderTotal += this.itemTotal;
+      });
+
+      this.currentTotal = this.itemPrice * this.currentQty;
+      this.itemTotal = "$" + this.currentTotal;
     }
     // isMobile method solution from https://stackoverflow.com/questions/48515023/display-different-vuejs-components-for-mobile-browsers
     // queries the devices operating system to determine if the user is mobile and toggles component render accordingly

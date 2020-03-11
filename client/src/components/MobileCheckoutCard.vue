@@ -65,7 +65,7 @@
       <div v-else>
         <v-btn
           color="error"
-          @click="overlay= !overlay; show= !show; $emit('remove-cart-item',item.id)"
+          @click="overlay= !overlay; show= !show; $emit('remove-cart-item',item.id); $emit('update-order-total')"
         >
           Remove Item?
           <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
@@ -113,7 +113,6 @@ export default {
       this.itemTotal = "$" + this.currentTotal;
     },
     updateItem: function() {
-      console.log("check this call");
       const updatedItem = {
         id: this.item.id,
         MealId: this.item.id,
@@ -126,6 +125,7 @@ export default {
         image_name: this.item.image_name
       };
       this.$emit("update-cart-item", updatedItem);
+      this.$emit("update-order-total");
     }
   }
 };
