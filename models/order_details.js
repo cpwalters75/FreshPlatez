@@ -6,6 +6,10 @@ module.exports = function (sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     },
+    meal_size: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     quantity:
     {
       type: DataTypes.INTEGER,
