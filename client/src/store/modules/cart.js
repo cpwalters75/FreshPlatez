@@ -7,7 +7,7 @@ const state = {
             MealId: 1,
             price: 7.50,
             size: 'Small',
-            qty: 1,
+            quantity: 1,
             short_Description: "1 Beef Burger Over Spinach",
             ingredients: "these are some ingredients that need shome shit to tlak about in this thing that Wher ewwerie iting alwek icnd",
             image_name: "ChickenTinga.jpg"
