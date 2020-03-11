@@ -31,7 +31,7 @@
               <v-col cols="12">
                 <v-dialog v-model="displayModal" persistent max-width="600px">
                   <template v-slot:activator="{ on }">
-                    <v-btn color="primary" dark v-on="on">Proceed to Checkout</v-btn>
+                    <v-btn color="primary" dark v-on="on" @click="confirmTotal">Proceed to Checkout</v-btn>
                   </template>
                   <CheckoutForm @close-modal="closeModal" />
                 </v-dialog>
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
 import CheckoutForm from "../components/CheckoutForm";
 // import CheckoutCard from "../components/CheckoutCard";
@@ -90,6 +91,12 @@ export default {
 
       this.currentTotal = this.itemPrice * this.currentQty;
       this.itemTotal = "$" + this.currentTotal;
+    },
+
+    confirmTotal: function() {
+      axios.post("/api/total", this.getCartItems).then(function(response) {
+        this.orderTotal = response.data;
+      });
     }
     // isMobile method solution from https://stackoverflow.com/questions/48515023/display-different-vuejs-components-for-mobile-browsers
     // queries the devices operating system to determine if the user is mobile and toggles component render accordingly
