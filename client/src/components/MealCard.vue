@@ -16,23 +16,45 @@
         <v-divider></v-divider>
 
         <v-card-actions>
-          <v-col col="4" text-align="center">
-            <v-select :items="pricing" label="Size/Price(ea)" dense solo @change="size = size"></v-select>
-            <v-select
-              :items="qty"
-              v-model="currentQty"
-              label="Quantity"
-              dense
-              solo
-              @change="qty= qty"
-            ></v-select>
-            <div icon @click="overlay = !overlay; addToCart()">
-              <v-btn outlined color="success">
-                Add to Order
-                <v-icon class="ml-2">mdi-cart</v-icon>
-              </v-btn>
-            </div>
-          </v-col>
+          <v-container text-align="center">
+            <v-row>
+              <v-col cols="6">
+                <v-select
+                  :items="size"
+                  v-model="meal_size"
+                  label="Size"
+                  dense
+                  solo
+                  @change="calcPrice()"
+                ></v-select>
+              </v-col>
+              <v-col cols="6">
+                <v-select
+                  :items="qty"
+                  v-model="currentQty"
+                  label="Quantity"
+                  dense
+                  solo
+                  @change="calcPrice()"
+                ></v-select>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field disabled v-model="itemTotal" label="Item Total" outlined></v-text-field>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="3">
+                <div icon @click="overlay = !overlay; addToCart()">
+                  <v-btn outlined color="success" justify="center">
+                    Add to Order
+                    <v-icon class="ml-2">mdi-cart</v-icon>
+                  </v-btn>
+                </div>
+              </v-col>
+            </v-row>
+          </v-container>
         </v-card-actions>
       </div>
     </v-expand-transition>
@@ -54,11 +76,17 @@ export default {
     absolute: true,
     overlay: false,
     qty: [1, 2, 3, 4, 5, 6, 7],
-    currentQty: "",
-    pricing: ["Small.....$7.50", "Large.....$12.00"],
-    currentSize: "",
+    currentQty: 1,
+    size: ["Small", "Large"],
+    meal_size: "Small",
+    itemPrice: 0,
+    currentTotal: 0,
+    itemTotal: "This is the item total",
     id: 0
   }),
+  created: function() {
+    this.calcPrice();
+  },
   methods: {
     addToCart: function() {
       this.id++;
@@ -68,6 +96,15 @@ export default {
         quantity: this.currentQty
       };
       this.$emit("add-cart-item", newItem);
+    },
+    calcPrice: function() {
+      if (this.meal_size === "Small") {
+        this.itemPrice = this.meal.price_small;
+      } else if (this.meal_size === "Large") {
+        this.itemPrice = this.meal.price_large;
+      }
+      this.currentTotal = this.itemPrice * this.currentQty;
+      this.itemTotal = "The new item total is $" + this.currentTotal;
     }
   }
 };
