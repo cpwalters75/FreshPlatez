@@ -4,12 +4,13 @@
       <v-row>
         <v-col col="12">
           <v-container v-for="item in getCartItems" v-bind:key="item.id">
-            <div v-if="!isMobile()">
+            <!-- Not able to set up functionality on desktop version of checkout cards in time for demo. Focusing on polishing MobileCheckout card instead -->
+            <!-- <div v-if="!isMobile()">
               <CheckoutCard v-bind:item="item" @remove-cart-item="removeCartItem(item.id)" />
             </div>
-            <div v-else>
-              <MobileCheckoutCard v-bind:item="item" @remove-cart-item="removeCartItem(item.id)" />
-            </div>
+            <div v-else>-->
+            <MobileCheckoutCard v-bind:item="item" @remove-cart-item="removeCartItem(item.id)" />
+            <!-- </div> -->
           </v-container>
         </v-col>
       </v-row>
@@ -41,13 +42,13 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import CheckoutForm from "../components/CheckoutForm";
-import CheckoutCard from "../components/CheckoutCard";
+// import CheckoutCard from "../components/CheckoutCard";
 import MobileCheckoutCard from "../components/MobileCheckoutCard";
 export default {
   name: "CheckoutList",
   components: {
     CheckoutForm,
-    CheckoutCard,
+    // CheckoutCard,
     MobileCheckoutCard
   },
 
@@ -61,20 +62,20 @@ export default {
     ...mapActions(["removeCartItem"]),
     closeModal: function() {
       this.displayModal = !this.displayModal;
-    },
+    }
     // isMobile method solution from https://stackoverflow.com/questions/48515023/display-different-vuejs-components-for-mobile-browsers
     // queries the devices operating system to determine if the user is mobile and toggles component render accordingly
-    isMobile: function() {
-      if (
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-          navigator.userAgent
-        )
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+    // isMobile: function() {
+    //   if (
+    //     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    //       navigator.userAgent
+    //     )
+    //   ) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // }
   }
 };
 </script>
