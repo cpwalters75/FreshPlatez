@@ -5,19 +5,19 @@ INSERT INTO freshplatez.meals
 calories_small,calories_large,lead_time,image_name,reheat_time)
 VALUES
 ('Chicken Ratatouille and Vegan Bechamel', 10.99,12.99, 'ORGANIC SKINLESS CHICKEN BREAST, ZUCCHINI, RED PEPPERS, ROMA TOMATOES, 
-SUMMER SQUASH, EGGPLANT, RUTABAGA, HAZELNUTS, NUTRITIONAL YEAST, WATER, EXTRA VIRGIN OLIVE OIL, SALT AND PEPPER','300-400','500-600',2, 'ChickeOverRatatouilleAndVeganBechamel.jpg','00:30:00'),
+SUMMER SQUASH, EGGPLANT, RUTABAGA, HAZELNUTS, NUTRITIONAL YEAST, WATER, EXTRA VIRGIN OLIVE OIL, SALT AND PEPPER','300-400','500-600',2, 'ChickenOverRatatouilleAndVeganBechamel.jpg','00:30:00'),
 
 ('Braised Turkey and Cabbage over Sweet Potato Noodles', 10.99,12.99, 'Ingredients text area',
-'300-400','500-600',2, 'BraisedTurkeyandCabbageoverSweetPotatoNoodles.jpg','00:30:00'),
+'300-400','500-600',2, 'FreshPlatezLogo.jpg','00:30:00'),
 
 ('Pork and Beef Pho', 10.99,12.99, 'LEAN ORGANIC PORK TENDERLOIN, SWEET POTATO STARCH, SNAOW PEAS, BOK CHOY, BEEF BONES, WATER, CELERY, CARROTS, ONION,
 GARLIC LEMON GRASS, CILANTRO, THAI BASIL, VEGTABLE PROTEIN FROM SOYBEAN, EXTRA VIRGIN OLIVE OIL, SALT AND PEPPER','300-400','500-600',2, 'PorkandBeefPho.jpg','00:30:00'),
 
 ('Turkey Havarti over roasted herb potatoes and broccoli', 10.99,12.99, 'Ingredients text area',
-'300-400','500-600',2, 'TurkeyHavartioverroastedherbpotatoesandbroccoli.jpg','00:30:00'),
+'300-400','500-600',2, 'FreshPlatezLogo.jpg','00:30:00'),
 
 ('Meatloaf and Cauliflower Mashed Potatoes', 10.99,12.99, 'Ingredients text area',
-'300-400','500-600',2, 'MeatloafandCauliflowerMashedPotatoes.jpg','00:30:00'),
+'300-400','500-600',2, 'FreshPlatezLogo.jpg','00:30:00'),
 
 ('Beef Burger over Spinach, Carrots, pickled Zucchini a Sweet Potato Fries', 10.99,12.99, 'Ingredients text area',
 '300-400','500-600',2, 'BeefBurgeroverSpinachCarrotspickledZucchiniaSweetPotatoFries.jpg','00:30:00'),
