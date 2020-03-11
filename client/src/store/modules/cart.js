@@ -16,6 +16,10 @@ const actions = {
 
     addCartItem: function ({ commit }, newItem) {
         commit('addItem', newItem);
+    },
+
+    updateCartItem: function ({ commit }, updatedItem) {
+        commit('updateItem', updatedItem);
     }
 };
 
@@ -26,7 +30,15 @@ const mutations = {
         state.cart = state.cart.filter(item => {
             return item.id != itemId;
         }
-        ))
+        )),
+
+    updateItem: (state, updatedItem) => (
+        state.cart.map((item, index) => {
+            if (item.id === updatedItem.id) {
+                state.cart[index] = updatedItem
+            }
+        })
+    )
 };
 
 

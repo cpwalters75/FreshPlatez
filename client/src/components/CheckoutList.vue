@@ -9,7 +9,11 @@
               <CheckoutCard v-bind:item="item" @remove-cart-item="removeCartItem(item.id)" />
             </div>
             <div v-else>-->
-            <MobileCheckoutCard v-bind:item="item" @remove-cart-item="removeCartItem(item.id)" />
+            <MobileCheckoutCard
+              v-bind:item="item"
+              @remove-cart-item="removeCartItem(item.id)"
+              @update-cart-item="updateCartItem"
+            />
             <!-- </div> -->
           </v-container>
         </v-col>
@@ -59,7 +63,7 @@ export default {
   }),
 
   methods: {
-    ...mapActions(["removeCartItem"]),
+    ...mapActions(["removeCartItem", "updateCartItem"]),
     closeModal: function() {
       this.displayModal = !this.displayModal;
     }

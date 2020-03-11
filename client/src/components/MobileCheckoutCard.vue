@@ -14,7 +14,7 @@
               label="Size"
               dense
               solo
-              @change="calcPrice()"
+              @change="calcPrice();needSave= true"
             ></v-select>
           </v-col>
           <v-col cols="6">
@@ -24,7 +24,7 @@
               label="Quantity"
               dense
               solo
-              @change="calcPrice()"
+              @change="calcPrice();needSave= true"
             ></v-select>
           </v-col>
         </v-row>
@@ -43,8 +43,13 @@
           </v-col>
           <v-spacer></v-spacer>
           <v-col col="6" text-align="left">
-            <div icon @click="overlay = !overlay; update= true">
-              <v-btn color="primary" outlined>Update</v-btn>
+            <div icon @click="overlay = !overlay; update= true; updateItem(); needSave= false">
+              <div v-if="needSave">
+                <v-btn color="primary" raised>Update</v-btn>
+              </div>
+              <div v-else>
+                <v-btn color="primary" outlined>Update</v-btn>
+              </div>
             </div>
           </v-col>
         </v-row>
@@ -81,7 +86,9 @@ export default {
   data: () => ({
     absolute: true,
     overlay: false,
+    show: false,
     update: false,
+    needSave: false,
     qty: [1, 2, 3, 4, 5, 6, 7],
     currentQty: 0,
     size: ["Small", "Large"],
@@ -104,6 +111,21 @@ export default {
       }
       this.currentTotal = this.itemPrice * this.currentQty;
       this.itemTotal = "$" + this.currentTotal;
+    },
+    updateItem: function() {
+      console.log("check this call");
+      const updatedItem = {
+        id: this.item.id,
+        MealId: this.item.id,
+        short_Description: this.item.short_Description,
+        ingredients: this.item.ingredients,
+        quantity: this.currentQty,
+        meal_size: this.currentSize,
+        price_small: this.item.price_small,
+        price_large: this.item.price_large,
+        image_name: this.item.image_name
+      };
+      this.$emit("update-cart-item", updatedItem);
     }
   }
 };
