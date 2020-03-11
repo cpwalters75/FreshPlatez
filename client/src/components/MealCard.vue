@@ -81,23 +81,21 @@ export default {
     meal_size: "Small",
     itemPrice: 0,
     currentTotal: 0,
-    itemTotal: "",
-    id: 0
+    itemTotal: ""
   }),
   created: function() {
     this.calcPrice();
   },
   methods: {
     addToCart: function() {
-      this.id++;
       const newItem = {
-        id: this.id,
         MealId: this.meal.id,
         short_Description: this.meal.short_Description,
         ingredients: this.meal.ingredients,
         quantity: this.currentQty,
-        size: this.meal_size,
-        price: this.itemPrice,
+        meal_size: this.meal_size,
+        price_small: this.meal.price_small,
+        price_large: this.meal.price_large,
         image_name: this.meal.image_name
       };
       this.$emit("add-cart-item", newItem);

@@ -6,12 +6,31 @@
     <v-divider></v-divider>
     <v-card-actions>
       <v-container>
-        <v-row dense>
-          <v-col col="6" text-align="left">
-            <v-select :items="pricing" label="Size/Price(ea)" dense solo></v-select>
+        <v-row>
+          <v-col cols="6">
+            <v-select
+              :items="size"
+              v-model="meal_size"
+              label="Size"
+              dense
+              solo
+              @change="calcPrice()"
+            ></v-select>
           </v-col>
-          <v-col col="6" text-align="right">
-            <v-select :items="qty" label="Quantity" dense solo></v-select>
+          <v-col cols="6">
+            <v-select
+              :items="qty"
+              v-model="currentQty"
+              label="Quantity"
+              dense
+              solo
+              @change="calcPrice()"
+            ></v-select>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
+            <v-text-field disabled v-model="itemTotal" label="Item Total" outlined></v-text-field>
           </v-col>
         </v-row>
         <v-row dense>
@@ -60,9 +79,32 @@ export default {
     overlay: false,
     update: false,
     qty: [1, 2, 3, 4, 5, 6, 7],
-    pricing: ["Small.....$7.50", "Large.....$12.00"]
+    currentQty: 0,
+    size: ["Small", "Large"],
+    meal_size: "",
+    itemPrice: 0,
+    currentTotal: 0,
+    itemTotal: ""
   }),
-  methods: {}
+  created: function() {
+    this.calcPrice();
+  },
+  computed: {
+    currentQty: this.item.quantity,
+    meal_size: this.item.meal_size
+  },
+
+  methods: {
+    calcPrice: function() {
+      if (this.meal_size === "Small") {
+        this.itemPrice = this.item.price_small;
+      } else if (this.meal_size === "Large") {
+        this.itemPrice = this.item.price_large;
+      }
+      this.currentTotal = this.itemPrice * this.currentQty;
+      this.itemTotal = "$" + this.currentTotal;
+    }
+  }
 };
 </script>
 
