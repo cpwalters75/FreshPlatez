@@ -26,6 +26,7 @@ router.get("/meals", function (req, res) {
 
 router.post("/total", function (req, res) {
   console.log(req)
+  res.json("hello")
   // Sudo Loop through elements in req, 
   // find meal using MealID
   // us this if statment to determine which price to use 

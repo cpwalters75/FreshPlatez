@@ -31,7 +31,7 @@
           class="ma-2"
           @click="validate; overlay = !overlay"
         >Place Order</v-btn>
-        <v-overlay :absolute="absolute" :value="overlay">
+        <v-overlay :value="overlay">
           <v-btn color="success" @click="overlay= !overlay; show= !show">
             Order Updated!
             <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
@@ -47,6 +47,7 @@ import axios from "axios";
 
 export default {
   name: "CheckoutForm",
+  props: ["orderTotal"],
   data: () => ({
     checkbox: false,
     show: false,
