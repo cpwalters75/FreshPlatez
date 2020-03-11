@@ -1,8 +1,8 @@
 <template>
   <v-card elevation="6" class="mx-auto" max-width="344">
     <v-img :src="require('../assets/images/' + item.image_name)" height="200px" width="344px" />
-    <v-card-title>{{item.title}}</v-card-title>
-    <v-card-subtitle>{{item.shortDescription}}</v-card-subtitle>
+    <v-card-title>{{item.short_Description}}</v-card-title>
+    <v-card-subtitle>{{item.ingredients}}</v-card-subtitle>
     <v-divider></v-divider>
     <v-card-actions>
       <v-container>
@@ -67,10 +67,4 @@ export default {
 </script>
 
 <style>
-/* Temp fix for word wrapping in cards breaking words https://github.com/vuetifyjs/vuetify/issues/9130*/
-/* v-card-subtitle,
-v-card-title {
-  white-space: normal;
-  text-overflow: ellipsis;
-} */
 </style>
