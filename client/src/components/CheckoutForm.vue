@@ -12,7 +12,7 @@
         <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
 
         <v-textarea v-model="notes" auto-grow label="Notes to the chef" rows="1"></v-textarea>
-
+        <v-text-field disabled v-model="orderTotal" label="Order Total" outlined></v-text-field>
         <v-checkbox
           v-model="checkbox"
           :rules="[

@@ -24,6 +24,22 @@ router.get("/meals", function (req, res) {
 
 // ------------------Calc Order Totals------------------------------------------------------------
 
+router.post("/total", function (req, res) {
+  console.log(req)
+  // Sudo Loop through elements in req, 
+  // find meal using MealID
+  // us this if statment to determine which price to use 
+  // this.orderTotal = 0;
+  // this.getCartItems.forEach(cartItem => {
+  //   if (cartItem.meal_size === "Small") {
+  //     this.itemPrice = cartItem.price_small;
+  //   } else if (cartItem.meal_size === "Large") {
+  //     this.itemPrice = cartItem.price_large;
+  //   }
+  //   this.itemTotal = this.itemPrice * cartItem.quantity;
+  //   this.orderTotal += this.itemTotal;
+  // });
+})
 
 
 // ----------------------MailGun Routes-----------------------------------------------------

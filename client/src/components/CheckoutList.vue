@@ -33,7 +33,7 @@
                   <template v-slot:activator="{ on }">
                     <v-btn color="primary" dark v-on="on" @click="confirmTotal">Proceed to Checkout</v-btn>
                   </template>
-                  <CheckoutForm @close-modal="closeModal" />
+                  <CheckoutForm @close-modal="closeModal" v-bind:orderTotal="orderTotal" />
                 </v-dialog>
               </v-col>
             </v-row>
