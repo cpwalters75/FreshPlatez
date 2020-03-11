@@ -65,6 +65,10 @@
           Remove Item?
           <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
         </v-btn>
+        <v-btn color="primary" @click="overlay= !overlay; show= !show">
+          Nevermind!
+          <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
+        </v-btn>
       </div>
     </v-overlay>
   </v-card>
