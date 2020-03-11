@@ -56,25 +56,31 @@
       </v-container>
     </v-card-actions>
     <v-overlay :absolute="absolute" :value="overlay" :update="update">
-      <div v-if="update">
-        <v-btn color="primary" @click="overlay= !overlay; show= !show">
-          Item Updated!
-          <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
-        </v-btn>
-      </div>
-      <div v-else>
-        <v-btn
-          color="error"
-          @click="overlay= !overlay; show= !show; $emit('remove-cart-item',item.id); $emit('update-order-total')"
-        >
-          Remove Item?
-          <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
-        </v-btn>
-        <v-btn color="primary" @click="overlay= !overlay; show= !show">
-          Nevermind!
-          <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
-        </v-btn>
-      </div>
+      <v-container>
+        <v-row>
+          <v-col cols="12">
+            <div v-if="update">
+              <v-btn color="primary" @click="overlay= !overlay; show= !show">
+                Item Updated!
+                <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
+              </v-btn>
+            </div>
+            <div v-else>
+              <v-btn
+                color="error"
+                @click="overlay= !overlay; show= !show; $emit('remove-cart-item',item.id); $emit('update-order-total')"
+              >
+                Remove Item?
+                <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
+              </v-btn>
+              <v-btn color="primary" @click="overlay= !overlay; show= !show">
+                Nevermind!
+                <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
+              </v-btn>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-overlay>
   </v-card>
 </template>
