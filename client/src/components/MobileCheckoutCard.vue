@@ -10,7 +10,7 @@
           <v-col cols="6">
             <v-select
               :items="size"
-              v-model="meal_size"
+              v-model="currentSize"
               label="Size"
               dense
               solo
@@ -81,24 +81,21 @@ export default {
     qty: [1, 2, 3, 4, 5, 6, 7],
     currentQty: 0,
     size: ["Small", "Large"],
-    meal_size: "",
+    currentSize: "",
     itemPrice: 0,
     currentTotal: 0,
     itemTotal: ""
   }),
   created: function() {
+    this.currentQty = this.item.quantity;
+    this.currentSize = this.item.meal_size;
     this.calcPrice();
   },
-  computed: {
-    currentQty: this.item.quantity,
-    meal_size: this.item.meal_size
-  },
-
   methods: {
     calcPrice: function() {
-      if (this.meal_size === "Small") {
+      if (this.currentSize === "Small") {
         this.itemPrice = this.item.price_small;
-      } else if (this.meal_size === "Large") {
+      } else if (this.currentSize === "Large") {
         this.itemPrice = this.item.price_large;
       }
       this.currentTotal = this.itemPrice * this.currentQty;

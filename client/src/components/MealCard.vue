@@ -89,6 +89,7 @@ export default {
   methods: {
     addToCart: function() {
       const newItem = {
+        id: this.getNewId(),
         MealId: this.meal.id,
         short_Description: this.meal.short_Description,
         ingredients: this.meal.ingredients,
@@ -108,6 +109,14 @@ export default {
       }
       this.currentTotal = this.itemPrice * this.currentQty;
       this.itemTotal = "$" + this.currentTotal;
+    },
+    getNewId: function() {
+      return (
+        "_" +
+        Math.random()
+          .toString(36)
+          .substr(2, 9)
+      );
     }
   }
 };
