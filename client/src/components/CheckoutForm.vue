@@ -12,7 +12,7 @@
         <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
 
         <v-textarea v-model="notes" auto-grow label="Notes to the chef" rows="1"></v-textarea>
-
+        <v-text-field disabled v-model="orderTotal" label="Order Total" outlined></v-text-field>
         <v-checkbox
           v-model="checkbox"
           :rules="[
@@ -31,7 +31,7 @@
           class="ma-2"
           @click="validate; overlay = !overlay"
         >Place Order</v-btn>
-        <v-overlay :absolute="absolute" :value="overlay">
+        <v-overlay :value="overlay">
           <v-btn color="success" @click="overlay= !overlay; show= !show">
             Order Updated!
             <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
@@ -47,6 +47,7 @@ import axios from "axios";
 
 export default {
   name: "CheckoutForm",
+  props: ["orderTotal"],
   data: () => ({
     checkbox: false,
     show: false,
