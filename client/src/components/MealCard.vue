@@ -16,6 +16,7 @@
         <v-divider></v-divider>
 
         <v-card-actions>
+<<<<<<< HEAD
           <v-col col="4" text-align="center">
             <v-select :items="pricing" label="Size/Price(ea)" dense solo @change="size = size"></v-select>
             <v-select v-model="qty" :items="qty" label="Quantity" dense solo @change="qty= qty"></v-select>
@@ -27,6 +28,47 @@
               </v-btn>
             </div>
           </v-col>
+=======
+          <v-container text-align="center">
+            <v-row>
+              <v-col cols="6">
+                <v-select
+                  :items="size"
+                  v-model="meal_size"
+                  label="Size"
+                  dense
+                  solo
+                  @change="calcPrice()"
+                ></v-select>
+              </v-col>
+              <v-col cols="6">
+                <v-select
+                  :items="qty"
+                  v-model="currentQty"
+                  label="Quantity"
+                  dense
+                  solo
+                  @change="calcPrice()"
+                ></v-select>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field disabled v-model="itemTotal" label="Item Total" outlined></v-text-field>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="3">
+                <div icon @click="overlay = !overlay; addToCart()">
+                  <v-btn outlined color="success" justify="center">
+                    Add to Order
+                    <v-icon class="ml-2">mdi-cart</v-icon>
+                  </v-btn>
+                </div>
+              </v-col>
+            </v-row>
+          </v-container>
+>>>>>>> 44ddb3119947ad79d13dd0d357f9039aa0a57e9a
         </v-card-actions>
       </div>
     </v-expand-transition>
@@ -48,16 +90,48 @@ export default {
     absolute: true,
     overlay: false,
     qty: [1, 2, 3, 4, 5, 6, 7],
-    pricing: ["Small.....$7.50", "Large.....$12.00"],
-    currentSize: ""
+    currentQty: 1,
+    size: ["Small", "Large"],
+    meal_size: "Small",
+    itemPrice: 0,
+    currentTotal: 0,
+    itemTotal: ""
   }),
-  method: {
-    // addItemToCart(meal) {
-    //   const item = {
-    //     short_Description: this.meal.short_Description,
-    //     qty: this.qty,
-    //     size: this.size
-    //   };
+  created: function() {
+    this.calcPrice();
+  },
+  methods: {
+    addToCart: function() {
+      const newItem = {
+        id: this.getNewId(),
+        MealId: this.meal.id,
+        short_Description: this.meal.short_Description,
+        ingredients: this.meal.ingredients,
+        quantity: this.currentQty,
+        meal_size: this.meal_size,
+        price_small: this.meal.price_small,
+        price_large: this.meal.price_large,
+        image_name: this.meal.image_name
+      };
+      this.$emit("add-cart-item", newItem);
+    },
+    calcPrice: function() {
+      if (this.meal_size === "Small") {
+        this.itemPrice = this.meal.price_small;
+      } else if (this.meal_size === "Large") {
+        this.itemPrice = this.meal.price_large;
+      }
+      this.currentTotal = this.itemPrice * this.currentQty;
+      this.itemTotal = "$" + this.currentTotal;
+    },
+    getNewId: function() {
+      return (
+        "_" +
+        Math.random()
+          .toString(36)
+          .substr(2, 9)
+      );
+    }
   }
 };
 </script>

@@ -18,9 +18,31 @@ router.get("/meals", function (req, res) {
   //res.json("hello from the server")
   db.Meal.findAll({}).then(mealData => {
     res.json(mealData);
-    
+
   })
 })
+
+// ------------------Calc Order Totals------------------------------------------------------------
+
+router.post("/total", function (req, res) {
+  console.log(req)
+  res.json("hello")
+  // Sudo Loop through elements in req, 
+  // find meal using MealID
+  // us this if statment to determine which price to use 
+  // this.orderTotal = 0;
+  // this.getCartItems.forEach(cartItem => {
+  //   if (cartItem.meal_size === "Small") {
+  //     this.itemPrice = cartItem.price_small;
+  //   } else if (cartItem.meal_size === "Large") {
+  //     this.itemPrice = cartItem.price_large;
+  //   }
+  //   this.itemTotal = this.itemPrice * cartItem.quantity;
+  //   this.orderTotal += this.itemTotal;
+  // });
+})
+
+
 // ----------------------MailGun Routes-----------------------------------------------------
 
 // Send a message to the specified email address when you navigate to /submit/someaddr@email.com
@@ -82,10 +104,10 @@ const storage = multer.diskStorage({
     cb(null, file.originalname)
   }
 })
-const upload = multer({storage: storage, fileFilter})
+const upload = multer({ storage: storage, fileFilter })
 
 router.post('/upload', upload.single("file"), async (req, res) => {
-  
+
   try {
     await sharp(req.file.path)
       .resize(344)
@@ -93,17 +115,17 @@ router.post('/upload', upload.single("file"), async (req, res) => {
       .embed()
       .toFile(`../public/${req.file.originalname}`)
 
-      
-      fs.unlink(req.file.path, () => {
-        res.json({ file: `/public/${req.file.originalname}`})
-      })
-    } catch(err) {
-        res.status(422).json({ err });
-      } 
+
+    fs.unlink(req.file.path, () => {
+      res.json({ file: `/public/${req.file.originalname}` })
+    })
+  } catch (err) {
+    res.status(422).json({ err });
+  }
 });
 
 router.put("/update", function (req, res) {
-  console.log('body', req.body) 
+  console.log('body', req.body)
 
   db.Meal.update({
     short_Description: req.body.name,
@@ -112,12 +134,13 @@ router.put("/update", function (req, res) {
     price_large: req.body.largePrice,
     calories_small: req.body.smallCal,
     calories_large: req.body.largeCal,
-    is_active: req.body.mealShow},
-    {where:{id: req.body.id}})
+    is_active: req.body.mealShow
+  },
+    { where: { id: req.body.id } })
     .then((result) => {
       console.log(result)
     })
-  })
+})
 
 
 
