@@ -82,6 +82,7 @@ const actions = {
 
     addCartItem: function ({ commit }, newItem) {
         commit('addItem', newItem);
+        
     }
 };
 

@@ -1,13 +1,13 @@
-<template>
-  <v-card elevation="6" class="mx-auto" max-width="344">
+<template >
+  <v-card elevation="6" class="mx-auto" max-width="344" >
     <v-img :src="require('../assets/images/' + meal.image_name)" height="200px" width="344px"></v-img>
 
-    <v-card-title>
+    <v-card-subtitle class="title">
       {{meal.short_Description}}
       <v-btn @click="show = !show" fab dark small color="primary " bottom left absolute>
         <v-icon>{{ show ? "mdi-minus" : "mdi-plus" }}</v-icon>
       </v-btn>
-    </v-card-title>
+    </v-card-subtitle>
 
     <v-card-subtitle>{{meal.ingredients}}</v-card-subtitle>
 
@@ -18,7 +18,7 @@
         <v-card-actions>
           <v-col col="4" text-align="center">
             <v-select :items="pricing" label="Size/Price(ea)" dense solo @change="size = size"></v-select>
-            <v-select :items="qty" label="Quantity" dense solo @change="qty= qty"></v-select>
+            <v-select v-model="qty" :items="qty" label="Quantity" dense solo @change="qty= qty"></v-select>
             <!-- <div icon @click="overlay = !overlay; addItemToCart(this.meal)">  -->
             <div icon @click="overlay = !overlay; $emit('add-cart-item',meal)">
               <v-btn outlined color="success">
@@ -63,27 +63,16 @@ export default {
 </script>
 
 <style>
-<<<<<<< HEAD:src/components/MealCard.vue
-
-=======
->>>>>>> f5b6fef62e404caed3baa34a60b7a0eedb134f20:client/src/components/MealCard.vue
 img {
   object-fit: cover;
 
-<<<<<<< HEAD:src/components/MealCard.vue
 /* Temp fix for word wrapping in cards breaking words https://github.com/vuetifyjs/vuetify/issues/9130
-=======
-  /* Temp fix for word wrapping in cards breaking words https://github.com/vuetifyjs/vuetify/issues/9130
->>>>>>> f5b6fef62e404caed3baa34a60b7a0eedb134f20:client/src/components/MealCard.vue
 v-card-subtitle,
 v-card-title {
   white-space: normal;
   text-overflow: ellipsis;
 } */
-<<<<<<< HEAD:src/components/MealCard.vue
 
 
-=======
->>>>>>> f5b6fef62e404caed3baa34a60b7a0eedb134f20:client/src/components/MealCard.vue
 }
 </style>
