@@ -48,17 +48,11 @@
           </v-list-item>
           </router-link>
 
-          <router-link to="/Pickup" exact> <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Pickup</v-list-item-title>
-          </v-list-item>
-          </router-link>
+          
 
           <router-link to="/checkout" exact> <v-list-item>
             <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
+              <v-icon>mdi-cash-register</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Checkout</v-list-item-title>
           </v-list-item>
