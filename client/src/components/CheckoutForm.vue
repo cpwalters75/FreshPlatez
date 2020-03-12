@@ -70,7 +70,7 @@ export default {
     validate(e) {
       e.preventDefault();
       if (this.$refs.form.validate()) {
-        this.snackbar = true;
+        
         const Fname = this.firstName;
         const Lname = this.lastName;
         const email = this.email;

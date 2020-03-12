@@ -8,7 +8,7 @@
     >
     </v-img>
 
-    <v-card-title>
+    <v-card-subtitle class="title">
       Current Title: {{ meal.short_Description }}
 
       <v-btn
@@ -23,7 +23,7 @@
       >
         <v-icon>{{ show ? "mdi-minus" : "mdi-pencil" }}</v-icon>
       </v-btn>
-    </v-card-title>
+    </v-card-subtitle>
 
     <v-expand-transition>
       <div v-show="show">
@@ -107,7 +107,7 @@
     <v-overlay :absolute="absolute" :value="overlay">
       <v-btn color="success" @click="overlay = !overlay">
         Meal Updated! Refresh page to see change!
-        <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
+        <v-icon class="ml-2" v-on:click="refresh" >mdi-checkbox-marked-circle</v-icon>
       </v-btn>
     </v-overlay>
   </v-card>
@@ -137,8 +137,13 @@ export default {
   }),
 
   methods: {
+    refresh: (() => {
+      console.log("clicked it")
+      window.location.reload()
+    }),
+
     updateMeal(meal) {
-      console.log(meal);
+      
       const id = meal.id;
       const name = this.newName === "" ? meal.short_Description : this.newName;
       const ingredients =
@@ -169,7 +174,9 @@ export default {
         .then(function(response) {
           console.log(response);
         })
-        .then(() => {})
+        .then(() => {
+          
+        })
         .catch(function(error) {
           console.log(error);
         });

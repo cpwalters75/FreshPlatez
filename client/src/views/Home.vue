@@ -1,4 +1,4 @@
-<template>
+<template >
   <v-container>
     <v-row>
       <v-col cols="12">
@@ -6,7 +6,7 @@
           <v-container>
             <v-row>
               <v-col col="12">
-                <v-container v-bind:key="meal.id" v-for="meal in meals">
+                <v-container v-bind:key="meal.id" v-show="meal.is_active === true" v-for="meal in meals">
                   <MealCard v-bind:meal="meal" @add-cart-item="addCartItem" />
                 </v-container>
               </v-col>
@@ -28,8 +28,10 @@ export default {
     MealCard
   },
   data: () => {
+    
     return {
       meals: []
+      
     };
   },
   created: function() {
@@ -38,10 +40,13 @@ export default {
   methods: {
     ...mapActions(["addCartItem"]),
     getMealData() {
+       
+
       axios
         .get("/api/meals")
         .then(response => {
           this.meals = response.data;
+         
         })
         .catch(err => {
           console.log(err);
