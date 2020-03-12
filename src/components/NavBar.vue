@@ -38,19 +38,11 @@
           </v-list-item>
             </router-link>
 
-         
-
-          <router-link to="/Menu" exact> <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Menu</v-list-item-title>
-          </v-list-item>
-          </router-link>
+        
 
           <router-link to="/About" exact> <v-list-item>
             <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
+              <v-icon>mdi-arm-flex</v-icon>
             </v-list-item-icon>
             <v-list-item-title>About</v-list-item-title>
           </v-list-item>
