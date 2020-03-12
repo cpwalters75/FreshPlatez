@@ -16,19 +16,6 @@
         <v-divider></v-divider>
 
         <v-card-actions>
-<<<<<<< HEAD
-          <v-col col="4" text-align="center">
-            <v-select :items="pricing" label="Size/Price(ea)" dense solo @change="size = size"></v-select>
-            <v-select v-model="qty" :items="qty" label="Quantity" dense solo @change="qty= qty"></v-select>
-            <!-- <div icon @click="overlay = !overlay; addItemToCart(this.meal)">  -->
-            <div icon @click="overlay = !overlay; $emit('add-cart-item',meal)">
-              <v-btn outlined color="success">
-                Add to Order
-                <v-icon class="ml-2">mdi-cart</v-icon>
-              </v-btn>
-            </div>
-          </v-col>
-=======
           <v-container text-align="center">
             <v-row>
               <v-col cols="6">
@@ -68,7 +55,6 @@
               </v-col>
             </v-row>
           </v-container>
->>>>>>> 44ddb3119947ad79d13dd0d357f9039aa0a57e9a
         </v-card-actions>
       </div>
     </v-expand-transition>

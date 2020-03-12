@@ -25,7 +25,7 @@ router.get("/meals", function (req, res) {
 // ------------------Calc Order Totals------------------------------------------------------------
 
 router.post("/total", function (req, res) {
-  console.log(req)
+  console.log(req.body)
   res.json("hello")
   // Sudo Loop through elements in req, 
   // find meal using MealID
@@ -98,30 +98,39 @@ const fileFilter = function (req, file, cb) {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'src/assets/images/')
+    cb(null, '../client/dist/img/')
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }
 })
-const upload = multer({ storage: storage, fileFilter })
 
-router.post('/upload', upload.single("file"), async (req, res) => {
+const MAX_SIZE = 2000000;
+const upload = multer({ 
+  storage: storage,
+  fileFilter,
+  limits: {
+    filesize: MAX_SIZE
+  }})
 
-  try {
-    await sharp(req.file.path)
-      .resize(344)
-      .backgroung('white')
-      .embed()
-      .toFile(`../public/${req.file.originalname}`)
+router.post("/upload", upload.single("file"), (req, res) => {
+    console.log(req.file)
+    res.json({ file: req.file})
+
+  // try {
+  //   await sharp(req.file.path)
+  //     .resize(344)
+  //     .background('white')
+  //     .embed()
+  //     .toFile(`../client/dist/img/${req.file.originalname}`)
 
 
-    fs.unlink(req.file.path, () => {
-      res.json({ file: `/public/${req.file.originalname}` })
-    })
-  } catch (err) {
-    res.status(422).json({ err });
-  }
+  //   fs.unlink(req.file.path, () => {
+  //     res.json({ file: `../src/assets/images/${req.file.originalname}` })
+  //   })
+  // } catch (err) {
+  //   res.status(422).json({ err });
+  // }
 });
 
 router.put("/update", function (req, res) {
