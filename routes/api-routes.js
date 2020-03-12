@@ -98,9 +98,11 @@ const fileFilter = function (req, file, cb) {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../client/dist/img/')
+    
+    cb(null, './images')
   },
   filename: function (req, file, cb) {
+    console.log("yuoooooo", file)
     cb(null, file.originalname)
   }
 })
@@ -113,9 +115,13 @@ const upload = multer({
     filesize: MAX_SIZE
   }})
 
-router.post("/upload", upload.single("file"), (req, res) => {
-    console.log(req.file)
+// router.post("/upload", upload.single("file"), (req, res) => {
+   
+
+  router.post("/upload", upload.single("file"), (req, res) => {
+    console.log("something", req)
     res.json({ file: req.file})
+        
 
   // try {
   //   await sharp(req.file.path)
