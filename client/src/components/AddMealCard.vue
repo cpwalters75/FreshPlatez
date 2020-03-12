@@ -1,5 +1,6 @@
 <template>
   <v-card elevation="6" class="mx-auto" max-width="344">
+    <v-card-title>Add a new meal</v-card-title>
     <v-form enctype="multipart/form-data">
       <div v-if="message" :class="`message ${error ? 'error' : 'success'}`">
         <div class="message-body">{{ message }}</div>
@@ -14,6 +15,7 @@
         <input type="file" ref="file" @change="selectFile" />
       </div>
       <v-img :src="uploadedFile" height="200px">Upload Picture</v-img>
+
       <!-- :src="require('../assets/images/' + meal.image_name) -->
     </v-form>
 
@@ -129,6 +131,39 @@ export default {
   }),
 
   methods: {
+
+    saveMeal(){
+      const name = this.name
+      const ingredients = this.shortDescription
+      const smallPrice = this.smallPrice
+      const largePrice = this.largePrice
+      const smallCal = this.smallCal
+      const largeCal = this.largeCal
+      const image = this.uploadedFile
+      
+      const saveMealParams = {
+        name,
+        ingredients,
+        smallPrice,
+        largePrice,
+        smallCal,
+        largeCal,
+        image
+      }
+      
+      axios
+        .post("/api/update", saveMealParams)
+        .then(function(response) {
+          console.log(response);
+        })
+        .then(() => {
+          
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+
     selectFile() {
       const file = this.$refs.file.files[0];
       const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
@@ -144,23 +179,23 @@ export default {
         this.message = tooLarge
           ? "Too large. Max size is 2MB"
           : "Only images are allowed";
+          this.file = ""
       }
     },
 
     async sendFile() {
-      const file = this.$refs.file.files[0];
+      this.file = this.$refs.file.files[0];
       const formData = new FormData();
-      formData.append("file", file);
-      console.log("file", File);
+      formData.append("file", this.file);
+      
       try {
-        const res = await axios.post("/api/upload", formData);
-        console.log("try");
+        await axios.post("/api/upload", formData);
+        console.log("try", formData);
         this.message = "File has been uploaded";
-        this.uploadedFile.push(res.data.file);
-
         this.error = false;
+        this.uploadedFile = this.file
       } catch (err) {
-        this.message = err.response.data.error;
+        this.message = err.response;
         this.error = true;
       }
     }

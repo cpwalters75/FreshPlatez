@@ -16,7 +16,7 @@
         fab
         dark
         small
-        color="primary "
+        color="primary"
         bottom
         right
         absolute
@@ -32,7 +32,7 @@
           v-model="newName"
           label="New Name"
           required
-          clearable="true"
+          clearable= true
         ></v-text-field>
         <v-card-subtitle
           >Current Ingredients: {{ meal.ingredients }}
@@ -41,8 +41,8 @@
             :rules="shortDescriptionRules"
             label="Update Ingredients"
             required
-            clearable="true"
-            auto-grow="true"
+            clearable= true
+            auto-grow= true
           >
           </v-textarea>
         </v-card-subtitle>
@@ -63,22 +63,26 @@
               label="New Price for Small"
               prefix="$"
               type="number"
+              clearable= true
             ></v-text-field>
             <v-text-field
               v-model="newLargePrice"
               label="New Price for Large"
               prefix="$"
               type="number"
+              clearable= true
             ></v-text-field>
             <v-text-field
               v-model="newLargeCal"
               label="New Calorie Range for Large"
               type="number"
+              clearable= true
             ></v-text-field>
             <v-text-field
               v-model="newSmallCal"
               label="New Calorie Range for Large"
               type="number"
+              clearable= true
             ></v-text-field>
 
             <v-btn
