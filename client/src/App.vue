@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <NavBar />
+    <NavBar class="mb-10" />
     <CheckoutButton />
-    <Header />
+    <Header class="mt-10" />
     <v-content>
       <router-view />
     </v-content>
