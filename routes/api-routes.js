@@ -126,12 +126,12 @@ const upload = multer({
 })
 
 router.post("/upload", upload.single("file"), (req, res) => {
-  console.log(req.file)
+  
   res.json({ file: req.file })
 
   // try {
   //   await sharp(req.file.path)
-  //     .resize(344)
+  //     .resize(344
   //     .background('white')
   //     .embed()
   //     .toFile(`../client/dist/img/${req.file.originalname}`)
