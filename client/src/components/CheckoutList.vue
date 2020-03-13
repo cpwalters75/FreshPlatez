@@ -91,11 +91,13 @@ export default {
 
       this.currentTotal = this.itemPrice * this.currentQty;
       this.itemTotal = "$" + this.currentTotal;
+      this.orderTotal = "$" + this.orderTotal;
     },
 
     confirmTotal: function() {
       axios.post("/api/total", this.getCartItems).then(function(response) {
-        this.orderTotal = response.data;
+        console.log(response);
+        this.orderTotal = "$" + response.data;
       });
     }
     // isMobile method solution from https://stackoverflow.com/questions/48515023/display-different-vuejs-components-for-mobile-browsers
