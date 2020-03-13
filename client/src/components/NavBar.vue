@@ -9,7 +9,9 @@
     <v-app-bar
       color="black"
       dark
+    
     >
+
      <v-app-bar-nav-icon @click="toggleNavbar"></v-app-bar-nav-icon>
 
       <v-toolbar-title>Title</v-toolbar-title>
