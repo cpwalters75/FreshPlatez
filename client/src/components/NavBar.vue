@@ -24,6 +24,7 @@
       v-model="displayNavbar"
       class="index"
       temporary
+      style="position:fixed"
       absolute
     >
       <v-list
@@ -80,9 +81,9 @@
   }
   }
 </script>
-<style >
+<style scoped>
 .index {
-  z-index: +1;
+  z-index: +2;
 }
 </style>
 
