@@ -29,7 +29,7 @@
           :disabled="!valid"
           color="success"
           class="ma-2"
-          @click="validate; overlay = !overlay"
+          @click="validate; overlay = !overlay; clearData"
         >Place Order</v-btn>
         <v-overlay :value="overlay">
           <v-btn color="success" @click="overlay= !overlay; show= !show">
@@ -70,7 +70,6 @@ export default {
     validate(e) {
       e.preventDefault();
       if (this.$refs.form.validate()) {
-        
         const Fname = this.firstName;
         const Lname = this.lastName;
         const email = this.email;
@@ -92,12 +91,14 @@ export default {
           });
       }
     },
-
     reset() {
       this.$refs.form.reset();
     },
     resetValidation() {
       this.$refs.form.resetValidation();
+    },
+    clearData() {
+      window.localStorage.clear();
     }
   }
 };
