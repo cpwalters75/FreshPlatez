@@ -5,14 +5,25 @@
       alt="meal.short_Description"
       height="200px"
       width="344px"
+      v-if="picShow"
     >
     </v-img>
+    <div v-if="picUploadIcon" class="field">
+      <v-btn class="mx-4 my-4" large center fab @click="picUploadIcon = !picUploadIcon, picAdd = true, picShow = false"
+        ><v-icon x-large>mdi-upload</v-icon>
+      </v-btn>
+      Click to Change Picture
+    </div>
+
+    <div>
+      <ImageInput v-model="fileName" v-if="picAdd" v-on:fileName="fileNamePic($event)"/>
+    </div>
 
     <v-card-subtitle class="title">
       Current Title: {{ meal.short_Description }}
 
       <v-btn
-        @click="show = !show"
+        @click="(picUploadIcon = !picUploadIcon), (show = !show)"
         fab
         dark
         small
@@ -28,7 +39,7 @@
     <v-expand-transition>
       <div v-show="show">
         <v-text-field
-          class= "ml-2"
+          class="ml-2"
           v-model="newName"
           label="New Name"
           required
@@ -96,7 +107,9 @@
               >Save Updates</v-btn
             >
 
-            <v-btn class="ml-5 small red">
+            <v-btn 
+              @click="deleteOverlay = !deleteOverlay"
+              class="ml-5 small red">
               Delete
             </v-btn>
 
@@ -109,9 +122,19 @@
       </div>
     </v-expand-transition>
     <v-overlay :absolute="absolute" :value="overlay">
-      <v-btn color="success" @click="overlay = !overlay">
-        Meal Updated! Refresh page to see change!
-        <v-icon class="ml-2" v-on:click="refresh" >mdi-checkbox-marked-circle</v-icon>
+      <v-btn color="success" @click="refresh(), (overlay = !overlay)">
+        Meal Updated!
+        <v-icon class="ml-2" v-on:click="refresh"
+          >mdi-checkbox-marked-circle</v-icon
+        >
+      </v-btn>
+    </v-overlay>
+    <v-overlay :absolute="absolute" :value="deleteOverlay">
+      <v-btn color="red" @click="deleteMeal(meal), refresh()">
+        Are you sure you want to delete?
+        <v-icon class="ml-2"
+          >mdi-cancel</v-icon
+        >
       </v-btn>
     </v-overlay>
   </v-card>
@@ -119,14 +142,19 @@
 
 <script>
 import axios from "axios";
+import ImageInput from "./ImageInput"
 
 export default {
   name: "AdminMealCard",
+  components: {
+    ImageInput
+  },
   props: ["meal"],
   data: () => ({
     show: false,
     absolute: true,
     overlay: false,
+    deleteOverlay: false,
     valid: false,
     name: ``,
     shortDescriptionRules: [],
@@ -137,17 +165,27 @@ export default {
     newLargePrice: "",
     newSmallCal: "",
     newLargeCal: "",
-    mealShow: true
+    mealShow: true,
+    picShow: true,
+    picAdd: false,
+    picUploadIcon: false,
+    imageFile: "",
+    fileName: "",
+    fileName2: ""
   }),
 
   methods: {
-    refresh: (() => {
-      console.log("clicked it")
-      window.location.reload()
-    }),
+    refresh: () => {
+      console.log("clicked it");
+      window.location.reload();
+    },
+
+    fileNamePic(event){
+      this.fileName2 = event
+      console.log(event)
+    },
 
     updateMeal(meal) {
-      
       const id = meal.id;
       const name = this.newName === "" ? meal.short_Description : this.newName;
       const ingredients =
@@ -161,6 +199,7 @@ export default {
       const largeCal =
         this.newLargeCal === "" ? meal.calories_large : this.newLargeCal;
       const mealShow = this.mealShow;
+      const image = this.fileName2
       const updateParams = {
         id,
         name,
@@ -169,17 +208,30 @@ export default {
         largePrice,
         smallCal,
         largeCal,
+        image,
         mealShow
       };
-      // console.log(updateParams)
+      console.log(updateParams);
 
       axios
         .put("/api/update", updateParams)
         .then(function(response) {
           console.log(response);
         })
-        .then(() => {
-          
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+
+    deleteMeal(meal) {
+      const id = meal.id;
+      const deleteID = {id}
+      console.log("meal", deleteID)
+      
+      axios
+        .post("api/delete", deleteID)
+        .then(function(response) {
+          console.log(response);
         })
         .catch(function(error) {
           console.log(error);
