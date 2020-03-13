@@ -95,12 +95,12 @@ export default {
     },
 
     confirmTotal: function() {
-      axios.post("/api/total", this.getCartItems).then(function(response) {
-        console.log(response);
-        this.orderTotal = "$" + response.data;
+      axios.post("/api/total", this.getCartItems).then(response => {
+        // console.log(response);
+        this.orderTotal = "$" + response.data.total;
       });
     }
-    // isMobile method solution from https://stackoverflow.com/questions/48515023/display-different-vuejs-components-for-mobile-browsers
+    // isMobile method scolution from https://stackoverflow.com/questions/48515023/display-different-vuejs-components-for-mobile-browsers
     // queries the devices operating system to determine if the user is mobile and toggles component render accordingly
     // isMobile: function() {
     //   if (

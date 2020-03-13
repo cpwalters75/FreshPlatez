@@ -24,24 +24,30 @@ router.get("/meals", function (req, res) {
 // ------------------Calc Order Totals------------------------------------------------------------
 
 router.post("/total", function (req, res) {
-
-  this.orderTotal = 0;
-  this.getCartItems.forEach(cartItem => {
-    db.Meal.findAll({
-      where: {
-        MealId: cartItem.MealId
-      }
-    }).then(mealData => {
-      if (cartItem.meal_size === "Small") {
-        let itemPrice = cartItem.price_small;
-      } else if (cartItem.meal_size === "Large") {
-        let itemPrice = cartItem.price_large;
-      }
-      let itemTotal = itemPrice * cartItem.quantity;
-      orderTotal += itemTotal;
-    })
+  const ids = req.body.map((item) => {
+    return item.MealId
   })
-  res.json(orderTotal);
+  console.log(ids)
+  db.Meal.findAll({
+    where: {
+      id: ids
+    }
+  }).then(mealData => {
+    const total = req.body.reduce((total, cartItem) => {
+      const item = mealData.find(x => x.id === cartItem.MealId)
+      let itemPrice = item.price_small;
+      if (cartItem.meal_size === "Large") {
+        itemPrice = item.price_large;
+      }
+      return total + itemPrice * cartItem.quantity;
+    }, 0)
+
+    // let itemTotal = itemPrice * cartItem.quantity;
+    // orderTotal += itemTotal;
+    res.json({ total });
+  })
+
+  // res.json("hello");
 })
 
 
