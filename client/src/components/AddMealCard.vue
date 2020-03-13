@@ -2,7 +2,10 @@
   <v-card elevation="6" class="mx-auto" max-width="344">
     <v-card-title>Add a new meal</v-card-title>
     
-    <ImageInput v-model="imageFile" v-on:input="updateFile($event)"/>
+    <ImageInput v-model="imageFile" 
+      v-on:input="updateFile($event)"
+      :rules="picRules"
+      />
   <!-- </div>
       <v-img :src="uploadedFile" height="200px">Upload Picture</v-img>
 
@@ -113,6 +116,7 @@ export default {
     largePriceRules: [v => !!v || "Large Price is required"],
     smallCalRules: [v => !!v || "Small Calories is required"],
     largeCalRules: [v => !!v || "Large Calories is required"],
+    picRules: [v => !!v || "Picture is required"], 
     file: "",
     message: "",
     error: false,

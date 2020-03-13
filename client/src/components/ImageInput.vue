@@ -9,7 +9,7 @@
       @click="chooseImage"
     >
       <span v-if="!imageData" class="placeholder">
-        Choose an Image
+        Choose an Image (required)
       </span>
       <input
         class="file-input"
