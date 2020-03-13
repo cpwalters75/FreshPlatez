@@ -15,12 +15,15 @@
 
         <v-btn
           v-for="icon in icons"
-          :key="icon"
+          :key="icon.link"
           class="mx-4"
           dark
           icon
+          :href='icon.link'
+           target="_blank"
         >
-          <v-icon size="24px">{{ icon }}</v-icon>
+            <v-icon size="24px">{{ icon.image}}</v-icon>
+          
         </v-btn>
       </v-card-title>
 
@@ -36,7 +39,7 @@
       name: "Footer",
     data: () => ({
       icons: [
-        'fab fa-instagram'
+        {image: 'mdi-instagram', link: 'https://www.instagram.com/fresh_platez_kitchen/'}
       ],
     }),
   }
