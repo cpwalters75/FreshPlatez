@@ -153,7 +153,7 @@ router.put("/update", function(req, res) {
   ).then(result => {
     console.log(result);
   });
-});
+});add
 
 router.post("/create", function(req, res) {
   db.Meal.create({
