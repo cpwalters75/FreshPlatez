@@ -13,7 +13,7 @@
       </span>
       <input
         class="file-input"
-        ref="fileInput"
+        ref="fileInput" 
         type="file"
         @input="onSelectFile"
       />
