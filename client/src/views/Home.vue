@@ -1,11 +1,11 @@
 <template >
   <v-container>
     <v-row>
-      <v-col cols="12">
+      <v-col cols="4">
         <v-card elevation="2" class="mx-auto">
           <v-container>
             <v-row>
-              <v-col col="12">
+              <v-col col="4">
                 <v-container v-bind:key="meal.id" v-show="meal.is_active === true" v-for="meal in meals">
                   <MealCard v-bind:meal="meal" @add-cart-item="addCartItem" />
                 </v-container>

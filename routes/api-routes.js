@@ -69,7 +69,8 @@ router.post("/email", function (req, res) {
     html:
       `Thank you for your order ${req.body.Fname} ${req.body.Lname}!  You gots the below goooooood stuff coming at ya in 3-10 days
       
-      Notes to the chef: ${req.body.notes}`
+      Notes to the chef: ${req.body.notes}
+      Cart ${req.body.cart}`
 
   };
 
@@ -106,9 +107,11 @@ const fileFilter = function (req, file, cb) {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../client/dist/img/')
+    
+    cb(null, './images')
   },
   filename: function (req, file, cb) {
+    
     cb(null, file.originalname)
   }
 })
@@ -123,12 +126,12 @@ const upload = multer({
 })
 
 router.post("/upload", upload.single("file"), (req, res) => {
-  console.log(req.file)
+  
   res.json({ file: req.file })
 
   // try {
   //   await sharp(req.file.path)
-  //     .resize(344)
+  //     .resize(344
   //     .background('white')
   //     .embed()
   //     .toFile(`../client/dist/img/${req.file.originalname}`)
