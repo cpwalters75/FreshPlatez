@@ -61,7 +61,8 @@ router.post("/email", function (req, res) {
     html:
       `Thank you for your order ${req.body.Fname} ${req.body.Lname}!  You gots the below goooooood stuff coming at ya in 3-10 days
       
-      Notes to the chef: ${req.body.notes}`
+      Notes to the chef: ${req.body.notes}
+      Cart ${req.body.cart}`
 
   };
 
@@ -102,7 +103,7 @@ const storage = multer.diskStorage({
     cb(null, './images')
   },
   filename: function (req, file, cb) {
-    console.log("yuoooooo", file)
+    
     cb(null, file.originalname)
   }
 })
@@ -115,7 +116,7 @@ const upload = multer({
     filesize: MAX_SIZE
   }})
 
-// router.post("/upload", upload.single("file"), (req, res) => {
+
    
 
   router.post("/upload", upload.single("file"), (req, res) => {
