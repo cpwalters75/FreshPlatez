@@ -121,7 +121,7 @@ export default {
     updateItem: function() {
       const updatedItem = {
         id: this.item.id,
-        MealId: this.item.id,
+        MealId: this.item.MealId,
         short_Description: this.item.short_Description,
         ingredients: this.item.ingredients,
         quantity: this.currentQty,

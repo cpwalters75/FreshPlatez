@@ -18,28 +18,36 @@ router.get("/meals", function (req, res) {
   //res.json("hello from the server")
   db.Meal.findAll({}).then(mealData => {
     res.json(mealData);
-
   })
 })
 
 // ------------------Calc Order Totals------------------------------------------------------------
 
 router.post("/total", function (req, res) {
-  console.log(req.body)
-  res.json("hello")
-  // Sudo Loop through elements in req, 
-  // find meal using MealID
-  // us this if statment to determine which price to use 
-  // this.orderTotal = 0;
-  // this.getCartItems.forEach(cartItem => {
-  //   if (cartItem.meal_size === "Small") {
-  //     this.itemPrice = cartItem.price_small;
-  //   } else if (cartItem.meal_size === "Large") {
-  //     this.itemPrice = cartItem.price_large;
-  //   }
-  //   this.itemTotal = this.itemPrice * cartItem.quantity;
-  //   this.orderTotal += this.itemTotal;
-  // });
+  const ids = req.body.map((item) => {
+    return item.MealId
+  })
+  console.log(ids)
+  db.Meal.findAll({
+    where: {
+      id: ids
+    }
+  }).then(mealData => {
+    const total = req.body.reduce((total, cartItem) => {
+      const item = mealData.find(x => x.id === cartItem.MealId)
+      let itemPrice = item.price_small;
+      if (cartItem.meal_size === "Large") {
+        itemPrice = item.price_large;
+      }
+      return total + itemPrice * cartItem.quantity;
+    }, 0)
+
+    // let itemTotal = itemPrice * cartItem.quantity;
+    // orderTotal += itemTotal;
+    res.json({ total });
+  })
+
+  // res.json("hello");
 })
 
 
@@ -109,20 +117,17 @@ const storage = multer.diskStorage({
 })
 
 const MAX_SIZE = 2000000;
-const upload = multer({ 
+const upload = multer({
   storage: storage,
   fileFilter,
   limits: {
     filesize: MAX_SIZE
-  }})
+  }
+})
 
-
-   
-
-  router.post("/upload", upload.single("file"), (req, res) => {
-    console.log("something", req)
-    res.json({ file: req.file})
-        
+router.post("/upload", upload.single("file"), (req, res) => {
+  console.log(req.file)
+  res.json({ file: req.file })
 
   // try {
   //   await sharp(req.file.path)
