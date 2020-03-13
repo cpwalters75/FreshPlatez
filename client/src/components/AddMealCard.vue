@@ -2,7 +2,10 @@
   <v-card elevation="6" class="mx-auto" max-width="344">
     <v-card-title>Add a new meal</v-card-title>
     
-    <ImageInput v-model="imageFile" v-on:input="updateFile($event)"/>
+    <ImageInput v-model="imageFile" 
+      v-on:input="updateFile($event)"
+     
+      />
   <!-- </div>
       <v-img :src="uploadedFile" height="200px">Upload Picture</v-img>
 
