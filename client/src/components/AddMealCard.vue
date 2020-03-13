@@ -1,21 +1,7 @@
 <template>
   <v-card elevation="6" class="mx-auto" max-width="344">
     <v-card-title>Add a new meal</v-card-title>
-    <!-- <v-form enctype="multipart/form-data">
-      <div v-if="message" :class="`message ${error ? 'error' : 'success'}`">
-        <div class="message-body">{{ message }}</div>
-      </div>
-      <div class="field">
-        <v-btn class="mx-4 my-4" large center fab @click="sendFile"
-          ><v-icon x-large>mdi-upload</v-icon>
-        </v-btn>
-      </div>
-      <div>
-        <label for="file" class="label"></label>
-        <input type="file" ref="file" @change="selectFile" />
-      </div>
-
-      <div>  -->
+    
     <ImageInput v-model="imageFile" v-on:input="updateFile($event)"/>
   <!-- </div>
       <v-img :src="uploadedFile" height="200px">Upload Picture</v-img>
@@ -29,7 +15,7 @@
         :rules="nameRules"
         label="Name"
         required
-        clearable="true"
+        clearable= true
       ></v-text-field>
     </v-card-title>
 
@@ -84,7 +70,7 @@
           clearable= true
         ></v-text-field>
 
-        <div icon @click="overlay = !overlay">
+        <div icon @click="saveMeal(), overlay = !overlay">
           <v-btn class="large" depressed color="success">Save</v-btn>
         </div>
       
@@ -135,6 +121,7 @@ export default {
     largePrice: "",
     smallCal: "",
     largeCal: "",
+    imageName: "",
   }),
 
   methods: {
@@ -146,7 +133,7 @@ export default {
       const largePrice = this.largePrice
       const smallCal = this.smallCal
       const largeCal = this.largeCal
-      const image = this.uploadedFile
+      const image = this.imageName
       
       const saveMealParams = {
         name,
@@ -159,7 +146,7 @@ export default {
       }
       
       axios
-        .post("/api/update", saveMealParams)
+        .post("/api/create", saveMealParams)
         .then(function(response) {
           console.log(response);
         })
@@ -174,7 +161,7 @@ export default {
 
     updateFile(file){
       this.file= `./images/${file.name}`
-      console.log("update", this.file)
+      this.imageName= file.name
       
     },
 

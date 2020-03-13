@@ -28,7 +28,8 @@ export default {
     imageData: null,
     error: false,
     message: "",
-    formData: ""
+    formData: "",
+    
   }),
 
   methods: {
@@ -41,19 +42,24 @@ export default {
     onSelectFile() {
       const input = this.$refs.fileInput;
       const files = input.files;
-      const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+      const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/jpg"];
       const MAX_SIZE = 2000000;
       const tooLarge = input.size > MAX_SIZE;
+      const fileName= files[0].name
+      console.log(fileName)
+      
         
 
       if (allowedTypes.includes(files[0].type) && !tooLarge) {
         this.error = false;
         this.message = "";
+        this.$emit("fileName", fileName)
 
         if (files && files[0]) {
           const reader = new FileReader();
           reader.onload = e => {
             this.imageData = e.target.result;
+            
           };
           reader.readAsDataURL(files[0]);
           this.$emit("input", files[0]);
