@@ -72,6 +72,7 @@ router.post("/email", function(req, res) {
 
   //Invokes the method to send emails given the above data with the helper library
   mailgun.messages().send(data, function(err, body) {
+    console.log(data)
     //If there is an error, render the error page
     if (err) {
       console.log("got an error: ", err);

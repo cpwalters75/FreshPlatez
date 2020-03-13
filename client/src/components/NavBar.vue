@@ -3,7 +3,7 @@
   <div >
 
   <v-card
-    class="mx-auto overflow-hidden"
+    class="mx-auto "
     
   >
     <v-app-bar
@@ -22,8 +22,9 @@
   </v-card>
    <v-navigation-drawer
       v-model="displayNavbar"
-      absolute
+      class="index"
       temporary
+      absolute
     >
       <v-list
         nav
@@ -79,5 +80,9 @@
   }
   }
 </script>
-
+<style >
+.index {
+  z-index: +1;
+}
+</style>
 
