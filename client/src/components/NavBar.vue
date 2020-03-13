@@ -1,6 +1,6 @@
-<template>
+<template >
 
-  <div>
+  <div >
 
   <v-card
     class="mx-auto overflow-hidden"
@@ -9,12 +9,13 @@
     <v-app-bar
       color="black"
       dark
-    
+    style="position:fixed"
+    absolute
     >
 
      <v-app-bar-nav-icon @click="toggleNavbar"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Title</v-toolbar-title>
+      <v-toolbar-title>Fresh Platez</v-toolbar-title>
     </v-app-bar>
 
    
