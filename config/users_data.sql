@@ -1,4 +1,4 @@
--- insert users seed data
+-- insert users seed data for users
 INSERT INTO `freshplatez`.`users`
 (user_email,user_password,Fname,Lname,allergies,favorites,is_logged_On,is_admin,email)
 VALUES
