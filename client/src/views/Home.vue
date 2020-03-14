@@ -33,9 +33,10 @@ export default {
   },
   created: function() {
     this.getMealData();
+    this.preLoadCart();
   },
   methods: {
-    ...mapActions(["addCartItem"]),
+    ...mapActions(["addCartItem", "preLoadCart"]),
     getMealData() {
       axios
         .get("/api/meals")

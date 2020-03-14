@@ -43,7 +43,6 @@
     </v-container>
   </v-card>
 </template>
-
 <script>
 import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
@@ -62,6 +61,7 @@ export default {
 
   created: function() {
     this.calcTotal();
+    this.preLoadCart();
   },
 
   data: () => ({
@@ -72,7 +72,7 @@ export default {
   }),
 
   methods: {
-    ...mapActions(["removeCartItem", "updateCartItem"]),
+    ...mapActions(["removeCartItem", "updateCartItem", "preLoadCart"]),
     closeModal: function() {
       this.displayModal = !this.displayModal;
     },
