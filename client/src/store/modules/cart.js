@@ -25,6 +25,10 @@ const actions = {
 
     clearCartData: function ({ commit }) {
         commit('clearData');
+    },
+
+    preLoadCart: function ({ commit }) {
+        commit('loadCart');
     }
 };
 
@@ -55,7 +59,15 @@ const mutations = {
     clearData: (state) => {
         state.cart = [];
         window.localStorage.setItem('cart', JSON.stringify(state.cart));
+    },
+
+    loadCart: (state) => {
+        if (localStorage.getItem('cart')) {
+            state.cart = JSON.parse(localStorage.getItem('cart'));
+        }
     }
+
+
 };
 
 
