@@ -8,6 +8,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     meal_size: {
       type: DataTypes.STRING,
+      defaultValue: 'Small',
       allowNull: false,
     },
     quantity:
@@ -17,10 +18,12 @@ module.exports = function (sequelize, DataTypes) {
     },
     price: {
       type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 10.99,
       allowNull: false,
     },
     meal_status: {
       type: DataTypes.STRING,
+      defaultValue: 'Pending',
       allowNull: false,
     },
     createdAt: {
