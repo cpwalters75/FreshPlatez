@@ -29,7 +29,7 @@
           :disabled="!valid"
           color="success"
           class="ma-2"
-          @click="validate(); overlay = !overlay; clearCartData"
+          @click="validate(); overlay = !overlay; clearCartData()"
         >Place Order</v-btn>
         <v-overlay :value="overlay">
           <v-btn color="success" @click="overlay= !overlay; show= !show">
@@ -69,7 +69,7 @@ export default {
   }),
 
   methods: {
-    ...mapAction(["clearCartData"]),
+    ...mapActions(["clearCartData"]),
     validate() {
       if (this.$refs.form.validate()) {
         const Fname = this.firstName;
