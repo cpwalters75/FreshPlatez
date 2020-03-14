@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12">
+      <v-col >
         <CheckoutList />
       </v-col>
     </v-row>

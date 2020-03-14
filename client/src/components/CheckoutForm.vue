@@ -5,34 +5,68 @@
     </v-card-title>
     <v-container>
       <v-form ref="form" v-model="valid" lazy-validation ma-2>
-        <v-text-field v-model="firstName" :rules="FNameRules" label="First Name" required></v-text-field>
+        <v-text-field
+          v-model="firstName"
+          :rules="FNameRules"
+          label="First Name"
+          required
+        ></v-text-field>
 
-        <v-text-field v-model="lastName" :rules="LNameRules" label="Last Name"></v-text-field>
+        <v-text-field
+          v-model="lastName"
+          :rules="LNameRules"
+          label="Last Name"
+        ></v-text-field>
 
-        <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+        <v-text-field
+          v-model="email"
+          :rules="emailRules"
+          label="E-mail"
+          required
+        ></v-text-field>
 
-        <v-textarea v-model="notes" auto-grow label="Notes to the chef" rows="1"></v-textarea>
-        <v-text-field disabled v-model="orderTotal" label="Order Total" outlined></v-text-field>
+        <v-textarea
+          v-model="notes"
+          auto-grow
+          label="Notes to the chef"
+          rows="1"
+        ></v-textarea>
+        <v-text-field
+          disabled
+          v-model="orderTotal"
+          label="Order Total"
+          outlined
+        ></v-text-field>
         <v-checkbox
           v-model="checkbox"
-          :rules="[
-            v => !!v || 'You must acknowledge pickup location to continue!'
-          ]"
+          :rules="checkBoxRule"
           label="Pick up is at CrossFit Bona Fide, Greenland, NH"
           required
           class="mb-4"
         ></v-checkbox>
 
-        <v-btn color="danger" class="ma-4" @click="$emit('close-modal')">Cancel</v-btn>
-        <v-btn color="primary" class="ma-4">Log In</v-btn>
+        <v-btn color="danger" class="ma-4" @click="$emit('close-modal')"
+          >Cancel</v-btn
+        >
+        <!-- <v-btn color="primary" class="ma-4">Log In</v-btn> -->
         <v-btn
           :disabled="!valid"
           color="success"
           class="ma-2"
-          @click="validate(); overlay = !overlay"
-        >Place Order</v-btn>
+          @click="
+            validate();
+            overlay = !overlay;
+          "
+          >Place Order</v-btn
+        >
         <v-overlay :value="overlay">
-          <v-btn color="success" @click="overlay= !overlay; show= !show">
+          <v-btn
+            color="success"
+            @click="
+              overlay = !overlay;
+              show = !show;
+            "
+          >
             Order Updated!
             <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
           </v-btn>
@@ -46,11 +80,10 @@
 import axios from "axios";
 import { mapGetters } from "vuex";
 
-
 export default {
   name: "CheckoutForm",
   props: ["orderTotal"],
-  computed: mapGetters(["getCartItems"] ),
+  computed: mapGetters(["getCartItems"]),
   data: () => ({
     checkbox: false,
     show: false,
@@ -58,6 +91,7 @@ export default {
     overlay: false,
     firstName: "",
     FNameRules: [v => !!v || "First name is required"],
+    checkBoxRule: [ v => !!v || 'You must acknowledge pickup location to continue!'],
     lastName: "",
     LNameRules: [v => !!v || "Last name is required"],
 
@@ -66,33 +100,49 @@ export default {
       v => !!v || "E-mail is required",
       v => /.+@.+\..+/.test(v) || "E-mail must be valid"
     ],
-    notes: ""
+    notes: "",
+    orderTotal: ""
   }),
 
   methods: {
     validate() {
-      
-      
       if (this.$refs.form.validate()) {
         const Fname = this.firstName;
         const Lname = this.lastName;
         const email = this.email;
         const notes = this.notes;
-        const cart = this.getCartItems
+        const cart = this.getCartItems;
+        const orderTotal = this.orderTotal;
+        // const cartItems = cart.forEach(function(item){
+        //   return [item.shortDescription, item.quantity, item.meal_size]
+        // })
+        const cartItemsObject = [];
+
+        cart.forEach(item => {
+          let newItem = {
+            shortDescription: item.short_Description,
+            quantity: item.quantity,
+            meal_size: item.meal_size
+          };
+
+          cartItemsObject.push(newItem);
+        });
+        const cartItems = JSON.stringify(cartItemsObject);
+
         const emailParams = {
           email,
           Fname,
           Lname,
           notes,
-          cart
-        
+          orderTotal,
+          cartItems
         };
-        
+        console.log("cartArray", cartItemsObject);
         axios
           .post("/api/email", emailParams)
           .then(function(response) {
-            
             console.log(response);
+            console.log("emailParams", emailParams);
           })
           .catch(function(error) {
             console.log(error);
