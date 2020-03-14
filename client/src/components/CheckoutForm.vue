@@ -49,15 +49,14 @@
         <v-btn color="danger" class="ma-4" @click="$emit('close-modal')"
           >Cancel</v-btn
         >
-        <!-- <v-btn color="primary" class="ma-4">Log In</v-btn> -->
+        
         <v-btn
           :disabled="!valid"
           color="success"
           class="ma-2"
           @click="validate(); overlay = !overlay; $emit('clear-cart-data');"
         >Place Order</v-btn>
-        <v-btn color="danger" class="ma-4" @click="$emit('close-modal')">Cancel</v-btn>
-        <!-- <v-btn color="primary" class="ma-4">Log In</v-btn> -->
+        
 
         <v-overlay :value="overlay">
           <v-btn color="success" @click="overlay= !overlay; show= !show; $emit('close-modal')">
@@ -114,9 +113,9 @@ export default {
 
         cart.forEach(item => {
           let newItem = {
-            shortDescription: item.short_Description,
-            quantity: item.quantity,
-            meal_size: item.meal_size
+            Dish: item.short_Description,
+            Quantity: item.quantity,
+            Size: item.meal_size
           };
 
           cartItemsObject.push(newItem);
