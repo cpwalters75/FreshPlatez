@@ -6,23 +6,50 @@
     <v-divider></v-divider>
     <v-container>
       <v-form ref="form" v-model="valid" lazy-validation ma-2>
-        <v-text-field v-model="firstName" :rules="FNameRules" label="First Name" required></v-text-field>
+        <v-text-field
+          v-model="firstName"
+          :rules="FNameRules"
+          label="First Name"
+          required
+        ></v-text-field>
 
-        <v-text-field v-model="lastName" :rules="LNameRules" label="Last Name"></v-text-field>
+        <v-text-field
+          v-model="lastName"
+          :rules="LNameRules"
+          label="Last Name"
+        ></v-text-field>
 
-        <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+        <v-text-field
+          v-model="email"
+          :rules="emailRules"
+          label="E-mail"
+          required
+        ></v-text-field>
 
-        <v-textarea v-model="notes" auto-grow label="Notes to the chef" rows="1"></v-textarea>
-        <v-text-field disabled v-model="orderTotal" label="Order Total" outlined></v-text-field>
+        <v-textarea
+          v-model="notes"
+          auto-grow
+          label="Notes to the chef"
+          rows="1"
+        ></v-textarea>
+        <v-text-field
+          disabled
+          v-model="orderTotal"
+          label="Order Total"
+          outlined
+        ></v-text-field>
         <v-checkbox
           v-model="checkbox"
-          :rules="[
-            v => !!v || 'You must acknowledge pickup location to continue!'
-          ]"
+          :rules="checkBoxRule"
           label="Pick up is at CrossFit Bona Fide, Greenland, NH"
           required
           class="mb-4"
         ></v-checkbox>
+
+        <v-btn color="danger" class="ma-4" @click="$emit('close-modal')"
+          >Cancel</v-btn
+        >
+        <!-- <v-btn color="primary" class="ma-4">Log In</v-btn> -->
         <v-btn
           :disabled="!valid"
           color="success"
@@ -58,6 +85,7 @@ export default {
     overlay: false,
     firstName: "",
     FNameRules: [v => !!v || "First name is required"],
+    checkBoxRule: [ v => !!v || 'You must acknowledge pickup location to continue!'],
     lastName: "",
     LNameRules: [v => !!v || "Last name is required"],
 
@@ -66,7 +94,8 @@ export default {
       v => !!v || "E-mail is required",
       v => /.+@.+\..+/.test(v) || "E-mail must be valid"
     ],
-    notes: ""
+    notes: "",
+    orderTotal: ""
   }),
 
   methods: {
@@ -77,18 +106,37 @@ export default {
         const email = this.email;
         const notes = this.notes;
         const cart = this.getCartItems;
+        const orderTotal = this.orderTotal;
+        // const cartItems = cart.forEach(function(item){
+        //   return [item.shortDescription, item.quantity, item.meal_size]
+        // })
+        const cartItemsObject = [];
+
+        cart.forEach(item => {
+          let newItem = {
+            shortDescription: item.short_Description,
+            quantity: item.quantity,
+            meal_size: item.meal_size
+          };
+
+          cartItemsObject.push(newItem);
+        });
+        const cartItems = JSON.stringify(cartItemsObject);
+
         const emailParams = {
           email,
           Fname,
           Lname,
           notes,
-          cart
+          orderTotal,
+          cartItems
         };
-
+        console.log("cartArray", cartItemsObject);
         axios
           .post("/api/email", emailParams)
           .then(function(response) {
             console.log(response);
+            console.log("emailParams", emailParams);
           })
           .catch(function(error) {
             console.log(error);

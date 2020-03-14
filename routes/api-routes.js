@@ -68,7 +68,9 @@ router.post("/email", function (req, res) {
     html: `Thank you for your order ${req.body.Fname} ${req.body.Lname}!  You gots the below goooooood stuff coming at ya in 3-10 days
       
       Notes to the chef: ${req.body.notes}
-      Cart ${req.body.cart}`
+      Cart ${req.body.cartItems}
+      
+      Your total is ${req.body.orderTotal}`
   };
 
   //Invokes the method to send emails given the above data with the helper library
@@ -169,8 +171,10 @@ router.post("/create", function (req, res) {
     lead_time: 2,
     reheat_time: 30,
     is_active: 1
+  })
+  .then(result => {
+    console.log(result);
   });
-  console.log(result);
 });
 
 router.post("/delete", function (req, res) {

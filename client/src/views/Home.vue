@@ -5,7 +5,7 @@
         <v-col
           cols="12"
           xs="1"
-          md="3"
+          md="4"
           v-bind:key="meal.id"
           v-show="meal.is_active === true"
           v-for="meal in meals"

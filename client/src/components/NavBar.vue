@@ -7,6 +7,7 @@
     
   >
     <v-app-bar
+    class = "navBar"
       color="black"
       dark
     style="position:fixed"
@@ -84,6 +85,10 @@
 <style scoped>
 .index {
   z-index: +2;
+}
+
+.navBar {
+  z-index: +1;
 }
 </style>
 

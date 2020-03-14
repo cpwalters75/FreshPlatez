@@ -1,10 +1,10 @@
 <template >
-  <v-card elevation="6" class="mx-auto" max-width="344" >
+  <v-card elevation="6" class="mx-auto full-height" max-width="100%"  >
     <v-img :src="require('../assets/images/' + meal.image_name)" height="200px" width="344px"></v-img>
 
     <v-card-subtitle class="title">
       {{meal.short_Description}}
-      <v-btn @click="show = !show" fab dark small color="primary " bottom left absolute>
+      <v-btn class="plus" @click="show = !show" fab dark small color="primary " bottom left absolute>
         <v-icon>{{ show ? "mdi-minus" : "mdi-plus" }}</v-icon>
       </v-btn>
     </v-card-subtitle>
@@ -126,13 +126,13 @@ export default {
 img {
   object-fit: cover;
 
-/* Temp fix for word wrapping in cards breaking words https://github.com/vuetifyjs/vuetify/issues/9130
-v-card-subtitle,
-v-card-title {
-  white-space: normal;
-  text-overflow: ellipsis;
-} */
+}
 
+.plus {
+  z-index: 0 !important;
+}
 
+.full-height {
+  height: 100%;
 }
 </style>
