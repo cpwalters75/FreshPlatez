@@ -1,10 +1,20 @@
 <template >
-  <v-card elevation="6" class="mx-auto full-height" max-width="100%"  >
-    <v-img :src="require('../assets/images/' + meal.image_name)" height="200px" width="344px"></v-img>
+  <v-card elevation="6" class="mx-auto full-height" max-width="100%">
+    <v-img :src="require('../assets/images/' + meal.image_name)" width="100%"></v-img>
 
     <v-card-subtitle class="title">
       {{meal.short_Description}}
-      <v-btn class="plus" @click="show = !show" fab dark small color="primary " bottom left absolute>
+      <v-btn
+        class="plus"
+        @click="show = !show"
+        fab
+        dark
+        small
+        color="primary "
+        bottom
+        left
+        absolute
+      >
         <v-icon>{{ show ? "mdi-minus" : "mdi-plus" }}</v-icon>
       </v-btn>
     </v-card-subtitle>
@@ -125,7 +135,6 @@ export default {
 <style>
 img {
   object-fit: cover;
-
 }
 
 .plus {
