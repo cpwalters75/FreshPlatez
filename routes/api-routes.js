@@ -171,8 +171,10 @@ router.post("/create", function (req, res) {
     lead_time: 2,
     reheat_time: 30,
     is_active: 1
+  })
+  .then(result => {
+    console.log(result);
   });
-  console.log(result);
 });
 
 router.post("/delete", function (req, res) {
