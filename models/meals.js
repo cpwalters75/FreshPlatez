@@ -12,10 +12,12 @@ module.exports = function (sequelize, DataTypes) {
     },
     price_small: {
       type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 10.99,
       allowNull: false
     },
     price_large: {
       type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 12.99,
       allowNull: false
     },
     ingredients: {
@@ -24,28 +26,32 @@ module.exports = function (sequelize, DataTypes) {
     },
     calories_small: {
       type: DataTypes.STRING,
+      defaultValue: '300-400',
       allowNull: false
     },
     calories_large: {
       type: DataTypes.STRING,
+      defaultValue: '500-600',
       allowNull: false
     },
     lead_time: {
       type: DataTypes.INTEGER,
+      defaultValue: 2,
       allowNull: false
     },
     image_name: {
       type: DataTypes.STRING,
+      defaultValue: 'FreshPlatezLogo.jpg',
       allowNull: false
     },
     reheat_time: {
       type: DataTypes.TIME,
-      allowNull: false
+      allowNull: true
     },
     is_active: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: true
+      defaultValue: true,
+      allowNull: false
     },
     createdAt: {
       type: DataTypes.DATE,

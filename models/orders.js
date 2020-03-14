@@ -8,19 +8,22 @@ module.exports = function (sequelize, DataTypes) {
     },
     total: {
       type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 0.00,
       allowNull: false,
     },
     notes: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     order_status: {
       type: DataTypes.STRING,
+      defaultValue: 'Pending',
       allowNull: false,
     },
     delivery_date: {
       type: DataTypes.DATE,
-      allowNull: false,
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+      allowNull: false
     },
     createdAt: {
       type: DataTypes.DATE,
