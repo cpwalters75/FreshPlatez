@@ -100,13 +100,13 @@ export default {
 
       this.currentTotal = this.itemPrice * this.currentQty;
       this.itemTotal = "$" + this.currentTotal;
-      this.orderTotal = "$" + this.orderTotal;
+      this.orderTotal = "$" + this.orderTotal.toFixed(2);
     },
 
     confirmTotal: function() {
       axios.post("/api/total", this.getCartItems).then(response => {
         // console.log(response);
-        this.orderTotal = "$" + response.data.total;
+        this.orderTotal = "$" + response.data.total.toFixed(2);
       });
     },
     clearCart: function() {
