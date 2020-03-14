@@ -1,26 +1,31 @@
-<template>
+<template >
 
-  <div>
+  <div >
 
   <v-card
-    class="mx-auto overflow-hidden"
+    class="mx-auto "
     
   >
     <v-app-bar
       color="black"
       dark
+    style="position:fixed"
+    absolute
     >
+
      <v-app-bar-nav-icon @click="toggleNavbar"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Title</v-toolbar-title>
+      <v-toolbar-title>Fresh Platez</v-toolbar-title>
     </v-app-bar>
 
    
   </v-card>
    <v-navigation-drawer
       v-model="displayNavbar"
-      absolute
+      class="index"
       temporary
+      style="position:fixed"
+      absolute
     >
       <v-list
         nav
@@ -76,5 +81,9 @@
   }
   }
 </script>
-
+<style scoped>
+.index {
+  z-index: +2;
+}
+</style>
 

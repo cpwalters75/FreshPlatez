@@ -18,6 +18,7 @@
 import AdminMealCard from "../components/AdminMealCard.vue";
 import AddMealCard from "../components/AddMealCard.vue";
 import axios from "axios";
+
 export default {
   name: "Admin",
   props: ["meals", "newMeal"],

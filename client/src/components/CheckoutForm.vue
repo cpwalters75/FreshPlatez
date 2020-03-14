@@ -29,7 +29,7 @@
           :disabled="!valid"
           color="success"
           class="ma-2"
-          @click="validate; overlay = !overlay; clearData"
+          @click="validate(); overlay = !overlay; clearCartData"
         >Place Order</v-btn>
         <v-overlay :value="overlay">
           <v-btn color="success" @click="overlay= !overlay; show= !show">
@@ -44,10 +44,12 @@
 
 <script>
 import axios from "axios";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "CheckoutForm",
   props: ["orderTotal"],
+  computed: mapGetters(["getCartItems"]),
   data: () => ({
     checkbox: false,
     show: false,
@@ -67,18 +69,20 @@ export default {
   }),
 
   methods: {
-    validate(e) {
-      e.preventDefault();
+    ...mapAction(["clearCartData"]),
+    validate() {
       if (this.$refs.form.validate()) {
         const Fname = this.firstName;
         const Lname = this.lastName;
         const email = this.email;
         const notes = this.notes;
+        const cart = this.getCartItems;
         const emailParams = {
           email,
           Fname,
           Lname,
-          notes
+          notes,
+          cart
         };
 
         axios
@@ -96,9 +100,6 @@ export default {
     },
     resetValidation() {
       this.$refs.form.resetValidation();
-    },
-    clearData() {
-      window.localStorage.clear();
     }
   }
 };

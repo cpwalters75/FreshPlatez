@@ -1,11 +1,12 @@
 <template>
   <v-app>
-    <NavBar />
+    <NavBar class="mb-10" />
     <CheckoutButton />
-    <Header />
+    <Header class="mt-10" />
     <v-content>
       <router-view />
     </v-content>
+    <Footer />
   </v-app>
 </template>
 
@@ -13,6 +14,7 @@
 import NavBar from "./components/NavBar";
 import Header from "./components/Header";
 import CheckoutButton from "./components/CheckoutButton";
+import Footer from "./components/Footer";
 
 import router from "./router";
 
@@ -22,7 +24,8 @@ export default {
   components: {
     NavBar,
     Header,
-    CheckoutButton
+    CheckoutButton,
+    Footer
   }
 };
 </script>
