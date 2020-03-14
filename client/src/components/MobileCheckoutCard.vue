@@ -1,6 +1,6 @@
 <template>
   <v-card elevation="6" class="mx-auto" max-width="344">
-    <v-img :src="require('../assets/images/' + item.image_name)" height="200px" width="344px" />
+    <v-img :src="require('../assets/images/' + item.image_name)" width="100%" />
     <v-card-subtitle class="title">{{item.short_Description}}</v-card-subtitle>
     <v-card-subtitle>{{item.ingredients}}</v-card-subtitle>
     <v-divider></v-divider>
