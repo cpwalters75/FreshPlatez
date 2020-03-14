@@ -1,8 +1,9 @@
 <template>
   <v-card max-width: auto outlined raised color="grey lighten-5">
-    <v-card-title>
+    <v-card-subtitle class="title" text-align="center">
       <span class="headline">Please complete the below</span>
-    </v-card-title>
+    </v-card-subtitle>
+    <v-divider></v-divider>
     <v-container>
       <v-form ref="form" v-model="valid" lazy-validation ma-2>
         <v-text-field v-model="firstName" :rules="FNameRules" label="First Name" required></v-text-field>
@@ -22,15 +23,15 @@
           required
           class="mb-4"
         ></v-checkbox>
-
-        <v-btn color="danger" class="ma-4" @click="$emit('close-modal')">Cancel</v-btn>
-        <v-btn color="primary" class="ma-4">Log In</v-btn>
         <v-btn
           :disabled="!valid"
           color="success"
           class="ma-2"
           @click="validate(); overlay = !overlay; $emit('clear-cart-data');"
         >Place Order</v-btn>
+        <v-btn color="danger" class="ma-4" @click="$emit('close-modal')">Cancel</v-btn>
+        <!-- <v-btn color="primary" class="ma-4">Log In</v-btn> -->
+
         <v-overlay :value="overlay">
           <v-btn color="success" @click="overlay= !overlay; show= !show; $emit('close-modal')">
             Order Submitted!

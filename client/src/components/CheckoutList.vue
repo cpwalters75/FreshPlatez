@@ -29,6 +29,7 @@
             </v-row>
             <v-row>
               <v-col cols="12">
+                <v-spacer></v-spacer>
                 <v-dialog v-model="displayModal" persistent max-width="600px">
                   <template v-slot:activator="{ on }">
                     <v-btn color="primary" dark v-on="on" @click="confirmTotal">Proceed to Checkout</v-btn>
