@@ -2,6 +2,9 @@
   "name": "freshplatez",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "v12.13.x"
+  },
   "scripts": {
     "start": "node index.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
