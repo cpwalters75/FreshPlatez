@@ -1,7 +1,7 @@
 <template>
   <v-card elevation="6" class="mx-auto" max-width="344">
     <v-img :src="require('../assets/images/' + item.image_name)" height="200px" width="344px" />
-    <v-card-title>{{item.short_Description}}</v-card-title>
+    <v-card-subtitle class="title">{{item.short_Description}}</v-card-subtitle>
     <v-card-subtitle>{{item.ingredients}}</v-card-subtitle>
     <v-divider></v-divider>
     <v-card-actions>
@@ -66,17 +66,27 @@
               </v-btn>
             </div>
             <div v-else>
-              <v-btn
-                color="error"
-                @click="overlay= !overlay; show= !show; $emit('remove-cart-item',item.id); $emit('update-order-total')"
-              >
-                Remove Item?
-                <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
-              </v-btn>
-              <v-btn color="primary" @click="overlay= !overlay; show= !show">
-                Nevermind!
-                <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
-              </v-btn>
+              <v-container>
+                <v-row>
+                  <v-col cols="12">
+                    <v-btn
+                      color="error"
+                      @click="overlay= !overlay; show= !show; $emit('remove-cart-item',item.id); $emit('update-order-total')"
+                    >
+                      Remove Item?
+                      <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
+                    </v-btn>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="12">
+                    <v-btn color="primary" @click="overlay= !overlay; show= !show">
+                      Nevermind!
+                      <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
+                    </v-btn>
+                  </v-col>
+                </v-row>
+              </v-container>
             </div>
           </v-col>
         </v-row>

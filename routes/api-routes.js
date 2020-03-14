@@ -14,7 +14,7 @@ const mailgun = new Mailgun({ apiKey: api_key, domain: domain });
 
 // ------------------Meal Routes------------------------------------------------------------
 
-router.get("/meals", function(req, res) {
+router.get("/meals", function (req, res) {
   //res.json("hello from the server")
   db.Meal.findAll({}).then(mealData => {
     res.json(mealData);
@@ -23,7 +23,7 @@ router.get("/meals", function(req, res) {
 
 // ------------------Calc Order Totals------------------------------------------------------------
 
-router.post("/total", function(req, res) {
+router.post("/total", function (req, res) {
   const ids = req.body.map(item => {
     return item.MealId;
   });
@@ -41,10 +41,11 @@ router.post("/total", function(req, res) {
       }
       return total + itemPrice * cartItem.quantity;
     }, 0);
+    let trimTotal = total.toFixed(2)
 
     // let itemTotal = itemPrice * cartItem.quantity;
     // orderTotal += itemTotal;
-    res.json({ total });
+    res.json({ trimTotal });
   });
 
   // res.json("hello");
@@ -54,7 +55,7 @@ router.post("/total", function(req, res) {
 
 // Send a message to the specified email address when you navigate to /submit/someaddr@email.com
 // The index redirects here
-router.post("/email", function(req, res) {
+router.post("/email", function (req, res) {
   console.log("sent?", req.body);
   console.log(mailgun);
 
@@ -73,7 +74,7 @@ router.post("/email", function(req, res) {
   };
 
   //Invokes the method to send emails given the above data with the helper library
-  mailgun.messages().send(data, function(err, body) {
+  mailgun.messages().send(data, function (err, body) {
     console.log(data)
     //If there is an error, render the error page
     if (err) {
@@ -89,7 +90,7 @@ router.post("/email", function(req, res) {
 
 // --------------- update Meals routes----------------------------------------
 
-const fileFilter = function(req, file, cb) {
+const fileFilter = function (req, file, cb) {
   const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
 
   if (!allowedTypes.includes(file.mimetype)) {
@@ -102,10 +103,10 @@ const fileFilter = function(req, file, cb) {
 };
 
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
+  destination: function (req, file, cb) {
     cb(null, "./images");
   },
-  filename: function(req, file, cb) {
+  filename: function (req, file, cb) {
     cb(null, file.originalname);
   }
 });
@@ -138,7 +139,7 @@ router.post("/upload", upload.single("file"), async (req, res) => {
   // }
 });
 
-router.put("/update", function(req, res) {
+router.put("/update", function (req, res) {
   console.log("body", req.body);
 
   db.Meal.update(
@@ -158,7 +159,7 @@ router.put("/update", function(req, res) {
   });
 });
 
-router.post("/create", function(req, res) {
+router.post("/create", function (req, res) {
   db.Meal.create({
     short_Description: req.body.name,
     ingredients: req.body.ingredients,
@@ -174,18 +175,19 @@ router.post("/create", function(req, res) {
   console.log(result);
 });
 
-router.post("/delete", function(req, res) {
+router.post("/delete", function (req, res) {
   console.log(req.body)
   db.Meal.destroy({
-    where: { id: req.body.id} })
+    where: { id: req.body.id }
+  })
     .then(
-      function(rowDeleted) {
+      function (rowDeleted) {
         // rowDeleted will return number of rows deleted
         if (rowDeleted === 1) {
           console.log("Deleted successfully");
         }
       },
-      function(err) {
+      function (err) {
         console.log(err);
       }
     )
