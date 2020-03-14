@@ -29,11 +29,11 @@
           :disabled="!valid"
           color="success"
           class="ma-2"
-          @click="validate(); overlay = !overlay; $emit('clear-cart-data')"
+          @click="validate(); overlay = !overlay; $emit('clear-cart-data');"
         >Place Order</v-btn>
         <v-overlay :value="overlay">
-          <v-btn color="success" @click="overlay= !overlay; show= !show">
-            Order Updated!
+          <v-btn color="success" @click="overlay= !overlay; show= !show; $emit('close-modal')">
+            Order Submitted!
             <v-icon class="ml-2">mdi-checkbox-marked-circle</v-icon>
           </v-btn>
         </v-overlay>
