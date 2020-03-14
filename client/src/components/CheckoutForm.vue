@@ -1,8 +1,9 @@
 <template>
   <v-card max-width: auto outlined raised color="grey lighten-5">
-    <v-card-title>
+    <v-card-subtitle class="title">
       <span class="headline">Please complete the below</span>
-    </v-card-title>
+    </v-card-subtitle>
+    <v-divider></v-divider>
     <v-container>
       <v-form ref="form" v-model="valid" lazy-validation ma-2>
         <v-text-field v-model="firstName" :rules="FNameRules" label="First Name" required></v-text-field>
