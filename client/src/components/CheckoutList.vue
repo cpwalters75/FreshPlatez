@@ -2,7 +2,7 @@
   <v-card elevation="2" class="mx-auto">
     <v-container>
       <v-row>
-        <v-col col="12">
+        <v-col col="3">
           <v-container v-for="item in getCartItems" v-bind:key="item.id">
             <!-- Not able to set up functionality on desktop version of checkout cards in time for demo. Focusing on polishing MobileCheckout card instead -->
             <!-- <div v-if="!isMobile()">
@@ -33,7 +33,11 @@
                   <template v-slot:activator="{ on }">
                     <v-btn color="primary" dark v-on="on" @click="confirmTotal">Proceed to Checkout</v-btn>
                   </template>
-                  <CheckoutForm @close-modal="closeModal" v-bind:orderTotal="orderTotal" />
+                  <CheckoutForm
+                    @close-modal="closeModal"
+                    v-bind:orderTotal="orderTotal"
+                    @clear-cart-data="clearCart()"
+                  />
                 </v-dialog>
               </v-col>
             </v-row>
@@ -72,7 +76,12 @@ export default {
   }),
 
   methods: {
-    ...mapActions(["removeCartItem", "updateCartItem", "preLoadCart"]),
+    ...mapActions([
+      "removeCartItem",
+      "updateCartItem",
+      "preLoadCart",
+      "clearCartData"
+    ]),
     closeModal: function() {
       this.displayModal = !this.displayModal;
     },
@@ -99,6 +108,10 @@ export default {
         // console.log(response);
         this.orderTotal = "$" + response.data.total;
       });
+    },
+    clearCart: function() {
+      this.clearCartData();
+      this.calcTotal();
     }
     // isMobile method scolution from https://stackoverflow.com/questions/48515023/display-different-vuejs-components-for-mobile-browsers
     // queries the devices operating system to determine if the user is mobile and toggles component render accordingly
