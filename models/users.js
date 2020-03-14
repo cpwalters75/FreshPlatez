@@ -12,7 +12,8 @@ module.exports = function (sequelize, DataTypes) {
     },
     user_password: {
       type: DataTypes.STRING,
-      allowNull: false,
+      defaultValue: '',
+      allowNull: true,
     },
     Fname: {
       type: DataTypes.STRING,
@@ -24,23 +25,24 @@ module.exports = function (sequelize, DataTypes) {
     },
     allergies: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     favorites: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     is_logged_on: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
     },
     is_admin: {
       type: DataTypes.BOOLEAN,
+      defaultValue: false,
       allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     createdAt: {
       type: DataTypes.DATE,
